@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://4qpkclbwq0ic"
+path="res://.godot/imported/kenney-orange-texture01.vmt-16baccee6099c251ed5215463035ab16.vmt.tres"
+
+[deps]
+
+source_file="res://godotvmfcontent/materials/devkenney/kenney-orange-texture01.vmt"
+dest_files=["res://.godot/imported/kenney-orange-texture01.vmt-16baccee6099c251ed5215463035ab16.vmt.tres"]
+
+[params]
+

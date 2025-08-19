@@ -1,0 +1,14 @@
+[remap]
+
+importer="VTF"
+type="Texture"
+uid="uid://d0u3muh65v1n"
+path="res://.godot/imported/kenney-orange-texture01.vtf-4aca555617639cee4b85a783fac73121.vtf.tres"
+
+[deps]
+
+source_file="res://godotvmfcontent/materials/devkenney/kenney-orange-texture01.vtf"
+dest_files=["res://.godot/imported/kenney-orange-texture01.vtf-4aca555617639cee4b85a783fac73121.vtf.tres"]
+
+[params]
+

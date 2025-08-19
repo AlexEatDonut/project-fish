@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://co87gsueu4n17"
+path="res://.godot/imported/kenney-dark-texture05.vmt-4d14835907fce35216a32f68361ddd66.vmt.tres"
+
+[deps]
+
+source_file="res://godotvmfcontent/materials/devkenney/kenney-dark-texture05.vmt"
+dest_files=["res://.godot/imported/kenney-dark-texture05.vmt-4d14835907fce35216a32f68361ddd66.vmt.tres"]
+
+[params]
+
