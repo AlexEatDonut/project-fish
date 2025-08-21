@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://kpoexkgtcp5r"]
-
-[ext_resource type="Script" uid="uid://85bhee7s0b1a" path="res://entities/fishes/fish_template.gd" id="1_gjjig"]
-
-[node name="FishTemplate" type="Node3D"]
-script = ExtResource("1_gjjig")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
