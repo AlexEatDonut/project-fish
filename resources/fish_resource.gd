@@ -15,7 +15,6 @@ enum FishType{
 @export var fishType : FishType
 
 @export_category("Fish data")
-@export var reload_sound : PackedScene
 @export var caught_sound : PackedScene
 @export var sprite : Texture2D
 @export var fish_locations = [false,false,false,false,false,false,false,false,false]
