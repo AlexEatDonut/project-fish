@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://bd0vwp7aa2d2d"
+path="res://.godot/imported/uaz452_wheel.vmt-c4691b92af2784c9b26204502ee37e71.vmt.tres"
+
+[deps]
+
+source_file="res://godotvmfcontent/materials/models/props_se/uaz452/uaz452_wheel.vmt"
+dest_files=["res://.godot/imported/uaz452_wheel.vmt-c4691b92af2784c9b26204502ee37e71.vmt.tres"]
+
+[params]
+

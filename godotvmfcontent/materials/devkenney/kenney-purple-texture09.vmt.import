@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://cntc8aayki3nf"
+path="res://.godot/imported/kenney-purple-texture09.vmt-9e930d9877e58a2ebaaf2baf0e01d227.vmt.tres"
+
+[deps]
+
+source_file="res://godotvmfcontent/materials/devkenney/kenney-purple-texture09.vmt"
+dest_files=["res://.godot/imported/kenney-purple-texture09.vmt-9e930d9877e58a2ebaaf2baf0e01d227.vmt.tres"]
+
+[params]
+

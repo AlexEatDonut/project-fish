@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://da7e81d8ylhqg"
+path="res://.godot/imported/texture_08.vmt-49380b8391c2f27b0a26a6666e2d487f.vmt.tres"
+
+[deps]
+
+source_file="res://godotvmfcontent/materials/dev/texture_08.vmt"
+dest_files=["res://.godot/imported/texture_08.vmt-49380b8391c2f27b0a26a6666e2d487f.vmt.tres"]
+
+[params]
+

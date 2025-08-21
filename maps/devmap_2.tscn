@@ -1,0 +1,239 @@
+[gd_scene load_steps=16 format=3 uid="uid://b4jqh6pq5tb05"]
+
+[ext_resource type="Script" uid="uid://0o80jseckr0p" path="res://maps/devmap_2.gd" id="1_d7nb8"]
+[ext_resource type="Script" uid="uid://c5tkggxeoaq1j" path="res://addons/godotvmf/src/VMFNode.gd" id="1_sy3lk"]
+[ext_resource type="ArrayMesh" uid="uid://c87yb1ignaj77" path="res://godotvmfcontent/geometry/fish-devmap2_vmf_import.mesh" id="2_d7nb8"]
+[ext_resource type="Shape3D" uid="uid://c6va2owe8g1t3" path="res://godotvmfcontent/geometry/fish-devmap2_vmf_collision_surface_prop_default.res" id="3_6ojuu"]
+[ext_resource type="PackedScene" uid="uid://cwxttgf1xbejo" path="res://godotvmfcontent/entities/light_environment.tscn" id="4_bo51v"]
+[ext_resource type="PackedScene" uid="uid://ieknbubt7ci7" path="res://entities/player/player.tscn" id="9_et6dl"]
+
+[sub_resource type="Shader" id="Shader_l1bqc"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.4.1.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_always, cull_back, diffuse_burley, specular_schlick_ggx;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform sampler2D texture_refraction : filter_linear_mipmap, repeat_enable;
+uniform float refraction : hint_range(-1.0, 1.0, 0.001);
+uniform vec4 refraction_texture_channel;
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_linear_mipmap;
+uniform sampler2D depth_texture : hint_depth_texture, repeat_disable, filter_nearest;
+
+uniform sampler2D texture_normal : hint_roughness_normal, filter_linear_mipmap, repeat_enable;
+uniform float normal_scale : hint_range(-16.0, 16.0);
+varying vec3 uv1_triplanar_pos;
+
+uniform float uv1_blend_sharpness : hint_range(0.0, 150.0, 0.001);
+varying vec3 uv1_power_normal;
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	vec3 normal = MODEL_NORMAL_MATRIX * NORMAL;
+
+	TANGENT = vec3(0.0, 0.0, -1.0) * abs(normal.x);
+	TANGENT += vec3(1.0, 0.0, 0.0) * abs(normal.y);
+	TANGENT += vec3(1.0, 0.0, 0.0) * abs(normal.z);
+	TANGENT = inverse(MODEL_NORMAL_MATRIX) * normalize(TANGENT);
+
+	BINORMAL = vec3(0.0, 1.0, 0.0) * abs(normal.x);
+	BINORMAL += vec3(0.0, 0.0, -1.0) * abs(normal.y);
+	BINORMAL += vec3(0.0, 1.0, 0.0) * abs(normal.z);
+	BINORMAL = inverse(MODEL_NORMAL_MATRIX) * normalize(BINORMAL);
+
+	// UV1 Triplanar: Enabled (with World Triplanar)
+	uv1_power_normal = pow(abs(normal), vec3(uv1_blend_sharpness));
+	uv1_triplanar_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz * uv1_scale + uv1_offset + TIME * -0.05
+	;
+	uv1_power_normal /= dot(uv1_power_normal, vec3(1.0));
+	uv1_triplanar_pos *= vec3(1.0, -1.0, 1.0);
+}
+
+vec4 triplanar_texture(sampler2D p_sampler, vec3 p_weights, vec3 p_triplanar_pos) {
+	vec4 samp = vec4(0.0);
+	samp += texture(p_sampler, p_triplanar_pos.xy) * p_weights.z;
+	samp += texture(p_sampler, p_triplanar_pos.xz) * p_weights.y;
+	samp += texture(p_sampler, p_triplanar_pos.zy * vec2(-1.0, 1.0)) * p_weights.x;
+	return samp;
+}
+
+void fragment() {
+	vec4 albedo_tex = triplanar_texture(texture_albedo, uv1_power_normal, uv1_triplanar_pos);
+
+	// Albedo Texture Force sRGB: Enabled
+	albedo_tex.rgb = mix(
+			pow((albedo_tex.rgb + vec3(0.055)) * (1.0 / (1.0 + 0.055)), vec3(2.4)),
+			albedo_tex.rgb.rgb * (1.0 / 12.92),
+			lessThan(albedo_tex.rgb, vec3(0.04045)));
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(triplanar_texture(texture_metallic, uv1_power_normal, uv1_triplanar_pos), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(triplanar_texture(texture_roughness, uv1_power_normal, uv1_triplanar_pos), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+
+	// Normal Map: Enabled
+	NORMAL_MAP = triplanar_texture(texture_normal, uv1_power_normal, uv1_triplanar_pos).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+
+	// Refraction: Enabled (with normal map texture)
+	vec3 unpacked_normal = NORMAL_MAP;
+	unpacked_normal.xy = unpacked_normal.xy * 2.0 - 1.0;
+	unpacked_normal.z = sqrt(max(0.0, 1.0 - dot(unpacked_normal.xy, unpacked_normal.xy)));
+	vec3 ref_normal = normalize(mix(
+			NORMAL,
+			TANGENT * unpacked_normal.x + BINORMAL * unpacked_normal.y + NORMAL * unpacked_normal.z,
+			NORMAL_MAP_DEPTH));
+	vec2 ref_ofs = SCREEN_UV - ref_normal.xy * dot(triplanar_texture(texture_refraction, uv1_power_normal, uv1_triplanar_pos), refraction_texture_channel) * refraction;
+
+	float ref_amount = 1.0 - albedo.a * albedo_tex.a;
+
+	float refraction_depth_tex = textureLod(depth_texture, ref_ofs, 0.0).r;
+	vec4 refraction_view_pos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, refraction_depth_tex, 1.0);
+	refraction_view_pos.xyz /= refraction_view_pos.w;
+
+	// If the depth buffer is lower then the model's Z position, use the refracted UV, otherwise use the normal screen UV.
+	// At low depth differences, decrease refraction intensity to avoid sudden discontinuities.
+	EMISSION += textureLod(screen_texture, mix(SCREEN_UV, ref_ofs, smoothstep(0.0, 1.0, VERTEX.z - refraction_view_pos.z)), ROUGHNESS * 8.0).rgb * ref_amount * EXPOSURE;
+	ALBEDO *= 1.0 - ref_amount;
+	// Force transparency on the material (required for refraction).
+	ALPHA = 1.0;
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jh5u5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g537g"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_jh5u5")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qtr2s"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_jh5u5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7xuri"]
+render_priority = 0
+shader = SubResource("Shader_l1bqc")
+shader_parameter/albedo = Color(0.0666667, 0.301961, 0.87451, 0.541176)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/texture_refraction = SubResource("NoiseTexture2D_qtr2s")
+shader_parameter/refraction = 0.05
+shader_parameter/refraction_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_g537g")
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(0.1, 0.1, 0.1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xg6o3"]
+material = SubResource("ShaderMaterial_7xuri")
+size = Vector3(200, 30, 200)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_chv5x"]
+sky_top_color = Color(0.494118, 0.678431, 0.901961, 1)
+sky_horizon_color = Color(0.784314, 0.792157, 0.901961, 1)
+ground_horizon_color = Color(0.784314, 0.792157, 0.901961, 1)
+sun_angle_max = 45.0
+
+[sub_resource type="Sky" id="Sky_j16xd"]
+sky_material = SubResource("ProceduralSkyMaterial_chv5x")
+
+[sub_resource type="Environment" id="Environment_lw2i1"]
+background_mode = 2
+sky = SubResource("Sky_j16xd")
+tonemap_white = 1.5
+fog_light_color = Color(0.784314, 0.792157, 0.901961, 1)
+
+[node name="devmap_2" type="Node3D"]
+script = ExtResource("1_d7nb8")
+
+[node name="VMFNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0124474, 0.0475245, -0.0227852)
+script = ExtResource("1_sy3lk")
+use_external_file = true
+vmf = "D:/SteamLibrary/steamapps/SourceMods/godotvmf/maps/fish-devmap2.vmf"
+metadata/_custom_type_script = "uid://c5tkggxeoaq1j"
+
+[node name="Geometry" type="MeshInstance3D" parent="VMFNode"]
+mesh = ExtResource("2_d7nb8")
+
+[node name="surface_prop_default" type="StaticBody3D" parent="VMFNode/Geometry"]
+metadata/surface_prop = "default"
+
+[node name="collision" type="CollisionShape3D" parent="VMFNode/Geometry/surface_prop_default"]
+shape = ExtResource("3_6ojuu")
+
+[node name="Entities" type="Node3D" parent="VMFNode"]
+
+[node name="lights" type="Node3D" parent="VMFNode/Entities"]
+
+[node name="light_environment" parent="VMFNode/Entities/lights" instance=ExtResource("4_bo51v")]
+transform = Transform3D(0.573576, -0.579228, 0.579228, 0, 0.707107, 0.707107, -0.819152, -0.40558, 0.40558, 0, 3.84, -8)
+entity = {
+"SunSpreadAngle": 0.5,
+"_AmbientScaleHDR": 1,
+"_ambient": Color(0.784314, 0.792157, 0.901961, 0.235294),
+"_ambientHDR": Color(-0.00392157, -0.00392157, -0.00392157, 0.00392157),
+"_light": Color(0.847059, 0.811765, 0.760784, 2.7451),
+"_lightHDR": Color(-0.00392157, -0.00392157, -0.00392157, 0.00392157),
+"_lightscaleHDR": 1,
+"angles": Vector3(0, 145, 0),
+"classname": "light_environment",
+"editor": {
+"color": Vector3(220, 30, 220),
+"logicalpos": "[0 6500]",
+"visgroupautoshown": 1,
+"visgroupshown": 1
+},
+"id": 70,
+"origin": Vector3(0, 400, 192),
+"pitch": -45,
+&"vmf": "D:/SteamLibrary/steamapps/SourceMods/godotvmf/maps/fish-devmap2.vmf"
+}
+
+[node name="DirectionalLight3D" parent="VMFNode/Entities/lights/light_environment" index="0"]
+light_color = Color(0.847059, 0.811765, 0.760784, 1)
+light_energy = 2.7451
+
+[node name="NonVMFEntities" type="Node3D" parent="."]
+
+[node name="player" parent="NonVMFEntities" instance=ExtResource("9_et6dl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.311, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NonVMFEntities"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.805, 0)
+mesh = SubResource("BoxMesh_xg6o3")
+skeleton = NodePath("../..")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="NonVMFEntities"]
+environment = SubResource("Environment_lw2i1")
+
+[editable path="VMFNode/Entities/lights/light_environment"]
