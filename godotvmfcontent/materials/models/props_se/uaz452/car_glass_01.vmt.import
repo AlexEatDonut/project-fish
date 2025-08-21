@@ -1,0 +1,14 @@
+[remap]
+
+importer="VMT"
+type="Material"
+uid="uid://br21j1xph3bd2"
+path="res://.godot/imported/car_glass_01.vmt-5fb343544638bb2791779fd974ed704f.vmt.tres"
+
+[deps]
+
+source_file="res://godotvmfcontent/materials/models/props_se/uaz452/car_glass_01.vmt"
+dest_files=["res://.godot/imported/car_glass_01.vmt-5fb343544638bb2791779fd974ed704f.vmt.tres"]
+
+[params]
+

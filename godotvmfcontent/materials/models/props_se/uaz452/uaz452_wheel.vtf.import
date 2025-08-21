@@ -1,0 +1,14 @@
+[remap]
+
+importer="VTF"
+type="Texture"
+uid="uid://dhmrinywxsiki"
+path="res://.godot/imported/uaz452_wheel.vtf-5d790ffff156990361b9e0af5ddf4840.vtf.tres"
+
+[deps]
+
+source_file="res://godotvmfcontent/materials/models/props_se/uaz452/uaz452_wheel.vtf"
+dest_files=["res://.godot/imported/uaz452_wheel.vtf-5d790ffff156990361b9e0af5ddf4840.vtf.tres"]
+
+[params]
+
