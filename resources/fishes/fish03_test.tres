@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="FishResource" load_steps=3 format=3 uid="uid://cyrtf831dei3d"]
+
+[ext_resource type="Script" uid="uid://blc2ahqumvp43" path="res://resources/fish_resource.gd" id="1_gkq7k"]
+[ext_resource type="Texture2D" uid="uid://sjjgpoq8bijr" path="res://materials/placeholder/blublub3.png" id="2_gkq7k"]
+
+[resource]
+script = ExtResource("1_gkq7k")
+name = &"Dev fish"
+description = &"This is a dev fish"
+fishType = 0
+sprite = ExtResource("2_gkq7k")
+fish_locations = [true, false, false, false, false, false, false, false, false]
+min_value = 15.0
+max_value = 20.0
+min_weight = 3.0
+max_weight = 5.0
+rod_damage = 1.0
+bait_value = 0.0
+metadata/_custom_type_script = "uid://blc2ahqumvp43"
