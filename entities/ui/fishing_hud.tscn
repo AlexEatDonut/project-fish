@@ -1,4 +1,29 @@
-[gd_scene format=3 uid="uid://cm8byrgndxoo1"]
+[gd_scene load_steps=15 format=3 uid="uid://cm8byrgndxoo1"]
+
+[ext_resource type="Texture2D" uid="uid://ym2al7f2xtis" path="res://materials/placeholder/blublub1.png" id="1_w8jul"]
+[ext_resource type="Script" uid="uid://516jobpkflmg" path="res://entities/ui/player_interact.gd" id="2_hxjwp"]
+[ext_resource type="AudioStream" uid="uid://c2y0o0mdcwnu" path="res://sounds/fish/507093__paulprit__fish-splashing-release-2.wav" id="3_ahgep"]
+[ext_resource type="Texture2D" uid="uid://buj2j3wqv1pu3" path="res://icon.svg" id="4_1fp6f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cpdjg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qs7v0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tp4ps"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bb7sx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_78bmv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71rqi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8q4sn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kal33"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7f72s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k4e7q"]
 
 [node name="FishingHud" type="Control"]
 layout_mode = 3
@@ -9,7 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="ButtonsMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,19 +46,19 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="ButtonsMarginContainer"]
 layout_mode = 2
 columns = 3
 
-[node name="btn_shop" type="Button" parent="MarginContainer/GridContainer"]
+[node name="btn_shop" type="Button" parent="ButtonsMarginContainer/GridContainer"]
 layout_mode = 2
 text = "shop"
 
-[node name="btn_fishlist" type="Button" parent="MarginContainer/GridContainer"]
+[node name="btn_fishlist" type="Button" parent="ButtonsMarginContainer/GridContainer"]
 layout_mode = 2
 text = "bestiary"
 
-[node name="menubtn_travel" type="MenuButton" parent="MarginContainer/GridContainer"]
+[node name="menubtn_travel" type="MenuButton" parent="ButtonsMarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -59,7 +84,7 @@ popup/item_7/id = 7
 popup/item_8/text = "Clouds"
 popup/item_8/id = 8
 
-[node name="MenuButton" type="MenuButton" parent="MarginContainer"]
+[node name="MenuButton" type="MenuButton" parent="ButtonsMarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -72,8 +97,209 @@ popup/item_1/id = 1
 popup/item_2/text = "Quit"
 popup/item_2/id = 2
 
-[node name="Button" type="Button" parent="MarginContainer"]
+[node name="Button" type="Button" parent="ButtonsMarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "bait and rod"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 130.0
+offset_right = 144.0
+offset_bottom = 345.0
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="namelabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "Queued fish :"
+
+[node name="queuedfish_name" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "blubblub"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="queuedfish_sprite" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -14.5
+offset_right = 43.0
+offset_bottom = 14.5
+grow_vertical = 2
+texture = ExtResource("1_w8jul")
+expand_mode = 1
+
+[node name="weightlabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "weight"
+
+[node name="queuedfish_weight" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "0"
+
+[node name="valuelabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "value"
+
+[node name="queuedfish_value" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "0"
+
+[node name="RadioMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -169.0
+offset_right = 293.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RadioMarginContainer"]
+layout_mode = 2
+mouse_filter = 0
+theme_override_constants/separation = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="RadioMarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="RadioMarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Current song :"
+
+[node name="Label2" type="Label" parent="RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "The raindrop that fell to the sky"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "by :"
+
+[node name="Label2" type="Label" parent="RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Chris Christodoulou"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RadioMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 0
+alignment = 1
+
+[node name="Button" type="Button" parent="RadioMarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "⏹"
+
+[node name="Button2" type="Button" parent="RadioMarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "⏮"
+
+[node name="Button3" type="Button" parent="RadioMarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "⏯️"
+
+[node name="Button4" type="Button" parent="RadioMarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "⏭"
+
+[node name="PlayerInteract" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 4
+script = ExtResource("2_hxjwp")
+audio = ExtResource("3_ahgep")
+
+[node name="StartFishing" type="Button" parent="PlayerInteract"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 511.0
+offset_top = 264.0
+offset_right = -505.0
+offset_bottom = -248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cpdjg")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_qs7v0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tp4ps")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_bb7sx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_78bmv")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_71rqi")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8q4sn")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kal33")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7f72s")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_k4e7q")
+icon = ExtResource("4_1fp6f")
+
+[connection signal="pressed" from="PlayerInteract/StartFishing" to="PlayerInteract" method="_on_start_fishing_pressed"]
