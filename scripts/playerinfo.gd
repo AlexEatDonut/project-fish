@@ -34,6 +34,7 @@ var playerLocationNumber
 
 var can_catch : bool = false
 var start_fishing : bool = false 
+var in_fishing_position : bool = false
 
 var prevent_movement_input : bool = false
 var movement_prevented: bool = false
