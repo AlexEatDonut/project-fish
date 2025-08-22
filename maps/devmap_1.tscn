@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=4 uid="uid://cg6yi61mfhuto"]
+[gd_scene load_steps=32 format=4 uid="uid://cg6yi61mfhuto"]
 
 [ext_resource type="Script" uid="uid://bshtc6j51ovsr" path="res://maps/devmap_1.gd" id="1_84rgm"]
 [ext_resource type="Script" uid="uid://c5tkggxeoaq1j" path="res://addons/godotvmf/src/VMFNode.gd" id="2_j16xd"]
+[ext_resource type="AudioStream" uid="uid://beldl82okjgn1" path="res://sounds/ambient/559542__cinetony__larger-stream-with-crows-in-forest.wav" id="2_kus0k"]
 [ext_resource type="ArrayMesh" uid="uid://dt588u44aolye" path="res://godotvmfcontent/geometry/fish-devmap1_vmf_import.mesh" id="3_kus0k"]
 [ext_resource type="PackedScene" uid="uid://ieknbubt7ci7" path="res://entities/player/player.tscn" id="4_mt848"]
 [ext_resource type="Shape3D" uid="uid://de3o5h6cf1jwk" path="res://godotvmfcontent/geometry/fish-devmap1_vmf_collision_surface_prop_default.res" id="4_yfx3q"]
@@ -186,7 +187,7 @@ void vertex() {
 
 	// UV1 Triplanar: Enabled (with World Triplanar)
 	uv1_power_normal = pow(abs(normal), vec3(uv1_blend_sharpness));
-	uv1_triplanar_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz * uv1_scale + uv1_offset + TIME * -0.05
+	uv1_triplanar_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz * uv1_scale + uv1_offset + TIME * 0.05
 	;
 	uv1_power_normal /= dot(uv1_power_normal, vec3(1.0));
 	uv1_triplanar_pos *= vec3(1.0, -1.0, 1.0);
@@ -301,6 +302,7 @@ fog_light_color = Color(0.784314, 0.792157, 0.901961, 1)
 
 [node name="devmap1" type="Node3D"]
 script = ExtResource("1_84rgm")
+ambience1 = ExtResource("2_kus0k")
 
 [node name="VMFNode" type="Node3D" parent="."]
 script = ExtResource("2_j16xd")
