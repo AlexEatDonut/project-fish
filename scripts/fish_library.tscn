@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3mjqq2w07l0j"]
+
+[ext_resource type="Script" uid="uid://bpfm4mjx5jpki" path="res://scripts/fish_library.gd" id="1_7jkcm"]
+[ext_resource type="Texture2D" uid="uid://ym2al7f2xtis" path="res://materials/placeholder/blublub1.png" id="2_j5m6c"]
+
+[node name="FishLibrary" type="Node"]
+script = ExtResource("1_7jkcm")
+df0_data = ["Dev fish 1", "A developper fish to test the functionality of the fish system", "Developper", ExtResource("2_j5m6c"), [], 4.0, 8.0, 3.0, 0.0, 3.0, []]
