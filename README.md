@@ -14,13 +14,23 @@ A cozy and simple fishing game with no deeper mechanics thant that. The goal is 
 
 <a href="https://github.com/H2xDev/GodotVMF">GodotVMF</a>
 
+## Shader(s?)
+
+<a href="https://godotshaders.com/shader/snap-screen-colors-to-palette-posterize/">Snap Screen Colors to Palette (Posterize)</a>
+
 ## Textures
 
 <a href="https://www.kenney.nl/assets/prototype-textures"> Prototype Textures by Kenney, Creative Commons CC0 </a>
 
-###Placeholder textures for fishes
+### Placeholder textures for fishes
 
 <a href="https://www.textures-resource.com/wii/wiiplay/texture/12550/">Please do not kill me nintendo</a>
+
+## Sounds
+
+<a href="https://freesound.org/people/paulprit/sounds/507093/">Fish Splashing Release 2.wav</a> by <a href="https://freesound.org/people/paulprit/">paulprit</a> | License: <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons 0</a>
+
+<a href="https://freesound.org/people/Cinetony/sounds/559542/">Larger stream with crows in forest</a> by <a href="https://freesound.org/people/Cinetony/">Cinetony</a> | License: <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons 0</a>
 
 <hr>
 
