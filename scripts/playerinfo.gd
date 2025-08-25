@@ -4,10 +4,10 @@ extends Node
 @export var max_money = 1000: 
 	set = set_max_money
 
+@export var cam_sensitivity : float = 500
 
 @export var godmode : bool = false
 
-var playerIsBroke : bool = false
 
 @export var DEFAULT_MINIMUM_CATCHING_DELAY : float
 var minimum_catching_delay  = DEFAULT_MINIMUM_CATCHING_DELAY
@@ -16,6 +16,8 @@ var minimum_catching_delay  = DEFAULT_MINIMUM_CATCHING_DELAY
 var maximum_catching_delay  = DEFAULT_MAXIMUM_CATCHING_DELAY
 
 var fish_inventory  	
+
+
 
 enum locations {
 	DEVMAP,
@@ -32,12 +34,13 @@ enum locations {
 var playerLocation
 var playerLocationNumber
 
+var is_controlling_camera : bool = false
+
 var can_catch : bool = false
 var start_fishing : bool = false 
 var in_fishing_position : bool = false
 
-var prevent_movement_input : bool = false
-var movement_prevented: bool = false
+var playerIsBroke : bool = false
 
 var money = max_money  :
 	get: 
@@ -53,6 +56,9 @@ var money = max_money  :
 		emit_signal("money_changed", money)
 		if money <= 0:
 			emit_signal("no_money")
+			playerIsBroke = true
+		else:
+			playerIsBroke = false
 
 func set_max_money(value):
 	max_money = value
@@ -82,5 +88,5 @@ signal money_increased
 signal money_decreased
 
 func _ready():
-	#self.money = max_money
+
 	pass
