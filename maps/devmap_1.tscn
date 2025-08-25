@@ -307,7 +307,7 @@ ambience1 = ExtResource("2_kus0k")
 [node name="VMFNode" type="Node3D" parent="."]
 script = ExtResource("2_j16xd")
 use_external_file = true
-vmf = "D:/SteamLibrary/steamapps/SourceMods/godotvmf/maps/fish-devmap1.vmf"
+vmf = "C:/Program Files (x86)/Steam/steamapps/SourceMods/godotvmf/maps/fish-devmap1.vmf"
 metadata/_custom_type_script = "uid://c5tkggxeoaq1j"
 
 [node name="Geometry" type="MeshInstance3D" parent="VMFNode"]

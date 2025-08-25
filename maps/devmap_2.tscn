@@ -179,7 +179,7 @@ script = ExtResource("1_d7nb8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0124474, 0.0475245, -0.0227852)
 script = ExtResource("1_sy3lk")
 use_external_file = true
-vmf = "D:/SteamLibrary/steamapps/SourceMods/godotvmf/maps/fish-devmap2.vmf"
+vmf = "C:/Program Files (x86)/Steam/steamapps/SourceMods/godotvmf/maps/fish-devmap2.vmf"
 metadata/_custom_type_script = "uid://c5tkggxeoaq1j"
 
 [node name="Geometry" type="MeshInstance3D" parent="VMFNode"]
