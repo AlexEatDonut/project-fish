@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ieknbubt7ci7"]
+[gd_scene load_steps=13 format=3 uid="uid://ieknbubt7ci7"]
 
 [ext_resource type="Script" uid="uid://0gvwve1d3e8v" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="Script" uid="uid://dh44j07p0r4dv" path="res://resources/state_machine/state_machine.gd" id="2_qiwj3"]
@@ -7,11 +7,16 @@
 [ext_resource type="Script" uid="uid://cl726icth6yce" path="res://resources/state_machine/states_player/detecting.gd" id="5_qiwj3"]
 [ext_resource type="Script" uid="uid://dyiw8r4k1x7fy" path="res://resources/state_machine/states_player/catching.gd" id="6_26q78"]
 [ext_resource type="Script" uid="uid://dm7vbj77aejfp" path="res://resources/state_machine/states_player/failcatch.gd" id="7_qiwj3"]
+[ext_resource type="Shader" uid="uid://clyoqrw7ftek6" path="res://shaders/posterize_palette.gdshader" id="8_bectd"]
 [ext_resource type="PackedScene" uid="uid://cm8byrgndxoo1" path="res://entities/ui/fishing_hud.tscn" id="9_7thud"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sfv1e"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_symyc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wvtmh"]
+shader = ExtResource("8_bectd")
+shader_parameter/colors = PackedColorArray(0.141176, 0.270588, 0.556863, 1, 0.278431, 0.298039, 0.65098, 1, 0.470588, 0.32549, 0.682353, 1, 0.686275, 0.364706, 0.666667, 1, 0.917647, 0.419608, 0.603922, 1, 1, 0.505882, 0.533333, 1, 1, 0.627451, 0.470588, 1, 1, 0.792157, 0.45098, 1)
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_symyc")
@@ -44,11 +49,26 @@ script = ExtResource("7_qiwj3")
 [node name="CamPivot" type="Node3D" parent="."]
 transform = Transform3D(0.942641, 0.166904, -0.289085, 0, 0.866025, 0.5, 0.333807, -0.471321, 0.816351, 0, 0, 0)
 
-[node name="CamLength" type="SpringArm3D" parent="CamPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-spring_length = 6.0
+[node name="CamLocation" type="Marker3D" parent="CamPivot"]
+transform = Transform3D(1, -2.4869e-14, -1.19209e-07, 0, 1, -2.08616e-07, 1.19209e-07, 2.08616e-07, 1, 0.11, -0.25, 6.121)
 
-[node name="BaseCamera" type="Camera3D" parent="CamPivot/CamLength"]
+[node name="BaseCamera" type="Camera3D" parent="CamPivot/CamLocation"]
+fov = 55.0
+size = 7.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CamPivot/CamLocation/BaseCamera"]
+material = SubResource("ShaderMaterial_wvtmh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="CamPivot/CamLocation/BaseCamera/SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="BaseCamera" type="Camera3D" parent="CamPivot/CamLocation/BaseCamera/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 fov = 55.0
 size = 7.0
