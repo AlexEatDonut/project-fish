@@ -28,7 +28,7 @@ func enable_button():
 
 func _on_start_fishing_pressed() -> void:
 	SoundManager.play_sound(audio)
-	StartFishing.emit()
+	print(FishLibrary.findFishByBiome(0))
 	FishLibrary.findFishByBiome(Playerinfo.playerLocationNumber)
 	disable_button()
 
