@@ -26,6 +26,10 @@ A cozy and simple fishing game with no deeper mechanics thant that. The goal is 
 
 <a href="https://www.textures-resource.com/wii/wiiplay/texture/12550/">Please do not kill me nintendo</a>
 
+## Models
+
+<a href="https://poly.pizza/m/0YAR0Lg58p">Fishing Rod by Quaternius</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">Public Domain (CC0)</a>
+
 ## Sounds
 
 <a href="https://freesound.org/people/paulprit/sounds/507093/">Fish Splashing Release 2.wav</a> by <a href="https://freesound.org/people/paulprit/">paulprit</a> | License: <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons 0</a>
