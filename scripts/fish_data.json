@@ -1,0 +1,28 @@
+{
+	"devfish1": {
+		"name" : "Dev fish 1",
+		"description" : "A dev fish",
+		"fishType" : "COMMON",
+		"sprite" : 1,
+		"fish_locations" : ["DEVMAP", "RIVER"],
+		"value" : 3,
+		"weight" : 6,
+		"rod_damage" : 1,
+		"bait_value" : 0,
+		"catch_time" : 3,
+		"known_fish" : false
+	},
+	"devfish2": {
+		"name" : "Dev fish 2",
+		"description" : "A second dev fish",
+		"fishType" : "COMMON",
+		"sprite" : 2,
+		"fish_locations" : ["RIVER"],
+		"value" : 4,
+		"weight" : 8,
+		"rod_damage" : 1,
+		"bait_value" : 0,
+		"catch_time" : 3,
+		"known_fish" : false
+	}
+}

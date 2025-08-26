@@ -1,5 +1,13 @@
 extends Node
 
+var fishDataFile = "res://scripts/fish_data.json"
+var json_as_text = FileAccess.get_file_as_string(fishDataFile)
+var fish_dict = JSON.parse_string(json_as_text)
+#if json_as_dict:
+	#print(json_as_dict)
+
+@export var devsprite1 = Texture2D
+@export var devsprite2 = Texture2D
 
 var foundFishes = []
 # Number starts with 0
@@ -8,7 +16,9 @@ var df0
 @export var df0_data = []
 var df1
 
-enum FishType{
+var fishValueHeight_randomizer = [0.7,1.3]
+
+enum FishTypes{
 	COMMON,
 	UNCOMMON,
 	RARE,
@@ -28,7 +38,8 @@ class Fish:
 	var rod_damage : float
 	var bait_value : float
 	var catch_time : float
-	var vw_randomizer = [0.7,1.3]
+	var known_fish : bool = false
+
 
 func init_fishes():
 	df0 = Fish.new()
@@ -64,7 +75,8 @@ var everyFish = [
 
 
 func _ready() -> void:
-	init_fishes()
+	#init_fishes()
+	getFishFromDict("devfish1")
 
 func add_to_inventory():
 	pass
@@ -79,5 +91,7 @@ func findFishByBiome(biome : float):
 	#createdFishList.emit(foundFishes)
 	return foundFishes
 
+func getFishFromDict(fishName : String):
+	print(fish_dict[fishName]["value"])
 
 signal createdFishList
