@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 Playerinfo="*res://scripts/playerinfo.tscn"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
 FishLibrary="*res://scripts/fish_library.tscn"
-FishStatsHandler="*res://scripts/fish_stats_handler.tscn"
 
 [editor_plugins]
 
