@@ -28,8 +28,8 @@ func enable_button():
 
 func _on_start_fishing_pressed() -> void:
 	SoundManager.play_sound(audio)
-	print(FishLibrary.findFishByBiome(0))
-	FishLibrary.findFishByBiome(Playerinfo.playerLocationNumber)
+	print(FishFinder.pick_random_array(FishFinder.get_fishes_by_biome(Playerinfo.playerLocation)))
+	FishFinder.pick_random_array(FishFinder.get_fishes_by_biome(Playerinfo.playerLocation))
 	disable_button()
 
 func travel_menu(id):
@@ -43,7 +43,7 @@ func travel_menu(id):
 		1:
 			get_tree().change_scene_to_file("res://maps/devmap_2.tscn")
 	
-	
+
 func debug_queuedfish_info(newname : String, newweight: String,newvalue: String, newsprite = null):
 	queuedfish_name.text = newname
 	queuedfish_weight.text = newweight
