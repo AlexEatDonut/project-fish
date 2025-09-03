@@ -37,10 +37,11 @@ func _on_start_fishing_pressed() -> void:
 	queuedfish_value.text = str(queuedfish_fulldata["value"])
 	queuedfish_weight.text = str(queuedfish_fulldata["weight"])
 	queuedfish_rarity.text = queuedfish_fulldata["fishType"]
+	print(queuedfish_fulldata["sprite"])
 	match queuedfish_fulldata["sprite"]:
-		1:
+		1.0:
 			queuedfish_sprite.texture = FishFinder.devsprite1
-		2:
+		2.0:
 			queuedfish_sprite.texture = FishFinder.devsprite2
 	#FishFinder.pick_random_array(FishFinder.get_fishes_by_biome(Playerinfo.playerLocation))
 	disable_button()
