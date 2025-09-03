@@ -207,4 +207,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_afbqv")
 }
 
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
 [editable path="CanvasLayer/FishingHud"]

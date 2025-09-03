@@ -48,6 +48,7 @@ func _ready() -> void:
 func add_to_inventory():
 	pass
 
+#get a random fish : by which biome do we sort ? Do we get a random rarity ?  If not which rarit would you like ?
 func get_fishes_by_sorting(biome : String, rng_rarity : bool = true, defined_rarity : String = "null",):
 	foundFishes = []
 	var willSortByRarity : bool = true
@@ -70,9 +71,6 @@ func get_fishes_by_sorting(biome : String, rng_rarity : bool = true, defined_rar
 					rng_selected_rarity = "UNUSUAL"
 				"LEGENDARY":
 					rng_selected_rarity = "LEGENDARY"
-
-	
-		
 	match [willSortByRarity, willSortByRNGRarity]:
 #		will sort by rng rarity
 		[true, true]:
