@@ -17,7 +17,7 @@ var maximum_catching_delay  = DEFAULT_MAXIMUM_CATCHING_DELAY
 
 var fish_inventory  	
 
-
+var queued_fish
 
 enum locations {
 	DEVMAP,

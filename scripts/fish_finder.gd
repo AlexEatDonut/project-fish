@@ -6,18 +6,20 @@ var fish_dict = JSON.parse_string(json_as_text)
 #if json_as_dict:
 	#print(json_as_dict)
 
+
+
 @export var devsprite1 = Texture
 @export var devsprite2 = Texture
+@export var devsprite3 = Texture
+@export var devsprite4 = Texture
 
 var foundFishes = []
 var sortedfishes = []
 # Number starts with 0
 # df = Dev Fish btw
-var df0
-@export var df0_data = []
-var df1
 
-var fishValueHeight_randomizer = [0.7,1.3]
+var fishValueHeight_rng = RandomNumberGenerator.new()
+var fishValueHeight_randomizer = [0.9,1.2]
 
 var rarities_weights_DEFAULT = PackedFloat32Array([90, 20, 10, 5, 2])
 var rarities_rng = RandomNumberGenerator.new()
@@ -129,8 +131,10 @@ func get_fishes_by_rarity(array : Array) -> Variant:
 
 func pick_random_array(array : Array) -> Variant:
 	var randomItem = array[randi() % array.size()] 
-	#print(randomItem)
+	randomItem["value"] = snappedf(randomItem["value"] * fishValueHeight_rng.randf_range(fishValueHeight_randomizer[0], fishValueHeight_randomizer[1]), 0.01)
+	randomItem["weight"] = snappedf(randomItem["weight"] * fishValueHeight_rng.randf_range(fishValueHeight_randomizer[0], fishValueHeight_randomizer[1]), 0.01)
 	return randomItem
+
 
 func rarities_weights_reset():
 	rarities_weights = rarities_weights_DEFAULT

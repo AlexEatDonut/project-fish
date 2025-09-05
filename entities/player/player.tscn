@@ -1,10 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://ieknbubt7ci7"]
+[gd_scene load_steps=22 format=3 uid="uid://ieknbubt7ci7"]
 
 [ext_resource type="Script" uid="uid://0gvwve1d3e8v" path="res://entities/player/player.gd" id="1_symyc"]
+[ext_resource type="AudioStream" uid="uid://c2y0o0mdcwnu" path="res://sounds/fish/507093__paulprit__fish-splashing-release-2.wav" id="2_7thud"]
 [ext_resource type="Script" uid="uid://dh44j07p0r4dv" path="res://resources/state_machine/state_machine.gd" id="2_qiwj3"]
 [ext_resource type="PackedScene" uid="uid://bbeeqnmg7o5di" path="res://models/poly-pizza/fishing-rod-quaternius/FishingRod_Lvl2.fbx" id="2_wvtmh"]
+[ext_resource type="Texture2D" uid="uid://b5xxk1uvfx47" path="res://materials/sprites/surprise.png" id="3_a1qjk"]
 [ext_resource type="Script" uid="uid://b63nxji74xuo7" path="res://resources/state_machine/states_player/idle.gd" id="3_bls4j"]
 [ext_resource type="Script" uid="uid://clavgybhh50q6" path="res://resources/state_machine/states_player/fishing.gd" id="4_8fjmc"]
+[ext_resource type="Texture2D" uid="uid://l2jicfpbjahm" path="res://materials/placeholder/sprite_saddened.png" id="4_j3ovn"]
 [ext_resource type="Script" uid="uid://cl726icth6yce" path="res://resources/state_machine/states_player/detecting.gd" id="5_qiwj3"]
 [ext_resource type="Script" uid="uid://dyiw8r4k1x7fy" path="res://resources/state_machine/states_player/catching.gd" id="6_26q78"]
 [ext_resource type="Script" uid="uid://dm7vbj77aejfp" path="res://resources/state_machine/states_player/failcatch.gd" id="7_qiwj3"]
@@ -49,6 +52,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_wvtmh"]
 resource_name = "idle"
 length = 5.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -77,6 +81,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_j3ovn"]
 resource_name = "idle_fishing"
 length = 5.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -140,12 +145,27 @@ _data = {
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_symyc")
+cast_audio = ExtResource("2_7thud")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_sfv1e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_symyc")
+
+[node name="Sprites" type="Node3D" parent="."]
+
+[node name="SurpriseSprite" type="Sprite3D" parent="Sprites"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.923755, 1.22002, 0.4126)
+visible = false
+billboard = 1
+texture = ExtResource("3_a1qjk")
+
+[node name="SaddenedSprite" type="Sprite3D" parent="Sprites"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.923755, 1.22002, 0.4126)
+visible = false
+billboard = 1
+texture = ExtResource("4_j3ovn")
 
 [node name="Body" type="Node3D" parent="."]
 
@@ -179,6 +199,7 @@ transform = Transform3D(1, -2.4869e-14, -1.19209e-07, 0, 1, -2.08616e-07, 1.1920
 spring_length = 6.0
 
 [node name="BaseCamera" type="Camera3D" parent="CamPivot/CamLocation"]
+transform = Transform3D(0.974522, 0.144005, -0.171958, -0.120683, 0.982887, 0.139173, 0.189057, -0.114875, 0.975224, 0, 0, 0)
 fov = 55.0
 size = 7.0
 
@@ -206,7 +227,19 @@ size = 7.0
 libraries = {
 &"": SubResource("AnimationLibrary_afbqv")
 }
+autoplay = "idle"
 
+[node name="FishLurkTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FishCatchTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Idle" method="_on_player_interact_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Fishing" method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="FishLurkTimer" to="StateMachine/Fishing" method="_on_fish_lurk_timer_timeout"]
+[connection signal="timeout" from="FishCatchTimer" to="StateMachine/Detecting" method="_on_fish_catch_timer_timeout"]
 
 [editable path="CanvasLayer/FishingHud"]
