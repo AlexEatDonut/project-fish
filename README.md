@@ -18,6 +18,10 @@ A cozy and simple fishing game with no deeper mechanics thant that. The goal is 
 
 <a href="https://godotshaders.com/shader/snap-screen-colors-to-palette-posterize/">Snap Screen Colors to Palette (Posterize)</a>
 
+## Font
+
+<a href="https://www.dafont.com/fr/super-trend.font">Super Trend</a>
+
 ## Textures
 
 <a href="https://www.kenney.nl/assets/prototype-textures"> Prototype Textures by Kenney, Creative Commons CC0 </a>
