@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bshtc6j51ovsr" path="res://maps/devmap_1.gd" id="1_84rgm"]
 [ext_resource type="Script" uid="uid://c5tkggxeoaq1j" path="res://addons/godotvmf/src/VMFNode.gd" id="2_j16xd"]
-[ext_resource type="AudioStream" uid="uid://beldl82okjgn1" path="res://sounds/ambient/559542__cinetony__larger-stream-with-crows-in-forest.wav" id="2_kus0k"]
+[ext_resource type="AudioStream" uid="uid://cquudf8cho27u" path="res://sounds/ambient/forest_water_ambiance.wav" id="2_kus0k"]
 [ext_resource type="ArrayMesh" uid="uid://dt588u44aolye" path="res://godotvmfcontent/geometry/fish-devmap1_vmf_import.mesh" id="3_kus0k"]
 [ext_resource type="PackedScene" uid="uid://ieknbubt7ci7" path="res://entities/player/player.tscn" id="4_mt848"]
 [ext_resource type="Shape3D" uid="uid://de3o5h6cf1jwk" path="res://godotvmfcontent/geometry/fish-devmap1_vmf_collision_surface_prop_default.res" id="4_yfx3q"]
