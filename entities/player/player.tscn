@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ieknbubt7ci7"]
+[gd_scene load_steps=36 format=3 uid="uid://ieknbubt7ci7"]
 
 [ext_resource type="Script" uid="uid://0gvwve1d3e8v" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="AudioStream" uid="uid://c2y0o0mdcwnu" path="res://sounds/fish/507093__paulprit__fish-splashing-release-2.wav" id="2_7thud"]
@@ -12,7 +12,9 @@
 [ext_resource type="Script" uid="uid://dyiw8r4k1x7fy" path="res://resources/state_machine/states_player/catching.gd" id="6_26q78"]
 [ext_resource type="Script" uid="uid://dm7vbj77aejfp" path="res://resources/state_machine/states_player/failcatch.gd" id="7_qiwj3"]
 [ext_resource type="Shader" uid="uid://clyoqrw7ftek6" path="res://shaders/posterize_palette.gdshader" id="8_bectd"]
-[ext_resource type="PackedScene" uid="uid://cm8byrgndxoo1" path="res://entities/ui/fishing_hud.tscn" id="9_7thud"]
+[ext_resource type="Script" uid="uid://516jobpkflmg" path="res://entities/ui/fishing_hud.gd" id="13_afbqv"]
+[ext_resource type="Texture2D" uid="uid://ym2al7f2xtis" path="res://materials/placeholder/blublub1.png" id="14_gx6sm"]
+[ext_resource type="FontFile" uid="uid://dcnld1ddcnbdm" path="res://fonts/Super Trend.ttf" id="14_yqrof"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sfv1e"]
 
@@ -21,6 +23,30 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wvtmh"]
 shader = ExtResource("8_bectd")
 shader_parameter/colors = PackedColorArray(0.152941, 0.192157, 0.462745, 1, 0.215686, 0.211765, 0.505882, 1, 0.301961, 0.227451, 0.533333, 1, 0.392157, 0.247059, 0.552941, 1, 0.498039, 0.270588, 0.556863, 1, 0.607843, 0.298039, 0.556863, 1, 0.72549, 0.329412, 0.537255, 1, 0.839216, 0.368627, 0.521569, 1, 0.956863, 0.415686, 0.498039, 1, 1, 0.537255, 0.454902, 1, 1, 0.537255, 0.454902, 1, 1, 0.615686, 0.443137, 1, 1, 0.705882, 0.439216, 1, 1, 0.807843, 0.45098, 1, 1, 0.92549, 0.47451, 1, 1, 1, 0.521569, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gx6sm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cpdjg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qs7v0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tp4ps"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bb7sx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_78bmv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71rqi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8q4sn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kal33"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7f72s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k4e7q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_38oqw"]
 
 [sub_resource type="Animation" id="Animation_a1qjk"]
 length = 0.001
@@ -221,7 +247,445 @@ size = 7.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="FishingHud" parent="CanvasLayer" instance=ExtResource("9_7thud")]
+[node name="FishingHud" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("13_afbqv")
+
+[node name="FCPanel" type="PanelContainer" parent="CanvasLayer/FishingHud"]
+visible = false
+z_index = 100
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -163.0
+offset_right = 200.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gx6sm")
+
+[node name="FCVbox" type="VBoxContainer" parent="CanvasLayer/FishingHud/FCPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="FCHeader" type="PanelContainer" parent="CanvasLayer/FishingHud/FCPanel/FCVbox"]
+layout_mode = 2
+
+[node name="BoxTitleLabel" type="Label" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCHeader"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("14_yqrof")
+theme_override_font_sizes/font_size = 64
+text = "Fish Caught"
+horizontal_alignment = 1
+
+[node name="FCMain" type="PanelContainer" parent="CanvasLayer/FishingHud/FCPanel/FCVbox"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer"]
+layout_mode = 2
+
+[node name="caughtfish_name" type="Label" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("14_yqrof")
+theme_override_font_sizes/font_size = 48
+text = "Blub Blub"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 120
+
+[node name="FishSpritePanel" type="Panel" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="caughtfish_sprite" type="TextureRect" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/FishSpritePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_gx6sm")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="FCDataTitle1" type="Label" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("14_yqrof")
+theme_override_font_sizes/font_size = 24
+text = "Value :"
+
+[node name="caughtfish_value" type="Label" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("14_yqrof")
+theme_override_font_sizes/font_size = 32
+text = "10"
+
+[node name="FCDataTitle2" type="Label" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("14_yqrof")
+theme_override_font_sizes/font_size = 24
+text = "Weight"
+
+[node name="caughtfish_weight" type="Label" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("14_yqrof")
+theme_override_font_sizes/font_size = 32
+text = "10"
+
+[node name="caughtfish_rarity" type="Label" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.569249, 0.798069, 0.814962, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("14_yqrof")
+theme_override_font_sizes/font_size = 32
+text = "Common"
+horizontal_alignment = 1
+
+[node name="ButtonsMarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="btn_shop" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer"]
+layout_mode = 2
+text = "shop"
+
+[node name="btn_fishlist" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer"]
+layout_mode = 2
+text = "bestiary"
+
+[node name="MenuButtonTravel" type="MenuButton" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "travel
+"
+item_count = 9
+popup/item_0/text = "Devmap1"
+popup/item_0/id = 0
+popup/item_1/text = "River"
+popup/item_1/id = 1
+popup/item_2/text = "Lake"
+popup/item_2/id = 2
+popup/item_3/text = "Swamp"
+popup/item_3/id = 3
+popup/item_4/text = "Port"
+popup/item_4/id = 4
+popup/item_5/text = "Jungle"
+popup/item_5/id = 5
+popup/item_6/text = "Cave"
+popup/item_6/id = 6
+popup/item_7/text = "Ocean"
+popup/item_7/id = 7
+popup/item_8/text = "Clouds"
+popup/item_8/id = 8
+
+[node name="MenuButton" type="MenuButton" parent="CanvasLayer/FishingHud/ButtonsMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "menu"
+item_count = 3
+popup/item_0/text = "Stats"
+popup/item_0/id = 0
+popup/item_1/text = "Settings"
+popup/item_1/id = 1
+popup/item_2/text = "Quit"
+popup/item_2/id = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "bait and rod"
+
+[node name="DebugQueuePanel" type="Panel" parent="CanvasLayer/FishingHud"]
+visible = false
+layout_mode = 0
+offset_left = 28.0
+offset_top = 130.0
+offset_right = 144.0
+offset_bottom = 399.0
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/DebugQueuePanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer"]
+layout_mode = 2
+
+[node name="namelabel" type="Label" parent="CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "Queued fish :"
+
+[node name="queuedfish_name" type="Label" parent="CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "blubblub"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="queuedfish_sprite" type="TextureRect" parent="CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -14.5
+offset_right = 43.0
+offset_bottom = 14.5
+grow_vertical = 2
+texture = ExtResource("14_gx6sm")
+expand_mode = 1
+
+[node name="weightlabel" type="Label" parent="CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "weight"
+
+[node name="queuedfish_weight" type="Label" parent="CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "0"
+
+[node name="valuelabel" type="Label" parent="CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "value"
+
+[node name="queuedfish_value" type="Label" parent="CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "0"
+
+[node name="raritylabel" type="Label" parent="CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "rarity"
+
+[node name="queuedfish_rarity" type="Label" parent="CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "a"
+
+[node name="RadioMarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -169.0
+offset_right = 293.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer"]
+layout_mode = 2
+mouse_filter = 0
+theme_override_constants/separation = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Current song :"
+
+[node name="Label2" type="Label" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "The raindrop that fell to the sky"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "by :"
+
+[node name="Label2" type="Label" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Chris Christodoulou"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 0
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "⏹"
+
+[node name="Button2" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "⏮"
+
+[node name="Button3" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "⏯️"
+
+[node name="Button4" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "⏭"
+
+[node name="PlayerInteract" type="Control" parent="CanvasLayer/FishingHud"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 4
+
+[node name="PlayerInteract" type="Button" parent="CanvasLayer/FishingHud/PlayerInteract"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cpdjg")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_qs7v0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tp4ps")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_bb7sx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_78bmv")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_71rqi")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8q4sn")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kal33")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7f72s")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_k4e7q")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_38oqw")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -24.0
+offset_right = 32.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Space"
+horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -232,14 +696,20 @@ autoplay = "idle"
 [node name="FishLurkTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="FishLurkTimerPreventive" type="Timer" parent="."]
+one_shot = true
+
 [node name="FishCatchTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
 [connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Idle" method="_on_player_interact_pressed"]
+[connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Fishing" method="_on_player_interact_pressed"]
+[connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Detecting" method="_on_player_interact_pressed"]
+[connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Catching" method="_on_player_interact_pressed"]
+[connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="CanvasLayer/FishingHud" method="_on_player_interact_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Fishing" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="FishLurkTimer" to="StateMachine/Fishing" method="_on_fish_lurk_timer_timeout"]
+[connection signal="timeout" from="FishLurkTimerPreventive" to="StateMachine/Fishing" method="_on_fish_lurk_timer_preventive_timeout"]
 [connection signal="timeout" from="FishCatchTimer" to="StateMachine/Detecting" method="_on_fish_catch_timer_timeout"]
-
-[editable path="CanvasLayer/FishingHud"]

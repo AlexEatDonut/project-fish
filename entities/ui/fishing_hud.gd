@@ -37,7 +37,8 @@ func enable_button(button):
 
 
 func _on_player_interact_pressed() -> void:
-	disable_button(player_interact)
+	#disable_button(player_interact)
+	print("clicked")
 
 func travel_menu(id):
 	print(id)

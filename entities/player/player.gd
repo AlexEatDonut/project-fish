@@ -5,14 +5,23 @@ var QueuedFish = []
 
 @export var cast_audio : AudioStreamWAV
 
-signal CastingRod
-signal RodCasted
-
 @onready var sub_viewport: SubViewport = $CamPivot/CamLocation/BaseCamera/SubViewportContainer/SubViewport
 @onready var cam_pivot: Node3D = $CamPivot
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+#region Fish Caught labels
+@onready var fc_panel: PanelContainer = $CanvasLayer/FishingHud/FCPanel
+@onready var caughtfish_name: Label = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/caughtfish_name
+@onready var caughtfish_sprite: TextureRect = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/FishSpritePanel/caughtfish_sprite
+@onready var caughtfish_value: Label = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/caughtfish_value
+@onready var caughtfish_weight: Label = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/caughtfish_weight
+@onready var caughtfish_rarity: Label = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/caughtfish_rarity
+
+#endregion
+
 #region Debug labels
+@onready var debug_queue_panel: Panel = $CanvasLayer/FishingHud/DebugQueuePanel
+
 @onready var queuedfish_name: Label = $CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer/queuedfish_name
 @onready var queuedfish_sprite: TextureRect = $CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer/MarginContainer/Panel/queuedfish_sprite
 @onready var queuedfish_weight: Label = $CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer/queuedfish_weight
@@ -28,6 +37,7 @@ signal RodCasted
 
 #region timers for fishing logic
 @onready var fish_lurk_timer: Timer = $FishLurkTimer
+@onready var fish_lurk_timer_preventive: Timer = $FishLurkTimerPreventive
 @onready var fish_catch_timer: Timer = $FishCatchTimer
 #endregion
 
@@ -45,7 +55,8 @@ func resize():
 	sub_viewport.size = DisplayServer.window_get_size()
 
 func _ready() -> void:
-	fishing_hud.StartFishing.connect(start_fishing)
+	if Playerinfo.debug_mode == true :
+		debug_queue_panel.visible = true
 	debug_change_data("none", "", "", "")
 	resize()
 	match Playerinfo.playerLocation:
@@ -56,48 +67,54 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	resize()
-	
 
-func enable_sprite(sprite):
+func enable_ui_element(ui_element : Control):
+	ui_element.visible = true
+func disable_ui_element(ui_element : Control):
+	ui_element.visible = false
+
+func enable_sprite(sprite : Sprite3D):
 	sprite.visible = true
-func disable_sprite(sprite):
+func disable_sprite(sprite : Sprite3D):
 	sprite.visible = false
 
-func disable_button(button):
+func disable_button(button : Control):
 	button.disabled = true
-func enable_button(button):
+	button.visible = false
+func enable_button(button : Control):
 	button.disabled = false
+	button.visible = true
 
-func start_fishing():
-	print("start fishing, gal")
-	emit_signal("CastingRod")
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	#print(anim_name)
-	#if anim_name == "rod_cast":
-		#animation_player.play("idle_fishing")
-		#emit_signal("RodCasted")
 	pass
+
+func update_fish_caught_celebration_hud(newname : String, newweight: String,newvalue: String, newrarity : String, newsprite = 1):
+	caughtfish_name.text = newname
+	caughtfish_value.text = newvalue
+	caughtfish_weight.text = newweight
+	caughtfish_rarity.text = newrarity
+	switch_ui_fish_sprite(caughtfish_sprite, newsprite)
 
 func debug_change_data(newname : String, newweight: String,newvalue: String, newrarity : String, newsprite = 1):
 	queuedfish_name.text = newname
 	queuedfish_weight.text = newweight
 	queuedfish_value.text = newvalue
 	queuedfish_rarity.text = newrarity
-	#queuedfish_name.text = 
-	#queuedfish_value.text = str(queuedfish_fulldata["value"])
-	#queuedfish_weight.text = str(queuedfish_fulldata["weight"])
-	#queuedfish_rarity.text = queuedfish_fulldata["fishType"]
-	#print(queuedfish_fulldata["sprite"])
-	match newsprite:
-		1.0:
-			queuedfish_sprite.texture = FishFinder.devsprite1
-		2.0:
-			queuedfish_sprite.texture = FishFinder.devsprite2
-		_:
-			queuedfish_sprite.texture = FishFinder.devsprite1
+	switch_ui_fish_sprite(queuedfish_sprite, newsprite)
 
+
+func switch_ui_fish_sprite(SpriteRect, spritenumber):
+	match spritenumber:
+		1.0:
+			SpriteRect.texture = FishFinder.devsprite1
+		2.0:
+			SpriteRect.texture = FishFinder.devsprite2
+		3.0:
+			SpriteRect.texture = FishFinder.devsprite3
+		4.0:
+			SpriteRect.texture = FishFinder.devsprite4
 
 func _on_stop_fishing_pressed() -> void:
 	pass # Replace with function body.

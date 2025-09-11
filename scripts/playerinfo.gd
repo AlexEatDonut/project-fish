@@ -15,9 +15,13 @@ var minimum_catching_delay  = DEFAULT_MINIMUM_CATCHING_DELAY
 @export var DEFAULT_MAXIMUM_CATCHING_DELAY : float
 var maximum_catching_delay  = DEFAULT_MAXIMUM_CATCHING_DELAY
 
+var debug_mode : bool = false
+
 var fish_inventory  	
 
 var queued_fish
+
+var CurrentState = "IDLE" 
 
 enum locations {
 	DEVMAP,
