@@ -16,12 +16,10 @@ var QueuedFish = []
 @onready var caughtfish_value: Label = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/caughtfish_value
 @onready var caughtfish_weight: Label = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/caughtfish_weight
 @onready var caughtfish_rarity: Label = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/caughtfish_rarity
-
 #endregion
 
 #region Debug labels
 @onready var debug_queue_panel: Panel = $CanvasLayer/FishingHud/DebugQueuePanel
-
 @onready var queuedfish_name: Label = $CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer/queuedfish_name
 @onready var queuedfish_sprite: TextureRect = $CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer/MarginContainer/Panel/queuedfish_sprite
 @onready var queuedfish_weight: Label = $CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer/queuedfish_weight
@@ -44,8 +42,17 @@ var QueuedFish = []
 #region sprites
 @onready var sprite_surprise: Sprite3D = $Sprites/SurpriseSprite
 @onready var sprite_saddened: Sprite3D = $Sprites/SaddenedSprite
-
 #endregion
+
+
+#region Money & Rod durability
+@onready var money_count: Label = $CanvasLayer/FishingHud/VBoxContainer/MoneyCount
+
+@onready var rod_durability: Label = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/RodDurabilityCounter/RodDurability"
+@onready var rod_durability_max: Label = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/RodDurabilityCounter/RodDurabilityMax"
+@onready var rod_durability_bar: ProgressBar = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/RodDurabilityBar"
+#endregion
+
 
 @onready var state_machine: StateMachine = $StateMachine
 
@@ -67,6 +74,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	resize()
+
 
 func enable_ui_element(ui_element : Control):
 	ui_element.visible = true
@@ -90,11 +98,35 @@ func enable_button(button : Control):
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	pass
 
+
+func update_roddurability():
+	rod_durability.text = str(Playerinfo.rod_durability)
+	rod_durability_bar.value = (Playerinfo.rod_durability / Playerinfo.max_rod_durability) * 100
+	rod_durability_max.text = "/ " + str(Playerinfo.max_rod_durability)
+
+func update_money():
+	money_count.text = str(Playerinfo.money)
+
 func update_fish_caught_celebration_hud(newname : String, newweight: String,newvalue: String, newrarity : String, newsprite = 1):
 	caughtfish_name.text = newname
 	caughtfish_value.text = newvalue
 	caughtfish_weight.text = newweight
 	caughtfish_rarity.text = newrarity
+	match newrarity:
+		"COMMON":
+			caughtfish_rarity.add_theme_color_override("font_color",Color(0.283,0.604,0.604))
+		"UNCOMMON":
+			caughtfish_rarity.add_theme_color_override("font_color",Color.LIME_GREEN)
+		"RARE":
+			caughtfish_rarity.add_theme_color_override("font_color",Color.ROYAL_BLUE)
+		"UNUSUAL":
+			caughtfish_rarity.add_theme_color_override("font_color",Color.PURPLE)
+		"LEGENDARY":
+			caughtfish_rarity.add_theme_color_override("font_color",Color.ORANGE)
+		_:
+			caughtfish_rarity.add_theme_color_override("font_color",Color.WHITE)
+			print("No correct rarity given in the queued fish.")
+	
 	switch_ui_fish_sprite(caughtfish_sprite, newsprite)
 
 func debug_change_data(newname : String, newweight: String,newvalue: String, newrarity : String, newsprite = 1):

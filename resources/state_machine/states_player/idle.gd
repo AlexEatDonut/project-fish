@@ -4,6 +4,7 @@ var queuedfish_fulldata
 
 func enter(previous_state_path: String, data := {}) -> void:
 	player.enable_button(player.player_interact)
+	player.caughtfish_rarity.remove_theme_color_override("font_color")
 	player.animation_player.play("idle")
 	Playerinfo.CurrentState = "IDLE"
 	print("state : IDLE")

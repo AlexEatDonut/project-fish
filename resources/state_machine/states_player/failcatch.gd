@@ -6,6 +6,9 @@ func enter(previous_state_path: String, data := {}) -> void:
 	Playerinfo.CurrentState = "FAILCATCHING"
 	player.animation_player.play("idle")
 	player.enable_sprite(player.sprite_saddened)
+	Playerinfo.decrease_rod_durability(Playerinfo.queued_fish["rod_damage"],2)
+	player.update_roddurability()
+	
 	await get_tree().create_timer(2.0).timeout
 	player.enable_button(player.player_interact)
 	player.disable_sprite(player.sprite_saddened)

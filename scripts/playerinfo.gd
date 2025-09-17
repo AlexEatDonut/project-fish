@@ -1,8 +1,10 @@
 extends Node
 
-#max money is 1000 cause it's 100 with one decimal
-@export var max_money = 1000: 
+@export var max_money = 999999: 
 	set = set_max_money
+
+@export var max_rod_durability = 100:
+	set = set_max_rod_durability
 
 @export var cam_sensitivity : float = 500
 
@@ -46,7 +48,46 @@ var in_fishing_position : bool = false
 
 var playerIsBroke : bool = false
 
-var money = max_money  :
+#region Rod Durability
+var rod_durability = max_rod_durability:
+	get:
+		return rod_durability
+	set(value): 
+		if rod_durability > value:
+			#emit_signal("rod_durability_decreased")
+			pass
+		elif rod_durability < value: 
+			#emit_signal("rod_durability_increased")
+			pass
+		rod_durability = value
+		emit_signal("rod_durability_changed", rod_durability)
+
+func set_max_rod_durability(value):
+	max_rod_durability = value
+	self.rod_durability = min (rod_durability, max_rod_durability)
+	emit_signal("max_rod_durability_changed", max_rod_durability)
+	
+func decrease_rod_durability(damage, ratio : float = 1):
+	#var predamage_money = money
+	var rod_damage = damage * ratio
+	self.rod_durability -= rod_damage
+	emit_signal("rod_durability_decreased")
+	
+func increase_rod_durability(increase, ratio : float = 1):
+	var previous_durability = rod_durability
+	if increase > 0 : 
+		#ratio is a percentage from 0 to 1
+		var rod_restoration = increase * ratio
+		var theorectical_newdurability = rod_durability + rod_restoration
+		money = clamp(theorectical_newdurability, previous_durability, max_rod_durability)
+		emit_signal("rod_durability_increased")
+	elif increase <= 0: 
+		print("Error ! rod_durability increase was 0 or lower. Check the code again.")
+
+
+#endregion
+#region Money variable
+var money : float = 0 :
 	get: 
 		return money
 	set(value): 
@@ -59,7 +100,6 @@ var money = max_money  :
 		money = value
 		emit_signal("money_changed", money)
 		if money <= 0:
-			emit_signal("no_money")
 			playerIsBroke = true
 		else:
 			playerIsBroke = false
@@ -69,27 +109,33 @@ func set_max_money(value):
 	self.money = min (money, max_money)
 	emit_signal("max_money_changed", max_money)
 
-func decrease_money(moneyTaken, ratio):
+func decrease_money(moneyTaken, ratio : float = 1):
 	#var predamage_money = money
 	var moneySpent = moneyTaken * ratio
 	self.money -= moneySpent
 	emit_signal("money_decreased")
 	
-func increase_money(moneyGiven, ratio):
+func increase_money(moneyGiven, ratio : float = 1):
 	var previous_money = money
 	if moneyGiven > 0 : 
 		#ratio is a percentage from 0 to 1
-		var moneyBonus = max_money * ratio
+		var moneyBonus = moneyGiven * ratio
 		var theorectical_newmoney = money + moneyBonus
 		money = clamp(theorectical_newmoney, previous_money, max_money)
 		emit_signal("money_increased")
 	else: 
 		print("Error ! moneyGiven was 0 or lower. Not multiplying to avoid calculus issues.")
+#endregion
 
 signal max_money_changed
 signal money_changed
 signal money_increased
 signal money_decreased
+
+signal max_rod_durability_changed
+signal rod_durability_changed
+signal rod_durability_increased
+signal rod_durability_decreased
 
 func _ready():
 

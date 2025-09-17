@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ieknbubt7ci7"]
+[gd_scene load_steps=37 format=3 uid="uid://ieknbubt7ci7"]
 
 [ext_resource type="Script" uid="uid://0gvwve1d3e8v" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="AudioStream" uid="uid://c2y0o0mdcwnu" path="res://sounds/fish/507093__paulprit__fish-splashing-release-2.wav" id="2_7thud"]
@@ -26,27 +26,30 @@ shader_parameter/colors = PackedColorArray(0.152941, 0.192157, 0.462745, 1, 0.21
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gx6sm"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cpdjg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gx6sm"]
+bg_color = Color(0.42745098, 0.6784314, 0.29411766, 0.69411767)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qs7v0"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tp4ps"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bb7sx"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_78bmv"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71rqi"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8q4sn"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kal33"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7f72s"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_38oqw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k4e7q"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_38oqw"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7f72s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kal33"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8q4sn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71rqi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_78bmv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bb7sx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tp4ps"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qs7v0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cpdjg"]
 
 [sub_resource type="Animation" id="Animation_a1qjk"]
 length = 0.001
@@ -196,7 +199,7 @@ texture = ExtResource("4_j3ovn")
 [node name="Body" type="Node3D" parent="."]
 
 [node name="FishingRod_Lvl2" parent="Body" instance=ExtResource("2_wvtmh")]
-transform = Transform3D(-0.5, 0, -1.26759e-06, 0, 0.5, 0, 1.26759e-06, 0, -0.5, 0.424522, 0, 0.568515)
+transform = Transform3D(-0.5, 0, -1.2675908e-06, 0, 0.5, 0, 1.2675908e-06, 0, -0.5, 0.424522, 0, 0.568515)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_qiwj3")
@@ -370,7 +373,7 @@ text = "10"
 [node name="caughtfish_rarity" type="Label" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.569249, 0.798069, 0.814962, 1)
+theme_override_colors/font_color = Color(0.5686275, 0.8, 0.8156863, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("14_yqrof")
@@ -441,7 +444,29 @@ popup/item_1/id = 1
 popup/item_2/text = "Quit"
 popup/item_2/id = 2
 
-[node name="Button" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer"]
+[node name="Bait&RodCorner" type="VBoxContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="RodDurabilityCounter" type="HBoxContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner"]
+layout_mode = 2
+alignment = 1
+
+[node name="RodDurability" type="Label" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/RodDurabilityCounter"]
+layout_mode = 2
+text = "100"
+
+[node name="RodDurabilityMax" type="Label" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/RodDurabilityCounter"]
+layout_mode = 2
+text = "/ 100"
+
+[node name="RodDurabilityBar" type="ProgressBar" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner"]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_gx6sm")
+value = 100.0
+
+[node name="BaitAndRod" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -639,30 +664,30 @@ offset_right = 250.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_cpdjg")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_qs7v0")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_tp4ps")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_bb7sx")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_78bmv")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_71rqi")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_8q4sn")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kal33")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_7f72s")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_k4e7q")
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_38oqw")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_k4e7q")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7f72s")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kal33")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8q4sn")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_71rqi")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_78bmv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_bb7sx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tp4ps")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_qs7v0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cpdjg")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract"]
 layout_mode = 1
@@ -678,7 +703,7 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract/Panel"]
+[node name="Prompt" type="Label" parent="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract/Panel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -686,6 +711,33 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "Space"
 horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FishingHud"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -69.60498
+offset_right = 31.0
+offset_bottom = -8.60498
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LabelMoney" type="Label" parent="CanvasLayer/FishingHud/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+text = "Money :"
+
+[node name="MoneyCount" type="Label" parent="CanvasLayer/FishingHud/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 24
+text = "0"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
