@@ -251,14 +251,14 @@ void fragment() {
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j16xd"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j16xd"]
+noise = SubResource("FastNoiseLite_j16xd")
 seamless = true
 as_normal_map = true
-noise = SubResource("FastNoiseLite_j16xd")
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kus0k"]
+noise = SubResource("FastNoiseLite_j16xd")
 seamless = true
 as_normal_map = true
-noise = SubResource("FastNoiseLite_j16xd")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kus0k"]
 render_priority = 0
