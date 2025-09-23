@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ieknbubt7ci7"]
+[gd_scene load_steps=36 format=3 uid="uid://ieknbubt7ci7"]
 
 [ext_resource type="Script" uid="uid://0gvwve1d3e8v" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="AudioStream" uid="uid://c2y0o0mdcwnu" path="res://sounds/fish/507093__paulprit__fish-splashing-release-2.wav" id="2_7thud"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://cl726icth6yce" path="res://resources/state_machine/states_player/detecting.gd" id="5_qiwj3"]
 [ext_resource type="Script" uid="uid://dyiw8r4k1x7fy" path="res://resources/state_machine/states_player/catching.gd" id="6_26q78"]
 [ext_resource type="Script" uid="uid://dm7vbj77aejfp" path="res://resources/state_machine/states_player/failcatch.gd" id="7_qiwj3"]
-[ext_resource type="Shader" uid="uid://clyoqrw7ftek6" path="res://shaders/posterize_palette.gdshader" id="8_bectd"]
+[ext_resource type="Material" uid="uid://cwrk5o623s5im" path="res://shaders/posterize_shader.tres" id="12_gx6sm"]
 [ext_resource type="Script" uid="uid://516jobpkflmg" path="res://entities/ui/fishing_hud.gd" id="13_afbqv"]
 [ext_resource type="Texture2D" uid="uid://ym2al7f2xtis" path="res://materials/placeholder/blublub1.png" id="14_gx6sm"]
 [ext_resource type="FontFile" uid="uid://dcnld1ddcnbdm" path="res://fonts/Super Trend.ttf" id="14_yqrof"]
@@ -19,10 +19,6 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sfv1e"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_symyc"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wvtmh"]
-shader = ExtResource("8_bectd")
-shader_parameter/colors = PackedColorArray(0.152941, 0.192157, 0.462745, 1, 0.215686, 0.211765, 0.505882, 1, 0.301961, 0.227451, 0.533333, 1, 0.392157, 0.247059, 0.552941, 1, 0.498039, 0.270588, 0.556863, 1, 0.607843, 0.298039, 0.556863, 1, 0.72549, 0.329412, 0.537255, 1, 0.839216, 0.368627, 0.521569, 1, 0.956863, 0.415686, 0.498039, 1, 1, 0.537255, 0.454902, 1, 1, 0.537255, 0.454902, 1, 1, 0.615686, 0.443137, 1, 1, 0.705882, 0.439216, 1, 1, 0.807843, 0.45098, 1, 1, 0.92549, 0.47451, 1, 1, 1, 0.521569, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gx6sm"]
 
@@ -233,7 +229,7 @@ fov = 55.0
 size = 7.0
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CamPivot/CamLocation/BaseCamera"]
-material = SubResource("ShaderMaterial_wvtmh")
+material = ExtResource("12_gx6sm")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

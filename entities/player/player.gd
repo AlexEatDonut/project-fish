@@ -59,7 +59,8 @@ var QueuedFish = []
 @onready var fishing_hud: Control = $CanvasLayer/FishingHud
 
 func resize():
-	sub_viewport.size = DisplayServer.window_get_size()
+	if sub_viewport != null:
+		sub_viewport.size = DisplayServer.window_get_size()
 
 func _ready() -> void:
 	if Playerinfo.debug_mode == true :
