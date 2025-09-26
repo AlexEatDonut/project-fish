@@ -21,7 +21,7 @@ var sortedfishes = []
 var fishValueHeight_rng = RandomNumberGenerator.new()
 var fishValueHeight_randomizer = [0.9,1.2]
 
-var rarities_weights_DEFAULT = PackedFloat32Array([90, 20, 10, 5, 2])
+var rarities_weights_DEFAULT = PackedFloat32Array([100, 15, 7, 3, 1])
 var rarities_rng = RandomNumberGenerator.new()
 var rarities_array = ["COMMON", "UNCOMMON", "RARE", "UNUSUAL", "LEGENDARY"]
 var rarities_weights = rarities_weights_DEFAULT
@@ -51,6 +51,7 @@ func add_to_inventory():
 	pass
 
 #get a random fish : by which biome do we sort ? Do we get a random rarity ?  If not which rarit would you like ?
+#TODO : add a sorting by BAIT VALUE to lock fisheds behind bait/rods
 func get_fishes_by_sorting(biome : String, rng_rarity : bool = true, defined_rarity : String = "null",):
 	foundFishes = []
 	var willSortByRarity : bool = true
@@ -93,15 +94,6 @@ func get_fishes_by_sorting(biome : String, rng_rarity : bool = true, defined_rar
 					foundFishes.append(fish_dict[item])
 			return foundFishes
 
-
-func get_fish_from_dict(fishName : String):
-	#print(fish_dict[fishName]["value"])
-## code to get all data of all items in the dict
-	#for items in fish_dict:
-		#print(items, fish_dict[items]) 
-		#for part_func in fish_dict[items]:
-			#print(fish_dict[items][part_func])
-	return
 
 func pick_random_dict(dictionary: Dictionary) -> Variant:
 	var random_key = dictionary.keys().pick_random()
