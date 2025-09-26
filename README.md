@@ -40,6 +40,10 @@ A cozy and simple fishing game with no deeper mechanics thant that. The goal is 
 
 <a href="https://freesound.org/people/Cinetony/sounds/559542/">Larger stream with crows in forest</a> by <a href="https://freesound.org/people/Cinetony/">Cinetony</a> | License: <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons 0</a>
 
+<a href="https://freesound.org/people/plasterbrain/sounds/419493/">Bell Chime Alert</a> by <a href="https://freesound.org/people/plasterbrain/">plasterbrain</a> | License: <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons 0</a>
+
+<a href="https://freesound.org/people/mikoroonii/sounds/761491/">Marimba UI Sounds</a> by <a href="https://freesound.org/people/mikoroonii/">mikoroonii</a> | License: <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons 0</a>
+
 <hr>
 
 <sub><sup>Copyright Rémi "AlexEatDonut" Peautre - 2025  
