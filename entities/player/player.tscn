@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ieknbubt7ci7"]
+[gd_scene load_steps=38 format=3 uid="uid://ieknbubt7ci7"]
 
 [ext_resource type="Script" uid="uid://0gvwve1d3e8v" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="AudioStream" uid="uid://c2y0o0mdcwnu" path="res://sounds/fish/507093__paulprit__fish-splashing-release-2.wav" id="2_7thud"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bbeeqnmg7o5di" path="res://models/poly-pizza/fishing-rod-quaternius/FishingRod_Lvl2.fbx" id="2_wvtmh"]
 [ext_resource type="Texture2D" uid="uid://b5xxk1uvfx47" path="res://materials/sprites/surprise.png" id="3_a1qjk"]
 [ext_resource type="Script" uid="uid://b63nxji74xuo7" path="res://resources/state_machine/states_player/idle.gd" id="3_bls4j"]
+[ext_resource type="AudioStream" uid="uid://bdmaw8n7hn6eg" path="res://sounds/gui/detect_alert.wav" id="3_yqrof"]
 [ext_resource type="Script" uid="uid://clavgybhh50q6" path="res://resources/state_machine/states_player/fishing.gd" id="4_8fjmc"]
 [ext_resource type="Texture2D" uid="uid://l2jicfpbjahm" path="res://materials/placeholder/sprite_saddened.png" id="4_j3ovn"]
 [ext_resource type="Script" uid="uid://cl726icth6yce" path="res://resources/state_machine/states_player/detecting.gd" id="5_qiwj3"]
@@ -21,6 +22,8 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_symyc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gx6sm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yqrof"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gx6sm"]
 bg_color = Color(0.42745098, 0.6784314, 0.29411766, 0.69411767)
@@ -171,6 +174,7 @@ _data = {
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_symyc")
 cast_audio = ExtResource("2_7thud")
+detect_audio = ExtResource("3_yqrof")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_sfv1e")
@@ -440,29 +444,71 @@ popup/item_1/id = 1
 popup/item_2/text = "Quit"
 popup/item_2/id = 2
 
-[node name="Bait&RodCorner" type="VBoxContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer"]
+[node name="Bait&RodCorner" type="HBoxContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="RodDurabilityCounter" type="HBoxContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner"]
+[node name="BaitRodMenu" type="PanelContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner"]
+visible = false
+layout_mode = 2
+
+[node name="Margins" type="MarginContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox"]
+layout_mode = 2
+text = "Bait and rod"
+
+[node name="RepairRodBtn" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox"]
+layout_mode = 2
+disabled = true
+text = "REPAIR ROD"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yqrof")
+
+[node name="Label2" type="Label" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Cost :"
+
+[node name="RepairCost" type="Label" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Bait&RodData" type="VBoxContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="RodDurabilityCounter" type="HBoxContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData"]
 layout_mode = 2
 alignment = 1
 
-[node name="RodDurability" type="Label" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/RodDurabilityCounter"]
+[node name="RodDurability" type="Label" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData/RodDurabilityCounter"]
 layout_mode = 2
 text = "100"
 
-[node name="RodDurabilityMax" type="Label" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/RodDurabilityCounter"]
+[node name="RodDurabilityMax" type="Label" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData/RodDurabilityCounter"]
 layout_mode = 2
 text = "/ 100"
 
-[node name="RodDurabilityBar" type="ProgressBar" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner"]
+[node name="RodDurabilityBar" type="ProgressBar" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData"]
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_gx6sm")
 value = 100.0
 
-[node name="BaitAndRod" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner"]
+[node name="BaitAndRodBtn" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -660,6 +706,7 @@ offset_right = 250.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
@@ -751,6 +798,8 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/RepairRodBtn" to="." method="_on_repair_rod_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData/BaitAndRodBtn" to="CanvasLayer/FishingHud" method="_on_bait_and_rod_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Idle" method="_on_player_interact_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Fishing" method="_on_player_interact_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Detecting" method="_on_player_interact_pressed"]

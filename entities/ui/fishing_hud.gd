@@ -7,10 +7,13 @@ signal StartFishing
 
 @onready var player_interact: Button = $PlayerInteract/PlayerInteract
 
+@onready var bait_rod_menu: PanelContainer = $"ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu"
 
 
 @onready var menu_button: MenuButton = $ButtonsMarginContainer/MenuButton
 @onready var menu_button_travel: MenuButton = $ButtonsMarginContainer/GridContainer/MenuButtonTravel
+
+
 
 #region Debug menu : Queue of the next fish
 
@@ -38,7 +41,7 @@ func enable_button(button):
 
 func _on_player_interact_pressed() -> void:
 	#disable_button(player_interact)
-	print("clicked")
+	pass
 
 func travel_menu(id):
 	print(id)
@@ -49,4 +52,8 @@ func travel_menu(id):
 		0:
 			get_tree().change_scene_to_file("res://maps/devmap_1.tscn")
 		1:
-			get_tree().change_scene_to_file("res://maps/devmap_2.tscn")
+			get_tree().change_scene_to_file("res://maps/fishingspot_river.tscn")
+
+
+func _on_bait_and_rod_btn_pressed() -> void:
+	bait_rod_menu.visible = !bait_rod_menu.visible

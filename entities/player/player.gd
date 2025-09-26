@@ -4,6 +4,7 @@ extends CharacterBody3D
 var QueuedFish = []
 
 @export var cast_audio : AudioStreamWAV
+@export var detect_audio : AudioStreamWAV
 
 @onready var sub_viewport: SubViewport = $CamPivot/CamLocation/BaseCamera/SubViewportContainer/SubViewport
 @onready var cam_pivot: Node3D = $CamPivot
@@ -45,12 +46,20 @@ var QueuedFish = []
 #endregion
 
 
-#region Money & Rod durability
+#region Money & Rod+Bait durability
 @onready var money_count: Label = $CanvasLayer/FishingHud/VBoxContainer/MoneyCount
 
-@onready var rod_durability: Label = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/RodDurabilityCounter/RodDurability"
-@onready var rod_durability_max: Label = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/RodDurabilityCounter/RodDurabilityMax"
-@onready var rod_durability_bar: ProgressBar = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/RodDurabilityBar"
+@onready var rod_durability: Label = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData/RodDurabilityCounter/RodDurability"
+@onready var rod_durability_max: Label = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData/RodDurabilityCounter/RodDurabilityMax"
+@onready var rod_durability_bar: ProgressBar = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData/RodDurabilityBar"
+
+@onready var bait_and_rod_btn: Button = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData/BaitAndRodBtn"
+
+@onready var bait_rod_menu: PanelContainer = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu"
+
+@onready var repair_rod_btn: Button = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/RepairRodBtn"
+@onready var repair_cost: Label = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/PanelContainer/RepairCost"
+
 #endregion
 
 
@@ -75,6 +84,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	resize()
+	repair_cost.text = str(Playerinfo.RepairCost)
+	if Playerinfo.can_repair_rod == true:
+		repair_rod_btn.disabled = false
+	else:
+		repair_rod_btn.disabled = true
+
 
 
 func enable_ui_element(ui_element : Control):
@@ -115,7 +130,7 @@ func update_fish_caught_celebration_hud(newname : String, newweight: String,newv
 	caughtfish_rarity.text = newrarity
 	match newrarity:
 		"COMMON":
-			caughtfish_rarity.add_theme_color_override("font_color",Color(0.283,0.604,0.604))
+			caughtfish_rarity.add_theme_color_override("font_color",Color(0.282, 0.604, 0.604, 1.0))
 		"UNCOMMON":
 			caughtfish_rarity.add_theme_color_override("font_color",Color.LIME_GREEN)
 		"RARE":
@@ -151,3 +166,9 @@ func switch_ui_fish_sprite(SpriteRect, spritenumber):
 
 func _on_stop_fishing_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_repair_rod_btn_pressed() -> void:
+	Playerinfo.refill_rod_durability()
+	update_roddurability()
+	update_money()

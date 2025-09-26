@@ -1,10 +1,16 @@
 extends Node
 
+var can_repair_rod : bool = false
+
+
+@export var DEFAULT_ROD_REPAIR_COST : float = 10
+var RepairCost = DEFAULT_ROD_REPAIR_COST
+
 @export var max_money = 999999: 
 	set = set_max_money
 
 @export var max_rod_durability = 100:
-	set = set_max_rod_durability
+	set = set_max_rod_durability	
 
 @export var cam_sensitivity : float = 500
 
@@ -84,6 +90,11 @@ func increase_rod_durability(increase, ratio : float = 1):
 	elif increase <= 0: 
 		print("Error ! rod_durability increase was 0 or lower. Check the code again.")
 
+func refill_rod_durability():
+	if can_repair_rod == true :
+		rod_durability = max_rod_durability
+		money  -= RepairCost
+		emit_signal("rod_durability_increased")
 
 #endregion
 #region Money variable
@@ -127,6 +138,35 @@ func increase_money(moneyGiven, ratio : float = 1):
 		print("Error ! moneyGiven was 0 or lower. Not multiplying to avoid calculus issues.")
 #endregion
 
+func repair_rod():
+	if rod_durability == max_rod_durability:
+		print("wtf you can't repair shit")
+		return
+	elif rod_durability < max_rod_durability:
+		pass
+		
+
+func repair_rod_eligibility():
+	if rod_durability == max_rod_durability:
+		can_repair_rod = false
+		return
+	elif rod_durability < max_rod_durability:
+		if CurrentState == "IDLE":
+			var missingDurabilityPrcntge = snapped(1 -(rod_durability / max_rod_durability),0.01)
+			RepairCost = DEFAULT_ROD_REPAIR_COST + DEFAULT_ROD_REPAIR_COST * missingDurabilityPrcntge
+			if money >= RepairCost :
+				can_repair_rod = true
+				return(RepairCost)
+			else:
+				can_repair_rod = false
+				return
+		else :
+			can_repair_rod = false
+	else:
+		return
+			
+
+
 signal max_money_changed
 signal money_changed
 signal money_increased
@@ -140,3 +180,6 @@ signal rod_durability_decreased
 func _ready():
 
 	pass
+
+func _process(delta: float) -> void:
+	repair_rod_eligibility()
