@@ -1,7 +1,7 @@
 extends PlayerState
 
 func enter(previous_state_path: String, data := {}) -> void:
-	print("failed to catch fish :(")
+	#print("failed to catch fish :(")
 	player.disable_button(player.player_interact)
 	Playerinfo.CurrentState = "FAILCATCHING"
 	player.animation_player.play("idle")

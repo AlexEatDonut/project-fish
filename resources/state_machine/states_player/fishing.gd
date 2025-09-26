@@ -5,17 +5,16 @@ var rng_lurk_timer = RandomNumberGenerator.new()
 func enter(previous_state_path: String, data := {}) -> void:
 	Playerinfo.CurrentState = "CASTING"
 	player.animation_player.play("rod_cast")
-	print("state : FISHING (Casting)")
+	#print("state : FISHING (Casting)")
 
 func allow_catch():
-		print("can now catch")
 		Playerinfo.can_catch = true
 		player.enable_button(player.player_interact)
 		var lurk_timer_time = snappedf(rng_lurk_timer.randf_range(Playerinfo.queued_fish["lurk_time"][0], Playerinfo.queued_fish["lurk_time"][1]),0.01)
 		player.fish_lurk_timer.start(lurk_timer_time)
 		player.fish_lurk_timer_preventive.start(lurk_timer_time - 0.15)
 		Playerinfo.CurrentState = "FISHING"
-		print("state : FISHING")
+		#print("state : FISHING")
 
 func physics_update(delta: float) -> void:
 	pass
