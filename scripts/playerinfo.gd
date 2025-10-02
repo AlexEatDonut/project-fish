@@ -25,6 +25,8 @@ var maximum_catching_delay  = DEFAULT_MAXIMUM_CATCHING_DELAY
 
 var debug_mode : bool = false
 
+var rod_bait_value = 0
+
 var fish_inventory  	
 
 var queued_fish
@@ -53,6 +55,14 @@ var start_fishing : bool = false
 var in_fishing_position : bool = false
 
 var playerIsBroke : bool = false
+
+#region Dev Shop : Activating certain vars for testing
+#TODO : technical debt : make it not suck as hard
+var ticket_ownership_1 : bool = false
+var bait_upgrade_ownership_1 : bool = false
+var bait_upgrade_ownership_2 : bool = false
+var bait_upgrade_ownership_3 : bool = false
+#endregion
 
 #region Rod Durability
 var rod_durability = max_rod_durability:
@@ -166,6 +176,24 @@ func repair_rod_eligibility():
 		return
 			
 
+
+func buy_ticket_1():
+	ticket_ownership_1 = true
+
+func buy_bait_upgrade_1():
+	bait_upgrade_ownership_1 = true
+	rod_bait_value = 1
+
+func buy_bait_upgrade_2():
+	bait_upgrade_ownership_1 = true
+	bait_upgrade_ownership_2 = true
+	rod_bait_value = 2
+
+func buy_bait_upgrade_3():
+	bait_upgrade_ownership_1 = true
+	bait_upgrade_ownership_2 = true
+	bait_upgrade_ownership_3 = true
+	rod_bait_value = 3
 
 signal max_money_changed
 signal money_changed

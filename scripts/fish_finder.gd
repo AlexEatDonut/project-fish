@@ -18,6 +18,8 @@ var sortedfishes = []
 # Number starts with 0
 # df = Dev Fish btw
 
+var no_fishes_error_message : Dictionary = {"ERROR" : "The array has for some reason not been made. Trying again."}
+
 var fishValueHeight_rng = RandomNumberGenerator.new()
 var fishValueHeight_randomizer = [0.9,1.2]
 
@@ -27,7 +29,7 @@ var rarities_array = ["COMMON", "UNCOMMON", "RARE", "UNUSUAL", "LEGENDARY"]
 var rarities_weights = rarities_weights_DEFAULT
 
 
-enum FishTypes{
+enum fish_types{
 	COMMON,
 	UNCOMMON,
 	RARE,
@@ -53,6 +55,7 @@ func add_to_inventory():
 #get a random fish : by which biome do we sort ? Do we get a random rarity ?  If not which rarit would you like ?
 #TODO : add a sorting by BAIT VALUE to lock fisheds behind bait/rods
 func get_fishes_by_sorting(biome : String, rng_rarity : bool = true, defined_rarity : String = "null",):
+	var current_bait_value = Playerinfo.rod_bait_value
 	foundFishes = []
 	var willSortByRarity : bool = true
 	var willSortByRNGRarity : bool = true
@@ -78,13 +81,13 @@ func get_fishes_by_sorting(biome : String, rng_rarity : bool = true, defined_rar
 #		will sort by rng rarity
 		[true, true]:
 			for item in fish_dict:
-				if fish_dict[item]["fish_locations"].has(biome) and fish_dict[item]["fishType"] == rng_selected_rarity :
+				if fish_dict[item]["fish_locations"].has(biome) and fish_dict[item]["fish_type"] == rng_selected_rarity and fish_dict[item]["bait_value"] <= current_bait_value :
 					foundFishes.append(fish_dict[item])
 			return foundFishes
 #		will sort by rarity but a defined one
 		[true, false]:
 			for item in fish_dict:
-				if fish_dict[item]["fish_locations"].has(biome) and fish_dict[item]["fishType"] == defined_rarity :
+				if fish_dict[item]["fish_locations"].has(biome) and fish_dict[item]["fish_type"] == defined_rarity and fish_dict[item]["bait_value"] <= current_bait_value :
 					foundFishes.append(fish_dict[item])
 			return foundFishes
 #		will not sort by rarity
@@ -122,7 +125,10 @@ func get_fishes_by_rarity(array : Array) -> Variant:
 
 
 func pick_random_array(array : Array) -> Variant:
-	var randomItem = array[randi() % array.size()] 
+	if array.size() == 0:
+		return no_fishes_error_message
+	#var randomItem = array[randi() % array.size()] 
+	var randomItem = array.pick_random()
 	randomItem["value"] = snappedf(randomItem["value"] * fishValueHeight_rng.randf_range(fishValueHeight_randomizer[0], fishValueHeight_randomizer[1]), 0.01)
 	randomItem["weight"] = snappedf(randomItem["weight"] * fishValueHeight_rng.randf_range(fishValueHeight_randomizer[0], fishValueHeight_randomizer[1]), 0.01)
 	return randomItem
@@ -130,5 +136,3 @@ func pick_random_array(array : Array) -> Variant:
 
 func rarities_weights_reset():
 	rarities_weights = rarities_weights_DEFAULT
-
-signal createdFishList

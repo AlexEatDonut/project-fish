@@ -30,9 +30,14 @@ var QueuedFish = []
 
 #region buttons
 @onready var player_interact: Button = $CanvasLayer/FishingHud/PlayerInteract/PlayerInteract
-
 #endregion
 
+#region Menu Buttons
+@onready var btn_shop: Button = $CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer/btn_shop
+@onready var btn_fishlist: Button = $CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer/btn_fishlist
+@onready var menu_button: Button = $CanvasLayer/FishingHud/ButtonsMarginContainer/MenuButton
+
+#endregion
 
 #region timers for fishing logic
 @onready var fish_lurk_timer: Timer = $FishLurkTimer
@@ -54,9 +59,7 @@ var QueuedFish = []
 @onready var rod_durability_bar: ProgressBar = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData/RodDurabilityBar"
 
 @onready var bait_and_rod_btn: Button = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData/BaitAndRodBtn"
-
 @onready var bait_rod_menu: PanelContainer = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu"
-
 @onready var repair_rod_btn: Button = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/RepairRodBtn"
 @onready var repair_cost: Label = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/PanelContainer/RepairCost"
 
@@ -72,6 +75,8 @@ func resize():
 		sub_viewport.size = DisplayServer.window_get_size()
 
 func _ready() -> void:
+	update_money()
+	update_roddurability()
 	if Playerinfo.debug_mode == true :
 		debug_queue_panel.visible = true
 	debug_change_data("none", "", "", "")
@@ -91,16 +96,15 @@ func _process(delta: float) -> void:
 		repair_rod_btn.disabled = true
 
 
-
+#region HUD and UI element related Functions
 func enable_ui_element(ui_element : Control):
 	ui_element.visible = true
 func disable_ui_element(ui_element : Control):
 	ui_element.visible = false
+	
+func disable_all_menus():
+	pass
 
-func enable_sprite(sprite : Sprite3D):
-	sprite.visible = true
-func disable_sprite(sprite : Sprite3D):
-	sprite.visible = false
 
 func disable_button(button : Control):
 	button.disabled = true
@@ -109,6 +113,12 @@ func enable_button(button : Control):
 	button.disabled = false
 	button.visible = true
 
+#endregion
+
+func enable_sprite(sprite : Sprite3D):
+	sprite.visible = true
+func disable_sprite(sprite : Sprite3D):
+	sprite.visible = false
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -172,3 +182,13 @@ func _on_repair_rod_btn_pressed() -> void:
 	Playerinfo.refill_rod_durability()
 	update_roddurability()
 	update_money()
+
+#region Menu buttons pressed
+func _on_btn_shop_pressed() -> void:
+	get_tree().change_scene_to_file("res://maps/shop_screen.tscn")
+
+func _on_menu_button_pressed() -> void:
+	#TODO : pause the game, hide all other menues and show the menu and its choices
+	pass # Replace with function body.
+
+#endregion

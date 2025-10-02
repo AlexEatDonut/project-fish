@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://ieknbubt7ci7"]
+[gd_scene load_steps=55 format=3 uid="uid://ieknbubt7ci7"]
 
 [ext_resource type="Script" uid="uid://0gvwve1d3e8v" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="AudioStream" uid="uid://c2y0o0mdcwnu" path="res://sounds/fish/507093__paulprit__fish-splashing-release-2.wav" id="2_7thud"]
@@ -16,6 +16,18 @@
 [ext_resource type="Script" uid="uid://516jobpkflmg" path="res://entities/ui/fishing_hud.gd" id="13_afbqv"]
 [ext_resource type="Texture2D" uid="uid://ym2al7f2xtis" path="res://materials/placeholder/blublub1.png" id="14_gx6sm"]
 [ext_resource type="FontFile" uid="uid://dcnld1ddcnbdm" path="res://fonts/Super Trend.ttf" id="14_yqrof"]
+[ext_resource type="Texture2D" uid="uid://drlbyphkr5l8n" path="res://materials/ui/radio/stop-circle-fill.svg" id="17_mtric"]
+[ext_resource type="Texture2D" uid="uid://bw8snn6mkqtqw" path="res://materials/ui/menu_buttons/basket2-fill.svg" id="17_t1t22"]
+[ext_resource type="Texture2D" uid="uid://p7j5ogilm50w" path="res://materials/ui/menu_buttons/book-fill.svg" id="18_50fht"]
+[ext_resource type="Texture2D" uid="uid://8qgdnig5ob88" path="res://materials/ui/radio/skip-backward-circle-fill.svg" id="18_eyb6c"]
+[ext_resource type="Texture2D" uid="uid://bajudgwlo5xuw" path="res://materials/ui/radio/pause-circle-fill.svg" id="19_221hk"]
+[ext_resource type="Texture2D" uid="uid://ds3o70de8sbfa" path="res://materials/ui/menu_buttons/person-walking.svg" id="19_wuv6x"]
+[ext_resource type="Texture2D" uid="uid://j3yl6aw8kjy0" path="res://materials/ui/radio/skip-forward-circle-fill.svg" id="20_ghoj8"]
+[ext_resource type="Texture2D" uid="uid://efgi7eel561" path="res://materials/ui/menu_buttons/list.svg" id="20_qpopc"]
+[ext_resource type="Texture2D" uid="uid://37io7cx7g5u6" path="res://materials/ui/menu_buttons/file-text-fill.svg" id="25_wq0jh"]
+[ext_resource type="Texture2D" uid="uid://c8ek6xna6kh3q" path="res://materials/ui/menu_buttons/gear-fill.svg" id="26_gt4e4"]
+[ext_resource type="Texture2D" uid="uid://d24xcvjgvaep2" path="res://materials/ui/menu_buttons/display-fill.svg" id="27_24ehl"]
+[ext_resource type="Texture2D" uid="uid://ceotuyxc8a6oe" path="res://materials/ui/menu_buttons/power.svg" id="28_bwdx1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sfv1e"]
 
@@ -49,6 +61,26 @@ bg_color = Color(0.42745098, 0.6784314, 0.29411766, 0.69411767)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qs7v0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cpdjg"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_wq0jh"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_t1t22"]
+events = [SubResource("InputEventKey_wq0jh")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1t22"]
+bg_color = Color(0.23031491, 0.23031494, 0.23031485, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t1t22"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50fht"]
+bg_color = Color(1, 0.4030275, 0.28060427, 0.238)
 
 [sub_resource type="Animation" id="Animation_a1qjk"]
 length = 0.001
@@ -395,15 +427,19 @@ theme_override_constants/margin_bottom = 32
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 columns = 3
 
 [node name="btn_shop" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer"]
 layout_mode = 2
 text = "shop"
+icon = ExtResource("17_t1t22")
 
 [node name="btn_fishlist" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer"]
 layout_mode = 2
 text = "bestiary"
+icon = ExtResource("18_50fht")
 
 [node name="MenuButtonTravel" type="MenuButton" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer"]
 layout_mode = 2
@@ -411,6 +447,8 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "travel
 "
+icon = ExtResource("19_wuv6x")
+flat = false
 item_count = 9
 popup/item_0/text = "Devmap1"
 popup/item_0/id = 0
@@ -431,18 +469,11 @@ popup/item_7/id = 7
 popup/item_8/text = "Clouds"
 popup/item_8/id = 8
 
-[node name="MenuButton" type="MenuButton" parent="CanvasLayer/FishingHud/ButtonsMarginContainer"]
+[node name="MenuButton" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-text = "menu"
-item_count = 3
-popup/item_0/text = "Stats"
-popup/item_0/id = 0
-popup/item_1/text = "Settings"
-popup/item_1/id = 1
-popup/item_2/text = "Quit"
-popup/item_2/id = 2
+icon = ExtResource("20_qpopc")
 
 [node name="Bait&RodCorner" type="HBoxContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer"]
 layout_mode = 2
@@ -666,22 +697,27 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 32
-text = "⏹"
+icon = ExtResource("17_mtric")
+flat = true
+icon_alignment = 1
 
 [node name="Button2" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "⏮"
+icon = ExtResource("18_eyb6c")
+flat = true
 
 [node name="Button3" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "⏯️"
+icon = ExtResource("19_221hk")
+flat = true
 
 [node name="Button4" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "⏭"
+icon = ExtResource("20_ghoj8")
+flat = true
 
 [node name="PlayerInteract" type="Control" parent="CanvasLayer/FishingHud"]
 layout_mode = 1
@@ -731,6 +767,7 @@ theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_bb7sx"
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_tp4ps")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_qs7v0")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_cpdjg")
+shortcut = SubResource("Shortcut_t1t22")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract"]
 layout_mode = 1
@@ -782,6 +819,76 @@ theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 24
 text = "0"
 
+[node name="PauseMenu" type="PanelContainer" parent="CanvasLayer/FishingHud"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t1t22")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/PauseMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxAll" type="VBoxContainer" parent="CanvasLayer/FishingHud/PauseMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("14_yqrof")
+theme_override_font_sizes/font_size = 64
+text = "Paused"
+
+[node name="VBoxBtns" type="VBoxContainer" parent="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="StatsBtn" type="Button" parent="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns"]
+layout_mode = 2
+text = "Stats"
+icon = ExtResource("25_wq0jh")
+
+[node name="SettingsBtn" type="Button" parent="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns"]
+layout_mode = 2
+text = "Settings"
+icon = ExtResource("26_gt4e4")
+
+[node name="QuitMenuBtn" type="Button" parent="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns"]
+layout_mode = 2
+text = "Quit to main Menu
+"
+icon = ExtResource("27_24ehl")
+
+[node name="QuitDesktopBtn" type="Button" parent="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns"]
+layout_mode = 2
+text = "Quit to desktop
+"
+icon = ExtResource("28_bwdx1")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns/QuitDesktopBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_t1t22")
+theme_override_styles/fill = SubResource("StyleBoxFlat_50fht")
+show_percentage = false
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_afbqv")
@@ -798,6 +905,8 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer/btn_shop" to="." method="_on_btn_shop_pressed"]
+[connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/RepairRodBtn" to="." method="_on_repair_rod_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData/BaitAndRodBtn" to="CanvasLayer/FishingHud" method="_on_bait_and_rod_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Idle" method="_on_player_interact_pressed"]

@@ -10,7 +10,7 @@ signal StartFishing
 @onready var bait_rod_menu: PanelContainer = $"ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu"
 
 
-@onready var menu_button: MenuButton = $ButtonsMarginContainer/MenuButton
+@onready var menu_button: Button = $ButtonsMarginContainer/MenuButton
 @onready var menu_button_travel: MenuButton = $ButtonsMarginContainer/GridContainer/MenuButtonTravel
 
 
@@ -37,7 +37,6 @@ func disable_button(button):
 	button.disabled = true
 func enable_button(button):
 	button.disabled = false
-
 
 func _on_player_interact_pressed() -> void:
 	#disable_button(player_interact)

@@ -18,7 +18,11 @@ func _on_player_interact_pressed() -> void:
 			player.disable_button(player.player_interact)
 			SoundManager.play_sound(player.cast_audio)
 			queuedfish_fulldata = FishFinder.pick_random_array(FishFinder.get_fishes_by_sorting(Playerinfo.playerLocation, true))
-			player.update_fish_caught_celebration_hud(queuedfish_fulldata["name"], str(queuedfish_fulldata["weight"]),str(queuedfish_fulldata["value"]), str(queuedfish_fulldata["fishType"]), queuedfish_fulldata["sprite"])
+			if queuedfish_fulldata == FishFinder.no_fishes_error_message :
+				print(queuedfish_fulldata)
+				while queuedfish_fulldata == FishFinder.no_fishes_error_message :
+					queuedfish_fulldata = FishFinder.pick_random_array(FishFinder.get_fishes_by_sorting(Playerinfo.playerLocation, true))
+			player.update_fish_caught_celebration_hud(queuedfish_fulldata["name"], str(queuedfish_fulldata["weight"]),str(queuedfish_fulldata["value"]), str(queuedfish_fulldata["fish_type"]), queuedfish_fulldata["sprite"])
 			Playerinfo.queued_fish = queuedfish_fulldata
 			if Playerinfo.debug_mode == true : 
 				player.debug_change_data(queuedfish_fulldata["name"], str(queuedfish_fulldata["weight"]),str(queuedfish_fulldata["value"]), str(queuedfish_fulldata["fishType"]), queuedfish_fulldata["sprite"])
