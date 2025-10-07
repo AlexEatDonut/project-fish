@@ -21,6 +21,7 @@ func _on_player_interact_pressed() -> void:
 			if queuedfish_fulldata == FishFinder.no_fishes_error_message :
 				print(queuedfish_fulldata)
 				while queuedfish_fulldata == FishFinder.no_fishes_error_message :
+					await get_tree().create_timer(0.1).timeout
 					queuedfish_fulldata = FishFinder.pick_random_array(FishFinder.get_fishes_by_sorting(Playerinfo.playerLocation, true))
 			player.update_fish_caught_celebration_hud(queuedfish_fulldata["name"], str(queuedfish_fulldata["weight"]),str(queuedfish_fulldata["value"]), str(queuedfish_fulldata["fish_type"]), queuedfish_fulldata["sprite"])
 			Playerinfo.queued_fish = queuedfish_fulldata
