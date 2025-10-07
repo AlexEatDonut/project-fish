@@ -103,7 +103,7 @@ func increase_rod_durability(increase, ratio : float = 1):
 func refill_rod_durability():
 	if can_repair_rod == true :
 		rod_durability = max_rod_durability
-		money  -= RepairCost
+		decrease_money(RepairCost)
 		emit_signal("rod_durability_increased")
 
 #endregion
@@ -148,6 +148,7 @@ func increase_money(moneyGiven, ratio : float = 1):
 		print("Error ! moneyGiven was 0 or lower. Not multiplying to avoid calculus issues.")
 #endregion
 
+#TODO : wtf is that code ?
 func repair_rod():
 	if rod_durability == max_rod_durability:
 		print("wtf you can't repair shit")
@@ -176,6 +177,11 @@ func repair_rod_eligibility():
 		return
 			
 
+func is_lake_unlocked():
+	if ticket_ownership_1 == true:
+		return true
+	else:
+		return false
 
 func buy_ticket_1():
 	ticket_ownership_1 = true
