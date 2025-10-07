@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://ieknbubt7ci7"]
+[gd_scene load_steps=56 format=3 uid="uid://ieknbubt7ci7"]
 
 [ext_resource type="Script" uid="uid://0gvwve1d3e8v" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="AudioStream" uid="uid://c2y0o0mdcwnu" path="res://sounds/fish/507093__paulprit__fish-splashing-release-2.wav" id="2_7thud"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bbeeqnmg7o5di" path="res://models/poly-pizza/fishing-rod-quaternius/FishingRod_Lvl2.fbx" id="2_wvtmh"]
 [ext_resource type="Texture2D" uid="uid://b5xxk1uvfx47" path="res://materials/sprites/surprise.png" id="3_a1qjk"]
 [ext_resource type="Script" uid="uid://b63nxji74xuo7" path="res://resources/state_machine/states_player/idle.gd" id="3_bls4j"]
-[ext_resource type="AudioStream" uid="uid://bdmaw8n7hn6eg" path="res://sounds/gui/detect_alert.wav" id="3_yqrof"]
+[ext_resource type="AudioStream" uid="uid://bdmaw8n7hn6eg" path="res://sounds/ui/detect_alert.wav" id="3_yqrof"]
 [ext_resource type="Script" uid="uid://clavgybhh50q6" path="res://resources/state_machine/states_player/fishing.gd" id="4_8fjmc"]
 [ext_resource type="Texture2D" uid="uid://l2jicfpbjahm" path="res://materials/placeholder/sprite_saddened.png" id="4_j3ovn"]
 [ext_resource type="Script" uid="uid://cl726icth6yce" path="res://resources/state_machine/states_player/detecting.gd" id="5_qiwj3"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://516jobpkflmg" path="res://entities/ui/fishing_hud.gd" id="13_afbqv"]
 [ext_resource type="Texture2D" uid="uid://ym2al7f2xtis" path="res://materials/placeholder/blublub1.png" id="14_gx6sm"]
 [ext_resource type="FontFile" uid="uid://dcnld1ddcnbdm" path="res://fonts/Super Trend.ttf" id="14_yqrof"]
+[ext_resource type="Texture2D" uid="uid://bkxo6womsgron" path="res://materials/fishes/freshwater/rare_freshwater_1-kittyfish.png" id="16_gt4e4"]
 [ext_resource type="Texture2D" uid="uid://drlbyphkr5l8n" path="res://materials/ui/radio/stop-circle-fill.svg" id="17_mtric"]
 [ext_resource type="Texture2D" uid="uid://bw8snn6mkqtqw" path="res://materials/ui/menu_buttons/basket2-fill.svg" id="17_t1t22"]
 [ext_resource type="Texture2D" uid="uid://p7j5ogilm50w" path="res://materials/ui/menu_buttons/book-fill.svg" id="18_50fht"]
@@ -302,9 +303,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -163.0
-offset_right = 200.0
-offset_bottom = 163.0
+offset_top = -196.0
+offset_right = 199.99957
+offset_bottom = 240.00092
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -312,7 +313,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_gx6sm")
 
 [node name="FCVbox" type="VBoxContainer" parent="CanvasLayer/FishingHud/FCPanel"]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 8
 
 [node name="FCHeader" type="PanelContainer" parent="CanvasLayer/FishingHud/FCPanel/FCVbox"]
 layout_mode = 2
@@ -339,6 +340,12 @@ theme_override_constants/margin_bottom = 16
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer"]
 layout_mode = 2
 
+[node name="caughtfish_sprite" type="TextureRect" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("16_gt4e4")
+expand_mode = 5
+stretch_mode = 5
+
 [node name="caughtfish_name" type="Label" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
@@ -355,26 +362,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 120
 
-[node name="FishSpritePanel" type="Panel" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="caughtfish_sprite" type="TextureRect" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/FishSpritePanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("14_gx6sm")
-expand_mode = 2
-
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
@@ -390,13 +377,16 @@ theme_override_fonts/font = ExtResource("14_yqrof")
 theme_override_font_sizes/font_size = 32
 text = "10"
 
-[node name="FCDataTitle2" type="Label" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="FCDataTitle2" type="Label" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_yqrof")
 theme_override_font_sizes/font_size = 24
 text = "Weight"
 
-[node name="caughtfish_weight" type="Label" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="caughtfish_weight" type="Label" parent="CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_yqrof")
 theme_override_font_sizes/font_size = 32
