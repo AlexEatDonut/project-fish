@@ -9,7 +9,8 @@ extends Node3D
 
 @export var bg_curio_music : AudioStreamWAV
 
-var dev_prices = [20,50,100,150]
+# TODO : make a better system than that. Until then, this is in order : BAIT UPGRADE 1, LAKE TICKET, BAIT UPGRADE 2, BAIT UPGRADE 3
+var dev_prices = [300,3000,3000,10000]
 
 func _ready() -> void:
 	SoundManager.play_music(bg_curio_music)
@@ -36,18 +37,26 @@ func check_all_items_availbability():
 
 func _on_lake_ticket_btn_pressed() -> void:
 	Playerinfo.buy_ticket_1()
+	Playerinfo.decrease_money(dev_prices[1])
+	update_money()
 	check_all_items_availbability()
 
 func _on_bait_up_1_btn_pressed() -> void:
 	Playerinfo.buy_bait_upgrade_1()
+	Playerinfo.decrease_money(dev_prices[0])
+	update_money()
 	check_all_items_availbability()
 
 func _on_bait_up_2_btn_pressed() -> void:
 	Playerinfo.buy_bait_upgrade_2()
+	Playerinfo.decrease_money(dev_prices[2])
+	update_money()
 	check_all_items_availbability()
 
 func _on_bait_up_3_btn_pressed() -> void:
 	Playerinfo.buy_bait_upgrade_3()
+	Playerinfo.decrease_money(dev_prices[3])
+	update_money()
 	check_all_items_availbability()
 
 func _on_return_btn_pressed() -> void:
@@ -60,4 +69,6 @@ func _on_return_btn_pressed() -> void:
 		1:
 			get_tree().change_scene_to_file("res://maps/fishingspot_river.tscn")
 		2:
-			get_tree().change_scene_to_file("res://maps/devmap_2.tscn")
+			get_tree().change_scene_to_file("res://maps/fishingspot_lake.tscn")
+		_:
+			get_tree().change_scene_to_file("res://maps/fishingspot_river.tscn")
