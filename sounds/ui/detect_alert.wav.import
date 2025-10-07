@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bdmaw8n7hn6eg"
-path="res://.godot/imported/detect_alert.wav-da9f804f2e54cfe052aa1bc74d5a64b8.sample"
+path="res://.godot/imported/detect_alert.wav-0364023ac0228d40937ab965a3e4ea3a.sample"
 
 [deps]
 
-source_file="res://sounds/gui/detect_alert.wav"
-dest_files=["res://.godot/imported/detect_alert.wav-da9f804f2e54cfe052aa1bc74d5a64b8.sample"]
+source_file="res://sounds/ui/detect_alert.wav"
+dest_files=["res://.godot/imported/detect_alert.wav-0364023ac0228d40937ab965a3e4ea3a.sample"]
 
 [params]
 
