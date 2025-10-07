@@ -52,6 +52,11 @@ func travel_menu(id):
 			get_tree().change_scene_to_file("res://maps/devmap_1.tscn")
 		1:
 			get_tree().change_scene_to_file("res://maps/fishingspot_river.tscn")
+		2:
+			if Playerinfo.is_lake_unlocked() == true:
+				get_tree().change_scene_to_file("res://maps/fishingspot_lake.tscn")
+			else:
+				print("Buy the ticket first !")
 
 
 func _on_bait_and_rod_btn_pressed() -> void:

@@ -358,19 +358,19 @@ void fragment() {
 }
 "
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_j16xd"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ytpor"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7m4vi"]
-noise = SubResource("FastNoiseLite_j16xd")
+noise = SubResource("FastNoiseLite_ytpor")
 seamless = true
 as_normal_map = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jba5j"]
-noise = SubResource("FastNoiseLite_j16xd")
+noise = SubResource("FastNoiseLite_ytpor")
 seamless = true
 as_normal_map = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kus0k"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_km472"]
 render_priority = 0
 shader = SubResource("Shader_4jv76")
 shader_parameter/albedo = Color(0.0666667, 0.301961, 0.87451, 0.541176)
@@ -392,7 +392,7 @@ shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vkii5"]
-material = SubResource("ShaderMaterial_kus0k")
+material = SubResource("ShaderMaterial_km472")
 size = Vector3(200, 30, 200)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sjqk2"]
@@ -401,12 +401,12 @@ sky_horizon_color = Color(0.784314, 0.792157, 0.901961, 1)
 ground_horizon_color = Color(0.784314, 0.792157, 0.901961, 1)
 sun_angle_max = 45.0
 
-[sub_resource type="Sky" id="Sky_yfx3q"]
+[sub_resource type="Sky" id="Sky_4jv76"]
 sky_material = SubResource("ProceduralSkyMaterial_sjqk2")
 
 [sub_resource type="Environment" id="Environment_5dw8y"]
 background_mode = 2
-sky = SubResource("Sky_yfx3q")
+sky = SubResource("Sky_4jv76")
 tonemap_white = 1.5
 fog_light_color = Color(0.784314, 0.792157, 0.901961, 1)
 
