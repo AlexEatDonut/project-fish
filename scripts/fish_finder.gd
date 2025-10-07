@@ -13,6 +13,41 @@ var fish_dict = JSON.parse_string(json_as_text)
 @export var devsprite3 = Texture
 @export var devsprite4 = Texture
 
+#region list of all fish sprites
+## FRESHWATER FISHES - COMMON
+@export var spr_fresh_1_1 = Texture2D
+#111
+@export var spr_fresh_1_2 = Texture2D
+#112
+@export var spr_fresh_1_3 = Texture2D
+#113
+@export var spr_fresh_1_4 = Texture2D
+#114
+@export var spr_fresh_1_5 = Texture2D
+#115
+## FRESHWATER FISHES - UNCOMMON
+@export var spr_fresh_2_1 = Texture2D
+#121
+@export var spr_fresh_2_2 = Texture2D
+#122
+@export var spr_fresh_2_3 = Texture2D
+#123
+## FRESHWATER FISHES - RARE
+@export var spr_fresh_3_1 = Texture2D
+#131
+@export var spr_fresh_3_2 = Texture2D
+#132
+## FRESHWATER FISHES - UNUSUAL
+@export var spr_fresh_4_1 = Texture2D
+#141
+@export var spr_fresh_4_2 = Texture2D
+#142
+## FRESHWATER FISHES - LEGENDARY
+@export var spr_fresh_5_1 = Texture2D
+#151
+#endregion
+
+
 var foundFishes = []
 var sortedfishes = []
 # Number starts with 0
@@ -23,10 +58,16 @@ var no_fishes_error_message : Dictionary = {"ERROR" : "The array has for some re
 var fishValueHeight_rng = RandomNumberGenerator.new()
 var fishValueHeight_randomizer = [0.9,1.2]
 
-var rarities_weights_DEFAULT = PackedFloat32Array([100, 15, 7, 3, 1])
+var rarities_weights_FINAL = PackedFloat32Array([100, 15, 7, 3, 1])
+# List of each weights by bait (0 is default no upgrade)
+var rarities_weights_bait0 = PackedFloat32Array([85, 15, 0, 0, 0])
+var rarities_weights_bait1 = PackedFloat32Array([90, 15, 7, 0, 0])
+var rarities_weights_bait2 = PackedFloat32Array([95, 15, 7, 3, 0])
+#DEV WEIGHTS
+#var rarities_weights_FINAL = PackedFloat32Array([1, 1, 1, 1, 1])
 var rarities_rng = RandomNumberGenerator.new()
 var rarities_array = ["COMMON", "UNCOMMON", "RARE", "UNUSUAL", "LEGENDARY"]
-var rarities_weights = rarities_weights_DEFAULT
+var rarities_weights = rarities_weights_bait0
 
 
 enum fish_types{
@@ -38,24 +79,27 @@ enum fish_types{
 	DEVELOPPER
 }
 
-func init_fishes():
-	pass
-
 
 func _ready() -> void:
-	#init_fishes()
 	#get_fish_from_dict("devfish1")
 	#pick_random_fish(fish_dict)
 	#pick_random_array(get_fishes_by_biome("RIVER"))
 	return
 
-func add_to_inventory():
-	pass
+func update_fishweights(newbaitvalue):
+	match newbaitvalue:
+		1:
+			rarities_weights = rarities_weights_bait1
+		2:
+			rarities_weights = rarities_weights_bait2
+		3:
+			rarities_weights = rarities_weights_FINAL
 
 #get a random fish : by which biome do we sort ? Do we get a random rarity ?  If not which rarit would you like ?
 #TODO : add a sorting by BAIT VALUE to lock fisheds behind bait/rods
 func get_fishes_by_sorting(biome : String, rng_rarity : bool = true, defined_rarity : String = "null",):
 	var current_bait_value = Playerinfo.rod_bait_value
+	#print(current_bait_value)
 	foundFishes = []
 	var willSortByRarity : bool = true
 	var willSortByRNGRarity : bool = true
@@ -81,7 +125,7 @@ func get_fishes_by_sorting(biome : String, rng_rarity : bool = true, defined_rar
 #		will sort by rng rarity
 		[true, true]:
 			for item in fish_dict:
-				if fish_dict[item]["fish_locations"].has(biome) and fish_dict[item]["fish_type"] == rng_selected_rarity and fish_dict[item]["bait_value"] <= current_bait_value :
+				if fish_dict[item]["fish_locations"].has(biome) and fish_dict[item]["fish_type"] == rng_selected_rarity and fish_dict[item]["bait_value"] <= current_bait_value:
 					foundFishes.append(fish_dict[item])
 			return foundFishes
 #		will sort by rarity but a defined one
@@ -135,4 +179,4 @@ func pick_random_array(array : Array) -> Variant:
 
 
 func rarities_weights_reset():
-	rarities_weights = rarities_weights_DEFAULT
+	rarities_weights = rarities_weights_FINAL
