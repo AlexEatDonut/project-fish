@@ -16,6 +16,8 @@ A cozy and simple fishing game with no deeper mechanics thant that. The goal is 
 
 <a href="https://github.com/nathanhoad/godot_sound_manager">Godot Sound Manager</a>
 
+<a href="https://github.com/Firch/SceneContainer"> Scene container (not yet used, for later)</a>
+
 ## Shader(s?)
 
 <a href="https://godotshaders.com/shader/snap-screen-colors-to-palette-posterize/">Snap Screen Colors to Palette (Posterize)</a>
