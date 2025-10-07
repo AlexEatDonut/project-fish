@@ -13,9 +13,9 @@ var QueuedFish = []
 #region Fish Caught labels
 @onready var fc_panel: PanelContainer = $CanvasLayer/FishingHud/FCPanel
 @onready var caughtfish_name: Label = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/caughtfish_name
-@onready var caughtfish_sprite: TextureRect = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/FishSpritePanel/caughtfish_sprite
+@onready var caughtfish_sprite: TextureRect = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/caughtfish_sprite
 @onready var caughtfish_value: Label = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/caughtfish_value
-@onready var caughtfish_weight: Label = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/caughtfish_weight
+@onready var caughtfish_weight: Label = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/caughtfish_weight
 @onready var caughtfish_rarity: Label = $CanvasLayer/FishingHud/FCPanel/FCVbox/FCMain/MarginContainer/VBoxContainer/caughtfish_rarity
 #endregion
 
@@ -173,6 +173,37 @@ func switch_ui_fish_sprite(SpriteRect, spritenumber):
 			SpriteRect.texture = FishFinder.devsprite3
 		4.0:
 			SpriteRect.texture = FishFinder.devsprite4
+		## FRESHWATER FISHES - COMMON
+		111.0:
+			SpriteRect.texture = FishFinder.spr_fresh_1_1
+		112.0:
+			SpriteRect.texture = FishFinder.spr_fresh_1_2
+		113.0:
+			SpriteRect.texture = FishFinder.spr_fresh_1_3
+		114.0:
+			SpriteRect.texture = FishFinder.spr_fresh_1_4
+		115.0:
+			SpriteRect.texture = FishFinder.spr_fresh_1_5
+		## FRESHWATER FISHES - UNCOMMON
+		121.0:
+			SpriteRect.texture = FishFinder.spr_fresh_2_1
+		122.0:
+			SpriteRect.texture = FishFinder.spr_fresh_2_2
+		123.0:
+			SpriteRect.texture = FishFinder.spr_fresh_2_3
+		## FRESHWATER FISHES - RARE
+		131.0:
+			SpriteRect.texture = FishFinder.spr_fresh_3_1
+		132.0:
+			SpriteRect.texture = FishFinder.spr_fresh_3_2
+		## FRESHWATER FISHES - UNUSUAL
+		141.0:
+			SpriteRect.texture = FishFinder.spr_fresh_4_1
+		142.0:
+			SpriteRect.texture = FishFinder.spr_fresh_4_2
+		## FRESHWATER FISHES - LEGENDARY
+		151.0:
+			SpriteRect.texture = FishFinder.spr_fresh_5_1
 
 func _on_stop_fishing_pressed() -> void:
 	pass # Replace with function body.
