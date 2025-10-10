@@ -1,11 +1,12 @@
-[gd_scene load_steps=55 format=4 uid="uid://dihevx82mh14p"]
+[gd_scene load_steps=60 format=4 uid="uid://dihevx82mh14p"]
 
 [ext_resource type="Script" uid="uid://cxlc57q27wmc4" path="res://maps/shop_screen.gd" id="1_6n44y"]
 [ext_resource type="FontFile" uid="uid://5j16yawegu2w" path="res://fonts/Fish Strike.ttf" id="1_8afw2"]
 [ext_resource type="Texture2D" uid="uid://dphkvmemwdlfe" path="res://materials/ui/menu_buttons/escape.svg" id="1_dqsio"]
+[ext_resource type="PackedScene" uid="uid://de4hgb42xs07w" path="res://entities/ui/shop_item.tscn" id="2_6hdri"]
 [ext_resource type="StyleBox" uid="uid://djex00xcoflvd" path="res://ui_stylings/shop_item_stylebox.tres" id="2_71k4w"]
-[ext_resource type="AudioStream" uid="uid://cyb8d5lltqfis" path="res://sounds/placeholder/music/deadlock_curio_music.wav" id="2_indth"]
 [ext_resource type="Texture2D" uid="uid://ddfdhfhidas2f" path="res://materials/ui/menu_buttons/ticket-fill.svg" id="2_jf3u5"]
+[ext_resource type="AudioStream" uid="uid://cyb8d5lltqfis" path="res://sounds/placeholder/music/deadlock_curio_music.wav" id="3_b7de1"]
 [ext_resource type="Texture2D" uid="uid://bo5eexpe88ra5" path="res://materials/ui/menu_buttons/currency-dollar.svg" id="3_jf3u5"]
 [ext_resource type="Texture2D" uid="uid://c26fwhv2bt4wy" path="res://materials/placeholder/PLACEHOLDER_bait.png" id="5_dqsio"]
 [ext_resource type="Script" uid="uid://c5tkggxeoaq1j" path="res://addons/godotvmf/src/VMFNode.gd" id="9_f4g6u"]
@@ -16,12 +17,30 @@
 [ext_resource type="Material" uid="uid://chy3w3lu8e8rg" path="res://godotvmfcontent/materials/devkenney/kenney-dark-texture09.vmt" id="15_krtpt"]
 [ext_resource type="PackedScene" uid="uid://csoapg5xpd7dp" path="res://godotvmfcontent/entities/func_lod.tscn" id="16_gdnaf"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6hdri"]
+
 [sub_resource type="InputEventKey" id="InputEventKey_indth"]
 device = -1
 keycode = 4194305
 
 [sub_resource type="Shortcut" id="Shortcut_f4g6u"]
 events = [SubResource("InputEventKey_indth")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b7de1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dx2t8"]
+bg_color = Color(0.21176471, 0.19607843, 0.47843137, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.42745098, 0.5882353, 1, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dx2t8"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_dnd2w"]
 _surfaces = [{
@@ -455,7 +474,8 @@ fog_light_color = Color(0.784314, 0.792157, 0.901961, 1)
 
 [node name="ShopMap" type="Node3D"]
 script = ExtResource("1_6n44y")
-bg_curio_music = ExtResource("2_indth")
+shop_item = ExtResource("2_6hdri")
+bg_curio_music = ExtResource("3_b7de1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -484,21 +504,39 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
-[node name="ReturnBtn" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 24
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6hdri")
+
+[node name="ReturnBtn" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-size_flags_vertical = 8
+size_flags_vertical = 4
 shortcut = SubResource("Shortcut_f4g6u")
 shortcut_in_tooltip = false
 text = "Back to fishing spot"
 icon = ExtResource("1_dqsio")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel"]
+[node name="Header" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_8afw2")
+theme_override_font_sizes/font_size = 72
+text = "Fishin' Fun Emporium"
+
+[node name="MoneyContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -507,15 +545,15 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/PanelContainer/MoneyContainer"]
 layout_mode = 2
 
-[node name="LabelMoney" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/MarginContainer/VBoxContainer"]
+[node name="LabelMoney" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/PanelContainer/MoneyContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 5
 text = "Money :"
 
-[node name="MoneyCount" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/MarginContainer/VBoxContainer"]
+[node name="MoneyCount" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/PanelContainer/MoneyContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -523,31 +561,33 @@ theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 24
 text = "0"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer"]
 layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 16
+alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("1_8afw2")
-theme_override_font_sizes/font_size = 72
-text = "Fishin' Fun Emporium"
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_b7de1")
+current_tab = 0
 
-[node name="CatHeaderTickets" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer"]
+[node name="Tickets" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="CatHeaderTickets" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_71k4w")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/CatHeaderTickets"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets/CatHeaderTickets"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Label" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/CatHeaderTickets/MarginContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets/CatHeaderTickets/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -555,62 +595,78 @@ theme_override_fonts/font = ExtResource("1_8afw2")
 theme_override_font_sizes/font_size = 32
 text = "Travel tickets"
 
-[node name="GridTickets" type="GridContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets"]
 layout_mode = 2
-columns = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dx2t8")
 
-[node name="LakesideTicket" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridTickets"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("2_71k4w")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridTickets/LakesideTicket"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridTickets/LakesideTicket/MarginContainer"]
+[node name="GridTickets" type="GridContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets/PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="LakesideTicket" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets/PanelContainer/MarginContainer/GridTickets"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_71k4w")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets/PanelContainer/MarginContainer/GridTickets/LakesideTicket"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets/PanelContainer/MarginContainer/GridTickets/LakesideTicket/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridTickets/LakesideTicket/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets/PanelContainer/MarginContainer/GridTickets/LakesideTicket/MarginContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("2_jf3u5")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridTickets/LakesideTicket/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets/PanelContainer/MarginContainer/GridTickets/LakesideTicket/MarginContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label_title" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridTickets/LakesideTicket/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label_title" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets/PanelContainer/MarginContainer/GridTickets/LakesideTicket/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Lakeside fish spot"
 horizontal_alignment = 1
 
-[node name="Label_price" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridTickets/LakesideTicket/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label_price" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets/PanelContainer/MarginContainer/GridTickets/LakesideTicket/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "3 000$"
 horizontal_alignment = 1
 
-[node name="LakeTicketBtn" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridTickets/LakesideTicket/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="LakeTicketBtn" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets/PanelContainer/MarginContainer/GridTickets/LakesideTicket/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Purchase"
 icon = ExtResource("3_jf3u5")
 
-[node name="CatHeaderUpgrades" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer"]
+[node name="Baits" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="CatHeaderUpgrades" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_71k4w")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/CatHeaderUpgrades"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/CatHeaderUpgrades"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Label" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/CatHeaderUpgrades/MarginContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/CatHeaderUpgrades/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -618,129 +674,194 @@ theme_override_fonts/font = ExtResource("1_8afw2")
 theme_override_font_sizes/font_size = 32
 text = "Upgrades"
 
-[node name="GridUpgrade" type="GridContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits"]
 layout_mode = 2
-columns = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dx2t8")
 
-[node name="BaitUp1" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("2_71k4w")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp1"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp1/MarginContainer"]
+[node name="GridUpgrade" type="GridContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="BaitUp1" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_71k4w")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp1"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp1/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp1/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp1/MarginContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("5_dqsio")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp1/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp1/MarginContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label_title" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp1/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label_title" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp1/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Improved bait"
 horizontal_alignment = 1
 
-[node name="Label_price" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp1/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label_price" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp1/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "300$"
 horizontal_alignment = 1
 
-[node name="BaitUp1Btn" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp1/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="BaitUp1Btn" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp1/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Purchase"
 icon = ExtResource("3_jf3u5")
 
-[node name="BaitUp2" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade"]
+[node name="BaitUp2" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_71k4w")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp2"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp2"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp2/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp2/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("5_dqsio")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp2/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp2/MarginContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label_title" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp2/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label_title" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Unusual bait"
 horizontal_alignment = 1
 
-[node name="Label_price" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp2/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label_price" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "3 000$"
 horizontal_alignment = 1
 
-[node name="BaitUp2Btn" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp2/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="BaitUp2Btn" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp2/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Purchase"
 icon = ExtResource("3_jf3u5")
 
-[node name="BaitUp3" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade"]
+[node name="BaitUp3" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_71k4w")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp3"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp3"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp3/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp3/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp3/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp3/MarginContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("5_dqsio")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp3/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp3/MarginContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label_title" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp3/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label_title" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp3/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Legendary bait"
 horizontal_alignment = 1
 
-[node name="Label_price" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp3/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label_price" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp3/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "10 000$"
 horizontal_alignment = 1
 
-[node name="BaitUp3Btn" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp3/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="BaitUp3Btn" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp3/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Purchase"
 icon = ExtResource("3_jf3u5")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dx2t8")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dx2t8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("5_dqsio")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Name of hovered item"
+
+[node name="Label2" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Try to hover as you want, this isn't implemented yet."
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "300"
+
+[node name="Button" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "BUY !"
 
 [node name="VMFNode" type="Node3D" parent="."]
 script = ExtResource("9_f4g6u")
@@ -6175,11 +6296,11 @@ current = true
 fov = 30.0
 size = 2.9
 
-[connection signal="pressed" from="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/ReturnBtn" to="." method="_on_return_btn_pressed"]
-[connection signal="pressed" from="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridTickets/LakesideTicket/MarginContainer/HBoxContainer/VBoxContainer/LakeTicketBtn" to="." method="_on_lake_ticket_btn_pressed"]
-[connection signal="pressed" from="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp1/MarginContainer/HBoxContainer/VBoxContainer/BaitUp1Btn" to="." method="_on_bait_up_1_btn_pressed"]
-[connection signal="pressed" from="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp2/MarginContainer/HBoxContainer/VBoxContainer/BaitUp2Btn" to="." method="_on_bait_up_2_btn_pressed"]
-[connection signal="pressed" from="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp3/MarginContainer/HBoxContainer/VBoxContainer/BaitUp3Btn" to="." method="_on_bait_up_3_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/PanelContainer/ReturnBtn" to="." method="_on_return_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets/PanelContainer/MarginContainer/GridTickets/LakesideTicket/MarginContainer/HBoxContainer/VBoxContainer/LakeTicketBtn" to="." method="_on_lake_ticket_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp1/MarginContainer/HBoxContainer/VBoxContainer/BaitUp1Btn" to="." method="_on_bait_up_1_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp2/MarginContainer/HBoxContainer/VBoxContainer/BaitUp2Btn" to="." method="_on_bait_up_2_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp3/MarginContainer/HBoxContainer/VBoxContainer/BaitUp3Btn" to="." method="_on_bait_up_3_btn_pressed"]
 
 [editable path="VMFNode/Entities/funcs/func_detail_672"]
 [editable path="VMFNode/Entities/funcs/func_detail_684"]

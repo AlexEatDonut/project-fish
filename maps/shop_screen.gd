@@ -1,16 +1,29 @@
 extends Node3D
 
-@onready var lake_ticket_btn: Button = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridTickets/LakesideTicket/MarginContainer/HBoxContainer/VBoxContainer/LakeTicketBtn
-@onready var bait_up_1_btn: Button = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp1/MarginContainer/HBoxContainer/VBoxContainer/BaitUp1Btn
-@onready var bait_up_2_btn: Button = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp2/MarginContainer/HBoxContainer/VBoxContainer/BaitUp2Btn
-@onready var bait_up_3_btn: Button = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/GridUpgrade/BaitUp3/MarginContainer/HBoxContainer/VBoxContainer/BaitUp3Btn
 
-@onready var money_count: Label = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/MarginContainer/VBoxContainer/MoneyCount
+@onready var lake_ticket_btn: Button = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Tickets/PanelContainer/MarginContainer/GridTickets/LakesideTicket/MarginContainer/HBoxContainer/VBoxContainer/LakeTicketBtn
+@onready var bait_up_1_btn: Button = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp1/MarginContainer/HBoxContainer/VBoxContainer/BaitUp1Btn
+@onready var bait_up_2_btn: Button = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp2/MarginContainer/HBoxContainer/VBoxContainer/BaitUp2Btn
+@onready var bait_up_3_btn: Button = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridUpgrade/BaitUp3/MarginContainer/HBoxContainer/VBoxContainer/BaitUp3Btn
+
+@onready var money_count: Label = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/PanelContainer/MoneyContainer/VBoxContainer/MoneyCount
+
+
+@export var shop_item : PackedScene
 
 @export var bg_curio_music : AudioStreamWAV
 
 # TODO : make a better system than that. Until then, this is in order : BAIT UPGRADE 1, LAKE TICKET, BAIT UPGRADE 2, BAIT UPGRADE 3
 var dev_prices = [300,3000,3000,10000]
+
+var shop_data : Array = [
+	{
+		"bruh": "bruh",
+		"bruh2":"bruhagain"
+	}
+]
+
+var shop_item_id : int = 0
 
 func _ready() -> void:
 	SoundManager.play_music(bg_curio_music)
@@ -34,6 +47,25 @@ func check_all_items_availbability():
 			lock_button(btn_array[i])
 		i += 1
 
+func setup_shop() -> void:
+	for data in shop_data:
+		var temp = shop_item.instantiate()
+		temp.item_buy_pressed.connect(on_item_buy_pressed)
+		match temp.get_category(data):
+			"bait":
+				pass
+			"rod":
+				pass
+			"player":
+				pass
+			"misc":
+				pass
+		#grid.add_child(temp)
+		temp.setup(data, shop_item_id)
+		shop_item_id += 1
+
+func on_item_buy_pressed(id : int) -> void:
+	print(shop_data[id].get("item_name_label")+ " bought.")
 
 func _on_lake_ticket_btn_pressed() -> void:
 	Playerinfo.buy_ticket_1()
