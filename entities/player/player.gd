@@ -64,11 +64,22 @@ var QueuedFish = []
 @onready var repair_cost: Label = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/PanelContainer/RepairCost"
 
 #endregion
+#region Pause menu
+@onready var pause_menu: PanelContainer = $CanvasLayer/FishingHud/PauseMenu
+
+@onready var resume_btn: Button = $CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns/ResumeBtn
+
+@onready var quit_desktop_btn: Button = $CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns/QuitDesktopBtn
+@onready var quit_desktop_progress_bar: ProgressBar = $CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns/QuitDesktopBtn/QuitDesktopProgressBar
 
 
+#endregion
 @onready var state_machine: StateMachine = $StateMachine
 
 @onready var fishing_hud: Control = $CanvasLayer/FishingHud
+
+var game_is_paused = false
+var desktop_btn_exit_pressed = false
 
 func resize():
 	if sub_viewport != null:
@@ -94,6 +105,7 @@ func _process(delta: float) -> void:
 		repair_rod_btn.disabled = false
 	else:
 		repair_rod_btn.disabled = true
+
 
 
 #region HUD and UI element related Functions
@@ -209,6 +221,7 @@ func _on_stop_fishing_pressed() -> void:
 	pass # Replace with function body.
 
 
+
 func _on_repair_rod_btn_pressed() -> void:
 	Playerinfo.refill_rod_durability()
 	update_roddurability()
@@ -220,6 +233,45 @@ func _on_btn_shop_pressed() -> void:
 
 func _on_menu_button_pressed() -> void:
 	#TODO : pause the game, hide all other menues and show the menu and its choices
-	pass # Replace with function body.
+	match pause_menu.visible:
+		true:
+			unpause_game_menu()
+		false :
+			pause_game_menu()
+
+
+#endregion
+#region Pause Menu buttons pressed
+
+func pause_game_menu():
+	pause_menu.visible = true
+	game_is_paused = true
+	get_tree().paused = true
+
+func unpause_game_menu():
+	get_tree().paused = false
+	game_is_paused = false
+	pause_menu.visible = false
+
+func _on_resume_btn_pressed() -> void:
+	unpause_game_menu()
+
+
+func _on_quit_desktop_btn_button_down() -> void:
+	desktop_btn_exit_pressed = true
+	while desktop_btn_exit_pressed == true:
+		quit_desktop_progress_bar.value += 1
+		await get_tree().create_timer(0.016).timeout
+		if quit_desktop_progress_bar.value == quit_desktop_progress_bar.max_value:
+			get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+			await get_tree().create_timer(0.25).timeout
+			get_tree().quit() 
+func _on_quit_desktop_btn_button_up() -> void:
+	desktop_btn_exit_pressed = false
+	while quit_desktop_progress_bar.value > 0:
+		quit_desktop_progress_bar.value -= 1
+		await get_tree().create_timer(0.01).timeout
+	print("btn isn't pressed ")
+
 
 #endregion
