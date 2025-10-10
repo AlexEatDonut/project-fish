@@ -34,6 +34,8 @@ A cozy and simple fishing game with no deeper mechanics thant that. The goal is 
 
 <a href="https://icons.getbootstrap.com"> Bootstrap Icons </a>
 
+<a href="https://x.com/A_Normal_Tent/">Fishes drawn by WIP_Tent</a>
+
 ### Placeholder textures
 
 <a href="https://www.textures-resource.com/wii/wiiplay/texture/12550/">wii play fishes (placeholder icons)</a>
