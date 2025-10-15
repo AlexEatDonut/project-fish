@@ -641,53 +641,54 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer"]
+[node name="RadioContainer" type="VBoxContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer"]
+visible = false
 layout_mode = 2
 mouse_filter = 0
 theme_override_constants/separation = 8
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="RadioData" type="VBoxContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/PanelContainer/MarginContainer/RadioData"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "Current song :"
 
-[node name="Label2" type="Label" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="RadioSongTitle" type="Label" parent="CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/PanelContainer/MarginContainer/RadioData"]
 layout_mode = 2
 text = "The raindrop that fell to the sky"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/PanelContainer/MarginContainer/RadioData"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/PanelContainer/MarginContainer/RadioData/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "by :"
 
-[node name="Label2" type="Label" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="RadioSongArtist" type="Label" parent="CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/PanelContainer/MarginContainer/RadioData/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Chris Christodoulou"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer"]
+[node name="RadioControls" type="HBoxContainer" parent="CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 0
 alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/HBoxContainer"]
+[node name="RadioStop" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/RadioControls"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 32
@@ -695,19 +696,19 @@ icon = ExtResource("17_mtric")
 flat = true
 icon_alignment = 1
 
-[node name="Button2" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/HBoxContainer"]
+[node name="RadioBack" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/RadioControls"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 icon = ExtResource("18_eyb6c")
 flat = true
 
-[node name="Button3" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/HBoxContainer"]
+[node name="RadioPausePlay" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/RadioControls"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 icon = ExtResource("19_221hk")
 flat = true
 
-[node name="Button4" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/VBoxContainer/HBoxContainer"]
+[node name="RadioForward" type="Button" parent="CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/RadioControls"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 icon = ExtResource("20_ghoj8")
@@ -764,6 +765,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_cpdjg")
 shortcut = SubResource("Shortcut_t1t22")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -914,7 +916,7 @@ one_shot = true
 [connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer/btn_shop" to="." method="_on_btn_shop_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/RepairRodBtn" to="." method="_on_repair_rod_btn_pressed"]
-[connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData/BaitAndRodBtn" to="CanvasLayer/FishingHud" method="_on_bait_and_rod_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData/BaitAndRodBtn" to="." method="_on_bait_and_rod_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Idle" method="_on_player_interact_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Fishing" method="_on_player_interact_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Detecting" method="_on_player_interact_pressed"]

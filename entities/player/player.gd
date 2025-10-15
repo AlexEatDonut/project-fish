@@ -71,9 +71,21 @@ var QueuedFish = []
 
 @onready var quit_desktop_btn: Button = $CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns/QuitDesktopBtn
 @onready var quit_desktop_progress_bar: ProgressBar = $CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns/QuitDesktopBtn/QuitDesktopProgressBar
+#endregion
+
+#region Radio
+@onready var radio_container: VBoxContainer = $CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer
+@onready var radio_song_title: Label = $CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/PanelContainer/MarginContainer/RadioData/RadioSongTitle
+@onready var radio_song_artist: Label = $CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/PanelContainer/MarginContainer/RadioData/HBoxContainer/RadioSongArtist
+
+@onready var radio_stop: Button = $CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/RadioControls/RadioStop
+@onready var radio_back: Button = $CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/RadioControls/RadioBack
+@onready var radio_pause_play: Button = $CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/RadioControls/RadioPausePlay
+@onready var radio_forward: Button = $CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/RadioControls/RadioForward
 
 
 #endregion
+
 @onready var state_machine: StateMachine = $StateMachine
 
 @onready var fishing_hud: Control = $CanvasLayer/FishingHud
@@ -222,10 +234,30 @@ func _on_stop_fishing_pressed() -> void:
 
 
 
+#region Rod and bait menues
+
+func rodbait_menu_enable() -> void:
+	bait_rod_menu.visible = true
+
+func rodbait_menu_disable() -> void:
+	bait_rod_menu.visible = false
+
+func rodbait_menu_toggle() -> void:
+	bait_rod_menu.visible = !bait_rod_menu.visible
+
+func _on_bait_and_rod_btn_pressed() -> void:
+	rodbait_menu_toggle()
+
 func _on_repair_rod_btn_pressed() -> void:
 	Playerinfo.refill_rod_durability()
 	update_roddurability()
 	update_money()
+#endregion
+
+#region Reset menues
+func reset_menus() -> void:
+	pass
+#endregion
 
 #region Menu buttons pressed
 func _on_btn_shop_pressed() -> void:
