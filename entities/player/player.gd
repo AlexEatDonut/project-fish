@@ -187,7 +187,7 @@ func debug_change_data(newname : String, newweight: String,newvalue: String, new
 	switch_ui_fish_sprite(queuedfish_sprite, newsprite)
 
 
-func switch_ui_fish_sprite(SpriteRect, spritenumber):
+func switch_ui_fish_sprite(SpriteRect, spritenumber)->void :
 	match spritenumber:
 		1.0:
 			SpriteRect.texture = FishFinder.devsprite1
