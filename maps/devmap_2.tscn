@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://b4jqh6pq5tb05"]
 
 [ext_resource type="Script" uid="uid://0o80jseckr0p" path="res://maps/devmap_2.gd" id="1_d7nb8"]
-[ext_resource type="Script" uid="uid://c5tkggxeoaq1j" path="res://addons/godotvmf/src/VMFNode.gd" id="1_sy3lk"]
 [ext_resource type="ArrayMesh" uid="uid://c87yb1ignaj77" path="res://godotvmfcontent/geometry/fish-devmap2_vmf_import.mesh" id="2_d7nb8"]
+[ext_resource type="Script" uid="uid://h4idhujg1k" path="res://addons/godotvmf/src/vmf_node.gd" id="2_sa5r3"]
 [ext_resource type="Shape3D" uid="uid://c6va2owe8g1t3" path="res://godotvmfcontent/geometry/fish-devmap2_vmf_collision_surface_prop_default.res" id="3_6ojuu"]
 [ext_resource type="PackedScene" uid="uid://cwxttgf1xbejo" path="res://godotvmfcontent/entities/light_environment.tscn" id="4_bo51v"]
 [ext_resource type="PackedScene" uid="uid://ieknbubt7ci7" path="res://entities/player/player.tscn" id="9_et6dl"]
@@ -123,14 +123,14 @@ void fragment() {
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jh5u5"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g537g"]
+noise = SubResource("FastNoiseLite_jh5u5")
 seamless = true
 as_normal_map = true
-noise = SubResource("FastNoiseLite_jh5u5")
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qtr2s"]
+noise = SubResource("FastNoiseLite_jh5u5")
 seamless = true
 as_normal_map = true
-noise = SubResource("FastNoiseLite_jh5u5")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7xuri"]
 render_priority = 0
@@ -177,10 +177,10 @@ script = ExtResource("1_d7nb8")
 
 [node name="VMFNode" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0124474, 0.0475245, -0.0227852)
-script = ExtResource("1_sy3lk")
+script = ExtResource("2_sa5r3")
 use_external_file = true
-vmf = "C:/Program Files (x86)/Steam/steamapps/SourceMods/godotvmf/maps/fish-devmap2.vmf"
-metadata/_custom_type_script = "uid://c5tkggxeoaq1j"
+vmf = "C:/Program Files (x86)/Steam/steamapps/SourceMods/godotvmf/maps/project-fish/dev/fish-devmap2.vmf"
+metadata/_custom_type_script = "uid://h4idhujg1k"
 
 [node name="Geometry" type="MeshInstance3D" parent="VMFNode"]
 mesh = ExtResource("2_d7nb8")
@@ -196,14 +196,14 @@ shape = ExtResource("3_6ojuu")
 [node name="lights" type="Node3D" parent="VMFNode/Entities"]
 
 [node name="light_environment" parent="VMFNode/Entities/lights" instance=ExtResource("4_bo51v")]
-transform = Transform3D(0.573576, -0.579228, 0.579228, 0, 0.707107, 0.707107, -0.819152, -0.40558, 0.40558, 0, 3.84, -8)
+transform = Transform3D(0.57357645, -0.579228, 0.579228, 0, 0.7071068, 0.70710677, -0.81915206, -0.4055798, 0.40557984, 0, 3.84, -8)
 entity = {
 "SunSpreadAngle": 0.5,
 "_AmbientScaleHDR": 1,
-"_ambient": Color(0.784314, 0.792157, 0.901961, 0.235294),
-"_ambientHDR": Color(-0.00392157, -0.00392157, -0.00392157, 0.00392157),
-"_light": Color(0.847059, 0.811765, 0.760784, 2.7451),
-"_lightHDR": Color(-0.00392157, -0.00392157, -0.00392157, 0.00392157),
+"_ambient": Color(0.78431374, 0.7921569, 0.9019608, 0.23529412),
+"_ambientHDR": Color(-0.003921569, -0.003921569, -0.003921569, 0.003921569),
+"_light": Color(0.84705883, 0.8117647, 0.7607843, 2.745098),
+"_lightHDR": Color(-0.003921569, -0.003921569, -0.003921569, 0.003921569),
 "_lightscaleHDR": 1,
 "angles": Vector3(0, 145, 0),
 "classname": "light_environment",
@@ -215,13 +215,12 @@ entity = {
 },
 "id": 70,
 "origin": Vector3(0, 400, 192),
-"pitch": -45,
-&"vmf": "D:/SteamLibrary/steamapps/SourceMods/godotvmf/maps/fish-devmap2.vmf"
+"pitch": -45
 }
 
 [node name="DirectionalLight3D" parent="VMFNode/Entities/lights/light_environment" index="0"]
-light_color = Color(0.847059, 0.811765, 0.760784, 1)
-light_energy = 2.7451
+light_color = Color(0.84705883, 0.8117647, 0.7607843, 1)
+light_energy = 2.745098
 
 [node name="NonVMFEntities" type="Node3D" parent="."]
 
