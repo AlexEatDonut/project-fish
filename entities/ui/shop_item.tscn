@@ -151,3 +151,4 @@ flat = true
 [connection signal="mouse_entered" from="ShopItemBtn" to="." method="_on_shop_item_btn_mouse_entered"]
 [connection signal="mouse_exited" from="ShopItemBtn" to="." method="_on_shop_item_btn_mouse_exited"]
 [connection signal="pressed" from="ShopItemBtn" to="." method="_on_shop_item_btn_pressed"]
+
