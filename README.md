@@ -16,7 +16,9 @@ A cozy and simple fishing game with no deeper mechanics thant that. The goal is 
 
 <a href="https://github.com/nathanhoad/godot_sound_manager">Godot Sound Manager</a>
 
-<a href="https://github.com/Firch/SceneContainer"> Scene container (not yet used, for later)</a>
+<a href="https://github.com/Firch/SceneContainer">Scene container (not yet used, for later)</a>
+
+<a href="https://github.com/SoulsTogetherX/Godot-Free-Control/tree/main/">Free control</a>
 
 ## Shader(s?)
 
