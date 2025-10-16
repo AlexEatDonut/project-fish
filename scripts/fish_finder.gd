@@ -58,11 +58,11 @@ var no_fishes_error_message : Dictionary = {"ERROR" : "The array has for some re
 var fishValueHeight_rng = RandomNumberGenerator.new()
 var fishValueHeight_randomizer = [0.9,1.2]
 
-var rarities_weights_FINAL = PackedFloat32Array([100, 15, 7, 3, 1])
+var rarities_weights_FINAL = PackedFloat32Array([100, 18, 9, 4, 1])
 # List of each weights by bait (0 is default no upgrade)
 var rarities_weights_bait0 = PackedFloat32Array([85, 15, 0, 0, 0])
-var rarities_weights_bait1 = PackedFloat32Array([90, 15, 7, 0, 0])
-var rarities_weights_bait2 = PackedFloat32Array([95, 15, 7, 3, 0])
+var rarities_weights_bait1 = PackedFloat32Array([90, 16, 7, 0, 0])
+var rarities_weights_bait2 = PackedFloat32Array([95, 17, 8, 3, 0])
 #DEV WEIGHTS
 #var rarities_weights_FINAL = PackedFloat32Array([1, 1, 1, 1, 1])
 var rarities_rng = RandomNumberGenerator.new()
@@ -128,13 +128,13 @@ func get_fishes_by_sorting(biome : String, rng_rarity : bool = true, defined_rar
 				if fish_dict[item]["fish_locations"].has(biome) and fish_dict[item]["fish_type"] == rng_selected_rarity and fish_dict[item]["bait_value"] <= current_bait_value:
 					foundFishes.append(fish_dict[item])
 			return foundFishes
-#		will sort by rarity but a defined one
+#		will sort by rarity, but a defined one
 		[true, false]:
 			for item in fish_dict:
 				if fish_dict[item]["fish_locations"].has(biome) and fish_dict[item]["fish_type"] == defined_rarity and fish_dict[item]["bait_value"] <= current_bait_value :
 					foundFishes.append(fish_dict[item])
 			return foundFishes
-#		will not sort by rarity
+#		will not sort by rarity, doesn't matter if it is random or not
 		[false, true or false] :
 			for item in fish_dict:
 				if fish_dict[item]["fish_locations"].has(biome) :
