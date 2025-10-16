@@ -20,9 +20,14 @@ Playerinfo="*res://scripts/playerinfo.tscn"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
 FishFinder="*res://scripts/fish_finder.tscn"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godotvmf/plugin.cfg", "res://addons/project-time-tracker/plugin.cfg", "res://addons/scene_container/plugin.cfg", "res://addons/sound_manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/FreeControl/plugin.cfg", "res://addons/godotvmf/plugin.cfg", "res://addons/project-time-tracker/plugin.cfg", "res://addons/scene_container/plugin.cfg", "res://addons/sound_manager/plugin.cfg")
 
 [file_customization]
 
@@ -37,6 +42,16 @@ folder_colors={
 "res://shaders/": "teal",
 "res://sounds/": "blue"
 }
+
+[godot_vmf]
+
+import/instances_folder="res://godotvmfcontent/instances"
+import/entities_folder="res://godotvmfcontent/entities"
+import/geometry_folder="res://godotvmfcontent/geometry"
+models/import=true
+models/target_folder="res://godotvmfcontent/models"
+materials/import_mode=1
+materials/target_folder="res://godotvmfcontent/materials"
 
 [input]
 
