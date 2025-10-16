@@ -3,6 +3,7 @@ extends Node
 var can_repair_rod : bool = false
 
 
+
 @export var DEFAULT_ROD_REPAIR_COST : float = 10
 var RepairCost = DEFAULT_ROD_REPAIR_COST
 
@@ -26,8 +27,12 @@ var maximum_catching_delay  = DEFAULT_MAXIMUM_CATCHING_DELAY
 var debug_mode : bool = false
 
 var rod_bait_value = 0
+var bait_upgrade_stage = 0
 
-var fish_inventory  	
+var fish_inventory  
+
+
+var owned_upgrades : Array = []
 
 var queued_fish
 
@@ -62,6 +67,11 @@ var ticket_ownership_1 : bool = false
 var bait_upgrade_ownership_1 : bool = false
 var bait_upgrade_ownership_2 : bool = false
 var bait_upgrade_ownership_3 : bool = false
+
+var bait_upgrade_rare_owned : bool = false
+var bait_upgrade_unusual_owned : bool = false
+var bait_upgrade_legendary_owned : bool = false
+
 #endregion
 
 #region Rod Durability
@@ -106,9 +116,30 @@ func refill_rod_durability():
 		decrease_money(RepairCost)
 		emit_signal("rod_durability_increased")
 
+
+func repair_rod_eligibility():
+	if rod_durability == max_rod_durability:
+		can_repair_rod = false
+		return
+	elif rod_durability < max_rod_durability:
+		if CurrentState == "IDLE":
+			var missingDurabilityPrcntge = snapped(1 -(rod_durability / max_rod_durability),0.01)
+			RepairCost = DEFAULT_ROD_REPAIR_COST + DEFAULT_ROD_REPAIR_COST * missingDurabilityPrcntge
+			if money >= RepairCost :
+				can_repair_rod = true
+				return(RepairCost)
+			else:
+				can_repair_rod = false
+				return
+		else :
+			can_repair_rod = false
+	else:
+		return
+			
+
 #endregion
 #region Money variable
-var money : float = 0 :
+var money : float = 10000 :
 	get: 
 		return money
 	set(value): 
@@ -148,40 +179,15 @@ func increase_money(moneyGiven, ratio : float = 1):
 		print("Error ! moneyGiven was 0 or lower. Not multiplying to avoid calculus issues.")
 #endregion
 
-#TODO : wtf is that code ?
-func repair_rod():
-	if rod_durability == max_rod_durability:
-		print("wtf you can't repair shit")
-		return
-	elif rod_durability < max_rod_durability:
-		pass
-		
-
-func repair_rod_eligibility():
-	if rod_durability == max_rod_durability:
-		can_repair_rod = false
-		return
-	elif rod_durability < max_rod_durability:
-		if CurrentState == "IDLE":
-			var missingDurabilityPrcntge = snapped(1 -(rod_durability / max_rod_durability),0.01)
-			RepairCost = DEFAULT_ROD_REPAIR_COST + DEFAULT_ROD_REPAIR_COST * missingDurabilityPrcntge
-			if money >= RepairCost :
-				can_repair_rod = true
-				return(RepairCost)
-			else:
-				can_repair_rod = false
-				return
-		else :
-			can_repair_rod = false
-	else:
-		return
-			
-
 func is_lake_unlocked():
 	if ticket_ownership_1 == true:
 		return true
 	else:
 		return false
+
+func buy_upgrade(id : int):
+	owned_upgrades.append(id)
+	print(owned_upgrades)
 
 func buy_ticket_1():
 	ticket_ownership_1 = true
@@ -212,7 +218,6 @@ signal rod_durability_increased
 signal rod_durability_decreased
 
 func _ready():
-
 	pass
 
 func _process(delta: float) -> void:
