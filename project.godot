@@ -108,3 +108,10 @@ menu-rod&bait={
 sections/show_sections=true
 sections/show_graphs=true
 afk/afk_timer=300
+
+[shader_globals]
+
+mouse_screen_pos={
+"type": "vec2",
+"value": Vector2(0, 0)
+}
