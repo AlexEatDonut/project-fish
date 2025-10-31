@@ -749,10 +749,176 @@ layout_mode = 2
 text = "Purchase"
 icon = ExtResource("3_jf3u5")
 
-[node name="Misc" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer"]
+[node name="Rod" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="CatHeaderUpgrades" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_71k4w")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/CatHeaderUpgrades"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/CatHeaderUpgrades/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_8afw2")
+theme_override_font_sizes/font_size = 32
+text = "Bait Upgrades"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dx2t8")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="GridRods" type="GridContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 214)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/v_separation = 16
+columns = 3
+
+[node name="BaitUp1" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_71k4w")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp1"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp1/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp1/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_dqsio")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp1/MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label_title" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp1/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Improved bait"
+horizontal_alignment = 1
+
+[node name="Label_price" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp1/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "300$"
+horizontal_alignment = 1
+
+[node name="BaitUp1Btn" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp1/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Purchase"
+icon = ExtResource("3_jf3u5")
+
+[node name="BaitUp2" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_71k4w")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_dqsio")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label_title" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp2/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Unusual bait"
+horizontal_alignment = 1
+
+[node name="Label_price" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp2/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "3 000$"
+horizontal_alignment = 1
+
+[node name="BaitUp2Btn" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp2/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Purchase"
+icon = ExtResource("3_jf3u5")
+
+[node name="BaitUp3" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_71k4w")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp3"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp3/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_dqsio")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp3/MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label_title" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp3/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Legendary bait"
+horizontal_alignment = 1
+
+[node name="Label_price" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp3/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "10 000$"
+horizontal_alignment = 1
+
+[node name="BaitUp3Btn" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods/BaitUp3/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Purchase"
+icon = ExtResource("3_jf3u5")
+
+[node name="Misc" type="VBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="CatHeaderTickets" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Misc"]
 layout_mode = 2
