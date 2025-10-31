@@ -12,6 +12,7 @@ extends Node3D
 
 @onready var grid_baits: GridContainer = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridBaits
 @onready var grid_misc: GridContainer = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Misc/PanelContainer/MarginContainer/GridMisc
+@onready var grid_rods: GridContainer = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer/MarginContainer/GridRods
 
 
 @export var shop_item : PackedScene
@@ -46,45 +47,85 @@ var dev_prices = [300,3000,3000,10000]
 
 var shop_data : Array = [
 	{
-		"item_id":1,
+		"item_id":101,
 		"icon_id": 111,
-		"item_name":"Rare Bait 
-		Upgrade",
+		"item_name":"Rare Bait",
 		"item_description":"A unique blend of spices bundled into one bait. Allows you to catch rare fishes",
 		"item_cost": 300,
 		"category":"bait",
-		"tiered_upgrade":false,
 		"requirements" : 0
 	},
 	{
-		"item_id" : 2,
+		"item_id" : 102,
 		"icon_id": 111,
-		"item_name":"Unusual Bait Upgrade",
+		"item_name":"Unusual Bait",
 		"item_description":"A weird odor comes from this bait, it's unpleasant yet appealing at the same time. Allows you to catch unusual fishes.",
 		"item_cost": 1700,
 		"category":"bait",
-		"tiered_upgrade":true,
-		"requirements" : 1
+		"requirements" : 101
 	},
 	{
-		"item_id": 3,
+		"item_id": 103,
 		"icon_id": 111,
-		"item_name":"Legendary Bait Upgrade",
+		"item_name":"Legendary Bait",
 		"item_description":"An odorless bait that leaves you wandering if you got scammed. It looks mundane, but you cannot decifer what is in there. Allows you to catch legendary fishes.",
 		"item_cost": 6400,
 		"category":"bait",
-		"tiered_upgrade":true,
-		"requirements" : 2
+		"requirements" : 102
 	},
 	{
-		"item_id": 4,
+		"item_id": 201,
 		"icon_id": 211,
 		"item_name":"Ticket : Lakeside",
 		"item_description":"A reusable traveling ticket to the lakeside. Allows access to the lakeside from the Travel menu",
 		"item_cost": 3000,
 		"category":"misc",
-		"tiered_upgrade" : false,
 		"requirements" : 0
+	},
+	{
+		"item_id": 202,
+		"icon_id": 211,
+		"item_name":"Ticket : Port",
+		"item_description":"A reusable traveling ticket to the lakeside. Allows access to the lakeside from the Travel menu. NONFUNCTIONAL YET. ONLY FOR TESTING PURPOSES",
+		"item_cost": 6000,
+		"category":"misc",
+		"requirements" : 0
+	},
+	{
+		"item_id": 300,
+		"icon_id": 211,
+		"item_name":"Wooden Rod",
+		"item_description":"Your default rod ! Not very good, but can still get work done.",
+		"item_cost": 0,
+		"category":"rod",
+		"requirements" : -1,
+	},
+	{
+		"item_id": 301,
+		"icon_id": 211,
+		"item_name":"Fishin' Fun branded rod",
+		"item_description":"Your run of the mill store rod. Better than a stick of wood, that's for sure.",
+		"item_cost": 48,
+		"category":"rod",
+		"requirements" : 0,
+	},
+	{
+		"item_id": 302,
+		"icon_id": 211,
+		"item_name":"'Pro' fisher branded rod",
+		"item_description":"A pricier rod equipped with a bait enhancer.",
+		"item_cost": 64,
+		"category":"rod",
+		"requirements" : 0,
+	},
+	{
+		"item_id": 303,
+		"icon_id": 211,
+		"item_name":"Enticing rod",
+		"item_description":"A rod that makes fish want to stay in its bait.",
+		"item_cost": 128,
+		"category":"rod",
+		"requirements" : 0,
 	}
 ]
 
@@ -100,8 +141,6 @@ func give_item_icon(SpriteRect, spritenumber)->void :
 			SpriteRect.texture = spr_ticket_generic
 		_:
 			SpriteRect.texture = null
-
-
 
 
 func _ready() -> void:
@@ -137,7 +176,7 @@ func setup_shop() -> void:
 			"bait":
 				grid_baits.add_child(temp)
 			"rod":
-				print("Item is a rod, but no rod tab is available.")
+				grid_rods.add_child(temp)
 			"player":
 				print("Item is a player upgrade, but no player upgrade tab is available.")
 			"misc":
@@ -149,6 +188,8 @@ func setup_shop() -> void:
 
 func on_item_buy_pressed(id : int) -> void:
 	print(shop_data[id]["item_name"])
+	Playerinfo.decrease_money(shop_data[id]["item_cost"])
+	update_money()
 	Playerinfo.buy_upgrade(int(shop_data[id]["item_id"]))
 	SoundManager.play_ui_sound(sfx_item_bought)
 
