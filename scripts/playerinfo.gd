@@ -2,7 +2,69 @@ extends Node
 
 var can_repair_rod : bool = false
 
+var fishing_rods :Dictionary ={
+		"300" : {
+		"item_id": 300,
+		"icon_id": 211,
+		"item_name":"Wooden Rod",
+		"item_description":"Your default rod ! Not very good, but can still get work done.",
+		"strength_desc" : "Clearly you can get better.",
+		"weakness-desc" : "It has nothing going for it.",
+		"base_durability" : 50,
+		"baseline_repair_cost" : 10,
+		"durability_repair_multiplier" : 1.5,
+		"lurk_time_multiplier" : 1,
+		"catch_window_multiplier" : 1,
+		"fish_weights_multiplier" : [1,1,1,1,1]
+	},
+	"301" : {
+		"item_id": 301,
+		"icon_id": 211,
+		"item_name":"Fishin' Fun branded rod",
+		"item_description":"Your run of the mill store rod. Better than a stick of wood, that's for sure.",
+		"strength_desc" : "Better than a piece of wood.",
+		"weakness-desc" : "It has nothing else going for it..",
+		"base_durability" : 120,
+		"baseline_repair_cost" : 10,
+		"durability_repair_multiplier" : 2,
+		"lurk_time_multiplier" : 1,
+		"catch_window_multiplier" : 1,
+		"fish_weights_multiplier" : [1,1,1,1,1]
+	},
+	"302" : {
+		"item_id": 302,
+		"icon_id": 211,
+		"item_name":"'Pro' fisher branded rod",
+		"item_description":"A pricier rod equipped with a bait enhancer.",
+		"strength_desc" : "Reduced fish lurk time (- 10%).",
+		"weakness-desc" : "Less durability, costier durability repair.",
+		"base_durability" : 70,
+		"baseline_repair_cost" : 12,
+		"durability_repair_multiplier" : 5,
+		"lurk_time_multiplier" : 1,
+		"catch_window_multiplier" : 1,
+		"fish_weights_multiplier" : [1,1,1,1,1]
+	},
+	"303" :{
+		"item_id": 303,
+		"icon_id": 211,
+		"item_name":"Enticing rod",
+		"item_description":"A rod that makes fish want to stay in its bait.",
+		"strength_desc" : "Extended catch window (+10%).",
+		"weakness-desc" : "+5% lurk time duration, costier durability repair.",
+		"base_durability" : 100,
+		"baseline_repair_cost" : 10,
+		"durability_repair_multiplier" : 4,
+		"lurk_time_multiplier" : 1.05,
+		"catch_window_multiplier" : 1,
+		"fish_weights_multiplier" : [1,1,1,1,1]
+	}
+}
 
+var r300_durability : float
+var r301_durability : float
+var r302_durability : float
+var r303_durability : float
 
 @export var DEFAULT_ROD_REPAIR_COST : float = 10
 var RepairCost = DEFAULT_ROD_REPAIR_COST
@@ -25,6 +87,9 @@ var minimum_catching_delay  = DEFAULT_MINIMUM_CATCHING_DELAY
 var maximum_catching_delay  = DEFAULT_MAXIMUM_CATCHING_DELAY
 
 var debug_mode : bool = false
+
+var equipped_rod : int = 301
+var equipped_rod_data : Dictionary
 
 var rod_bait_value = 0
 var bait_upgrade_stage = 0
@@ -105,7 +170,7 @@ func increase_rod_durability(increase, ratio : float = 1):
 		#ratio is a percentage from 0 to 1
 		var rod_restoration = increase * ratio
 		var theorectical_newdurability = rod_durability + rod_restoration
-		money = clamp(theorectical_newdurability, previous_durability, max_rod_durability)
+		rod_durability = clamp(theorectical_newdurability, previous_durability, max_rod_durability)
 		emit_signal("rod_durability_increased")
 	elif increase <= 0: 
 		print("Error ! rod_durability increase was 0 or lower. Check the code again.")
@@ -123,8 +188,8 @@ func repair_rod_eligibility():
 		return
 	elif rod_durability < max_rod_durability:
 		if CurrentState == "IDLE":
-			var missingDurabilityPrcntge = snapped(1 -(rod_durability / max_rod_durability),0.01)
-			RepairCost = DEFAULT_ROD_REPAIR_COST + DEFAULT_ROD_REPAIR_COST * missingDurabilityPrcntge
+			var missingDurabilityPrcntge = snapped(1 -(rod_durability / max_rod_durability) ,0.01)
+			RepairCost = equipped_rod_data["baseline_repair_cost"] + equipped_rod_data["baseline_repair_cost"] * snapped(missingDurabilityPrcntge * equipped_rod_data["durability_repair_multiplier"], 0.01) 
 			if money >= RepairCost :
 				can_repair_rod = true
 				return(RepairCost)
@@ -135,7 +200,24 @@ func repair_rod_eligibility():
 			can_repair_rod = false
 	else:
 		return
-			
+
+func repair_rod_free():
+	rod_durability = max_rod_durability
+
+func get_rod_data():
+	match equipped_rod:
+		300:
+			equipped_rod_data = fishing_rods["300"]
+			print(equipped_rod_data["strength_desc"])
+		301:
+			equipped_rod_data = fishing_rods["301"]
+			print(equipped_rod_data["strength_desc"])
+		302:
+			equipped_rod_data = fishing_rods["302"]
+			print(equipped_rod_data["strength_desc"])
+		303:
+			equipped_rod_data = fishing_rods["303"]
+			print(equipped_rod_data["strength_desc"])
 
 #endregion
 #region Money variable
@@ -192,20 +274,13 @@ func buy_upgrade(id : int):
 func buy_ticket_1():
 	ticket_ownership_1 = true
 
-func buy_bait_upgrade_1():
-	bait_upgrade_ownership_1 = true
-	rod_bait_value = 1
-
-func buy_bait_upgrade_2():
-	bait_upgrade_ownership_1 = true
-	bait_upgrade_ownership_2 = true
-	rod_bait_value = 2
-
-func buy_bait_upgrade_3():
-	bait_upgrade_ownership_1 = true
-	bait_upgrade_ownership_2 = true
-	bait_upgrade_ownership_3 = true
-	rod_bait_value = 3
+func check_bait_value():
+	if owned_upgrades.has(101):
+		rod_bait_value = 1
+		if owned_upgrades.has(102):
+			rod_bait_value = 2
+			if owned_upgrades.has(103):
+				rod_bait_value = 3
 
 signal max_money_changed
 signal money_changed
@@ -218,7 +293,9 @@ signal rod_durability_increased
 signal rod_durability_decreased
 
 func _ready():
-	pass
+	get_rod_data()
+	set_max_rod_durability(equipped_rod_data["base_durability"])
+	repair_rod_free()
 
 func _process(delta: float) -> void:
 	repair_rod_eligibility()
