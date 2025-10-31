@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://ieknbubt7ci7"]
+[gd_scene load_steps=61 format=3 uid="uid://ieknbubt7ci7"]
 
 [ext_resource type="Script" uid="uid://0gvwve1d3e8v" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="AudioStream" uid="uid://c2y0o0mdcwnu" path="res://sounds/fish/507093__paulprit__fish-splashing-release-2.wav" id="2_7thud"]
@@ -30,6 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://c8ek6xna6kh3q" path="res://materials/ui/menu_buttons/gear-fill.svg" id="26_gt4e4"]
 [ext_resource type="Texture2D" uid="uid://d24xcvjgvaep2" path="res://materials/ui/menu_buttons/display-fill.svg" id="27_24ehl"]
 [ext_resource type="Texture2D" uid="uid://ceotuyxc8a6oe" path="res://materials/ui/menu_buttons/power.svg" id="28_bwdx1"]
+[ext_resource type="FontFile" uid="uid://5j16yawegu2w" path="res://fonts/Fish Strike.ttf" id="31_bwdx1"]
+[ext_resource type="PackedScene" uid="uid://ca1y33bbhgrhw" path="res://entities/ui/travel_item.tscn" id="32_vewsg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sfv1e"]
 
@@ -85,6 +87,8 @@ corner_radius_bottom_left = 32
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50fht"]
 bg_color = Color(1, 0.4030275, 0.28060427, 0.238)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vewsg"]
 
 [sub_resource type="Animation" id="Animation_a1qjk"]
 length = 0.001
@@ -896,6 +900,97 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_50fht")
 step = 1.0
 rounded = true
 show_percentage = false
+
+[node name="TravelMenu" type="PanelContainer" parent="CanvasLayer/FishingHud"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vewsg")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/TravelMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 128
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("31_bwdx1")
+theme_override_font_sizes/font_size = 48
+text = "Travel"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 8
+icon_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("26_24ehl")
+expand_mode = 5
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="TravelItem" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
+layout_mode = 2
+
+[node name="TravelItem2" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
+layout_mode = 2
+
+[node name="TravelItem3" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
+layout_mode = 2
+
+[node name="TravelItem4" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
+layout_mode = 2
+
+[node name="TravelItem5" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
+layout_mode = 2
+
+[node name="TravelItem6" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
+layout_mode = 2
+
+[node name="TravelItem7" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
+layout_mode = 2
+
+[node name="TravelItem8" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
+layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

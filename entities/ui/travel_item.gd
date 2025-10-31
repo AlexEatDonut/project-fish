@@ -1,0 +1,71 @@
+extends PanelContainer
+
+signal item_buy_pressed(id)
+signal item_hovered(id)
+
+
+@onready var location_icon: TextureRect = $MarginContainer/VBoxContainer/MaxSizeContainer/PanelContainer2/TextureRect
+
+@onready var location_name_label: Label = $MarginContainer/VBoxContainer/MaxSizeContainer2/PanelContainer/MarginContainer/VBoxContainer/LocationNameLabel
+
+@onready var shop_item_btn: Button = $ShopItemBtn
+
+var item_cost : float = 0
+var item_requirement : int = 0
+var item_id : int
+
+var upgrade_tier = 0
+
+var id : int
+
+func setup(data: Dictionary, p_id : int) -> void:
+	#item_icon.texture = load(data.get("icon_path"))
+	#item_icon.texture = load(data.get("res://materials/ui/menu_buttons/bait-icon.svg"))
+	location_name_label.text = data["item_name"]
+	item_cost = data["item_cost"]
+	item_requirement = int(data["requirements"])
+	item_id = int(data["item_id"])
+	id = p_id
+
+func _process(delta: float) -> void:
+	is_item_buyable()
+
+func is_item_buyable():
+	match [check_item_cost(),check_item_requirements(item_requirement),check_item_not_owned(item_id)]:
+		[true,true,true]:
+			shop_item_btn.disabled = false
+		_:
+			shop_item_btn.disabled = true
+
+func check_item_cost():
+	match [item_cost > 0,item_cost <= Playerinfo.money]:
+		[true,true]:
+			return(true)
+		_:
+			return(false)
+
+func check_item_requirements(requierement : int):
+	if item_requirement > 0 :
+		if Playerinfo.owned_upgrades.has(requierement):
+			return(true)
+		else:
+			return(false)
+	else:
+		return(true)
+
+
+func check_item_not_owned(itemid : int):
+	#if the player DOESN'T own the targetted object, it is not owned and therefore is true
+	if !Playerinfo.owned_upgrades.has(itemid):
+		return(true)
+	else:
+		return(false)
+
+func get_category(data: Dictionary):
+	return(data["category"])
+
+func get_icon_id(data: Dictionary):
+	return(data["icon_id"])
+	
+func _on_shop_item_btn_pressed() -> void:
+	emit_signal("item_buy_pressed", id)

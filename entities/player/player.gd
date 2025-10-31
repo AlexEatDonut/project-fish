@@ -90,6 +90,22 @@ var QueuedFish = []
 
 @onready var fishing_hud: Control = $CanvasLayer/FishingHud
 
+var locations_data : Array = [
+	{
+		"location_id":1,
+		"icon_id": 111,
+		"location_name":"River",
+		"ticket" : 0
+	},
+	{
+		"location_id":2,
+		"icon_id": 112,
+		"location_name":"Lake",
+		"ticket" : 0
+	},
+]
+
+
 var game_is_paused = false
 var desktop_btn_exit_pressed = false
 
@@ -100,6 +116,8 @@ func resize():
 func _ready() -> void:
 	update_money()
 	update_roddurability()
+	Playerinfo.check_bait_value()
+	print(Playerinfo.rod_bait_value)
 	if Playerinfo.debug_mode == true :
 		debug_queue_panel.visible = true
 	debug_change_data("none", "", "", "")
