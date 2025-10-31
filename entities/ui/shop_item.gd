@@ -15,28 +15,27 @@ signal item_hovered(id)
 
 var item_cost : float = 0
 var item_requirement : int = 0
+var item_id : int
 
-var upgrade_has_tiers = false
 var upgrade_tier = 0
 
 var id : int
 
 func setup(data: Dictionary, p_id : int) -> void:
-	upgrade_has_tiers = data["tiered_upgrade"]
 	#item_icon.texture = load(data.get("icon_path"))
 	#item_icon.texture = load(data.get("res://materials/ui/menu_buttons/bait-icon.svg"))
 	item_name_label.text = data["item_name"]
 	item_price_label.text = str(data["item_cost"])
 	item_cost = data["item_cost"]
 	item_requirement = int(data["requirements"])
-	print(int(data["requirements"]))
+	item_id = int(data["item_id"])
 	id = p_id
 
 func _process(delta: float) -> void:
 	is_item_buyable()
 
 func is_item_buyable():
-	match [check_item_cost(),check_item_requirements(item_requirement),check_item_not_owned(int(id))]:
+	match [check_item_cost(),check_item_requirements(item_requirement),check_item_not_owned(item_id)]:
 		[true,true,true]:
 			shop_item_btn.disabled = false
 		_:
@@ -50,7 +49,7 @@ func check_item_cost():
 			return(false)
 
 func check_item_requirements(requierement : int):
-	if upgrade_has_tiers == true:
+	if item_requirement > 0 :
 		if Playerinfo.owned_upgrades.has(requierement):
 			return(true)
 		else:
@@ -59,11 +58,12 @@ func check_item_requirements(requierement : int):
 		return(true)
 
 
-func check_item_not_owned(id : int):
-	if Playerinfo.owned_upgrades.has(id):
-		return(false)
-	else:
+func check_item_not_owned(itemid : int):
+	#if the player DOESN'T own the targetted object, it is not owned and therefore is true
+	if !Playerinfo.owned_upgrades.has(itemid):
 		return(true)
+	else:
+		return(false)
 
 func show_cost()->void:
 	blur_panel.visible = true
