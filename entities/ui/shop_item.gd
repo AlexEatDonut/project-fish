@@ -10,12 +10,16 @@ signal item_hovered(id)
 
 @onready var item_price_label: Label = $MarginContainer/BlurPanel/CenterContainer/ItemPriceLabel
 @onready var blur_panel: PanelContainer = $MarginContainer/BlurPanel
+@onready var greyed_out: Panel = $GreyedOut
 
 @onready var shop_item_btn: Button = $ShopItemBtn
+
 
 var item_cost : float = 0
 var item_requirement : int = 0
 var item_id : int
+
+var is_locked : bool = false
 
 var upgrade_tier = 0
 
@@ -38,8 +42,10 @@ func is_item_buyable():
 	match [check_item_cost(),check_item_requirements(item_requirement),check_item_not_owned(item_id)]:
 		[true,true,true]:
 			shop_item_btn.disabled = false
+			greyed_out.visible = false
 		_:
 			shop_item_btn.disabled = true
+			greyed_out.visible = true
 
 func check_item_cost():
 	match [item_cost > 0,item_cost <= Playerinfo.money]:

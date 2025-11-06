@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://de4hgb42xs07w"]
+[gd_scene load_steps=11 format=3 uid="uid://de4hgb42xs07w"]
 
 [ext_resource type="Script" uid="uid://cb3e8gurbno2k" path="res://entities/ui/shop_item.gd" id="1_uuto5"]
 [ext_resource type="Texture2D" uid="uid://ddfdhfhidas2f" path="res://materials/ui/menu_buttons/ticket-fill.svg" id="2_n5r8b"]
@@ -37,6 +37,13 @@ bg_color = Color(0.18431373, 0.18431373, 0.18431373, 1)
 border_color = Color(0.29803923, 0.29803923, 0.29803923, 1)
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7txc"]
+bg_color = Color(0, 0, 0, 0.5)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
 
 [node name="PanelContainer" type="PanelContainer"]
 offset_right = 128.0
@@ -144,6 +151,13 @@ z_index = 5
 layout_mode = 2
 disabled = true
 flat = true
+
+[node name="GreyedOut" type="Panel" parent="."]
+visible = false
+z_index = 15
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q7txc")
 
 [connection signal="mouse_entered" from="ShopItemBtn" to="." method="_on_shop_item_btn_mouse_entered"]
 [connection signal="mouse_exited" from="ShopItemBtn" to="." method="_on_shop_item_btn_mouse_exited"]
