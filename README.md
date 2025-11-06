@@ -44,6 +44,8 @@ A cozy and simple fishing game with no deeper mechanics thant that. The goal is 
 
 <a href="https://www.flaticon.com/free-icon/bait_6371144?term=fishing%20rod&page=1&position=11&origin=tag&related_id=6371144"> I won't pay for a png thank you very much (bait icon)</a>
 
+<a href="https://icones8.fr/icons/set/fishing-rod"> Fishing rod icon</a>
+
 ## Models
 
 <a href="https://poly.pizza/m/0YAR0Lg58p">Fishing Rod by Quaternius</a> - <a href="https://creativecommons.org/publicdomain/zero/1.0/">Public Domain (CC0)</a>
