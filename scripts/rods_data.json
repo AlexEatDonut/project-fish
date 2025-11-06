@@ -1,0 +1,58 @@
+{	
+	"300" : {
+		"item_id": 300,
+		"icon_id": 211,
+		"item_name":"Wooden Rod",
+		"item_description":"Your default rod ! Not very good, but can still get work done.",
+		"strength_desc" : "Clearly you can get better.",
+		"weakness-desc" : "It has nothing going for it.",
+		"base_durability" : 50,
+		"baseline_repair_cost" : 10,
+		"durability_repair_multiplier" : 1.5,
+		"lurk_time_multiplier" : 1,
+		"catch_window_multiplier" : 1,
+		"fish_weights_multiplier" : [1,1,1,1,1]
+	},
+	"301" : {
+		"item_id": 301,
+		"icon_id": 211,
+		"item_name":"Fishin' Fun branded rod",
+		"item_description":"Your run of the mill store rod. Better than a stick of wood, that's for sure.",
+		"strength_desc" : "Better than a piece of wood.",
+		"weakness-desc" : "It has nothing else going for it..",
+		"base_durability" : 120,
+		"baseline_repair_cost" : 10,
+		"durability_repair_multiplier" : 2,
+		"lurk_time_multiplier" : 1,
+		"catch_window_multiplier" : 1,
+		"fish_weights_multiplier" : [1,1,1,1,1]
+	},
+	"302" : {
+		"item_id": 302,
+		"icon_id": 211,
+		"item_name":"'Pro' fisher branded rod",
+		"item_description":"A pricier rod equipped with a bait enhancer.",
+		"strength_desc" : "Reduced fish lurk time (- 10%).",
+		"weakness-desc" : "Less durability, costier durability repair.",
+		"base_durability" : 70,
+		"baseline_repair_cost" : 12,
+		"durability_repair_multiplier" : 5,
+		"lurk_time_multiplier" : 1,
+		"catch_window_multiplier" : 1,
+		"fish_weights_multiplier" : [1,1,1,1,1]
+	},
+	"303" :{
+		"item_id": 303,
+		"icon_id": 211,
+		"item_name":"Enticing rod",
+		"item_description":"A rod that makes fish want to stay in its bait.",
+		"strength_desc" : "Extended catch window (+10%).",
+		"weakness-desc" : "+5% lurk time duration, costier durability repair.",
+		"base_durability" : 100,
+		"baseline_repair_cost" : 10,
+		"durability_repair_multiplier" : 4,
+		"lurk_time_multiplier" : 1.05,
+		"catch_window_multiplier" : 1,
+		"fish_weights_multiplier" : [1,1,1,1,1]
+	}
+}
