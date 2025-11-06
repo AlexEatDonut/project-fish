@@ -9,7 +9,7 @@ extends Control
 
 
 @onready var menu_button: Button = $ButtonsMarginContainer/MenuButton
-@onready var menu_button_travel: MenuButton = $ButtonsMarginContainer/GridContainer/MenuButtonTravel
+@onready var menu_button_travel: Button = $ButtonsMarginContainer/GridContainer/MenuButtonTravel
 
 
 
@@ -27,9 +27,9 @@ extends Control
 
 
 func _ready() -> void:
-	var travel_menu_popup = menu_button_travel.get_popup()
-	travel_menu_popup.id_pressed.connect(travel_menu)
-
+	#var travel_menu_popup = menu_button_travel.get_popup()
+	#travel_menu_popup.id_pressed.connect(travel_menu)
+	pass
 
 func disable_button(button):
 	button.disabled = true
@@ -40,18 +40,18 @@ func _on_player_interact_pressed() -> void:
 	#disable_button(player_interact)
 	pass
 
-func travel_menu(id):
-	print(id)
-	if id == Playerinfo.playerLocationNumber:
-		print("You are already there !")
-		return
-	match(id):
-		0:
-			get_tree().change_scene_to_file("res://maps/devmap_1.tscn")
-		1:
-			get_tree().change_scene_to_file("res://maps/fishingspot_river.tscn")
-		2:
-			if Playerinfo.is_lake_unlocked() == true:
-				get_tree().change_scene_to_file("res://maps/fishingspot_lake.tscn")
-			else:
-				print("Buy the ticket first !")
+#func travel_menu(id):
+	#print(id)
+	#if id == Playerinfo.playerLocationNumber:
+		#print("You are already there !")
+		#return
+	#match(id):
+		#0:
+			#get_tree().change_scene_to_file("res://maps/devmap_1.tscn")
+		#1:
+			#get_tree().change_scene_to_file("res://maps/fishingspot_river.tscn")
+		#2:
+			#if Playerinfo.is_lake_unlocked() == true:
+				#get_tree().change_scene_to_file("res://maps/fishingspot_lake.tscn")
+			#else:
+				#print("Buy the ticket first !")
