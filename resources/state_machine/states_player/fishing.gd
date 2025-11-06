@@ -10,7 +10,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 func allow_catch():
 		Playerinfo.can_catch = true
 		player.enable_button(player.player_interact)
-		var lurk_timer_time = snappedf(rng_lurk_timer.randf_range(Playerinfo.queued_fish["lurk_time"][0], Playerinfo.queued_fish["lurk_time"][1]),0.01)
+		var lurk_timer_time = Playerinfo.get_fish_lurk_timer()
 		player.fish_lurk_timer.start(lurk_timer_time)
 		player.fish_lurk_timer_preventive.start(lurk_timer_time - 0.15)
 		Playerinfo.CurrentState = "FISHING"

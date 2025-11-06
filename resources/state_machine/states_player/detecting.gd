@@ -4,7 +4,8 @@ func enter(previous_state_path: String, data := {}) -> void:
 	SoundManager.play_sound(player.detect_audio)
 	player.enable_sprite(player.sprite_surprise)
 	player.enable_button(player.player_interact)
-	player.fish_catch_timer.start(Playerinfo.queued_fish["catch_time"])
+	var catch_window_timer
+	player.fish_catch_timer.start(Playerinfo.get_fish_catch_window())
 	Playerinfo.CurrentState = "DETECTING"
 	Playerinfo.can_catch = false
 	#print("state : DETECTING")
