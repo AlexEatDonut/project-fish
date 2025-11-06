@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://ieknbubt7ci7"]
+[gd_scene load_steps=64 format=3 uid="uid://ieknbubt7ci7"]
 
 [ext_resource type="Script" uid="uid://0gvwve1d3e8v" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="AudioStream" uid="uid://c2y0o0mdcwnu" path="res://sounds/fish/507093__paulprit__fish-splashing-release-2.wav" id="2_7thud"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bdmaw8n7hn6eg" path="res://sounds/ui/detect_alert.wav" id="3_yqrof"]
 [ext_resource type="Script" uid="uid://clavgybhh50q6" path="res://resources/state_machine/states_player/fishing.gd" id="4_8fjmc"]
 [ext_resource type="Texture2D" uid="uid://l2jicfpbjahm" path="res://materials/placeholder/sprite_saddened.png" id="4_j3ovn"]
+[ext_resource type="PackedScene" uid="uid://dk8bpmwb4p80a" path="res://entities/ui/rod_item.tscn" id="5_8q4fm"]
 [ext_resource type="Script" uid="uid://cl726icth6yce" path="res://resources/state_machine/states_player/detecting.gd" id="5_qiwj3"]
 [ext_resource type="Script" uid="uid://dyiw8r4k1x7fy" path="res://resources/state_machine/states_player/catching.gd" id="6_26q78"]
 [ext_resource type="Script" uid="uid://dm7vbj77aejfp" path="res://resources/state_machine/states_player/failcatch.gd" id="7_qiwj3"]
@@ -32,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://ceotuyxc8a6oe" path="res://materials/ui/menu_buttons/power.svg" id="28_bwdx1"]
 [ext_resource type="FontFile" uid="uid://5j16yawegu2w" path="res://fonts/Fish Strike.ttf" id="31_bwdx1"]
 [ext_resource type="PackedScene" uid="uid://ca1y33bbhgrhw" path="res://entities/ui/travel_item.tscn" id="32_vewsg"]
+[ext_resource type="Script" uid="uid://bhu0c64ewxc07" path="res://addons/FreeControl/src/CustomClasses/SizeController/MaxSizeContainer.gd" id="33_2soq1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sfv1e"]
 
@@ -89,6 +91,8 @@ corner_radius_bottom_left = 32
 bg_color = Color(1, 0.4030275, 0.28060427, 0.238)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vewsg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2soq1"]
 
 [sub_resource type="Animation" id="Animation_a1qjk"]
 length = 0.001
@@ -215,6 +219,8 @@ _data = {
 script = ExtResource("1_symyc")
 cast_audio = ExtResource("2_7thud")
 detect_audio = ExtResource("3_yqrof")
+travel_item = ExtResource("32_vewsg")
+rod_item = ExtResource("5_8q4fm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_sfv1e")
@@ -438,33 +444,13 @@ layout_mode = 2
 text = "bestiary"
 icon = ExtResource("18_50fht")
 
-[node name="MenuButtonTravel" type="MenuButton" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer"]
+[node name="MenuButtonTravel" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "travel
 "
 icon = ExtResource("19_wuv6x")
-flat = false
-item_count = 9
-popup/item_0/text = "Devmap1"
-popup/item_0/id = 0
-popup/item_1/text = "River"
-popup/item_1/id = 1
-popup/item_2/text = "Lake"
-popup/item_2/id = 2
-popup/item_3/text = "Swamp"
-popup/item_3/id = 3
-popup/item_4/text = "Port"
-popup/item_4/id = 4
-popup/item_5/text = "Jungle"
-popup/item_5/id = 5
-popup/item_6/text = "Cave"
-popup/item_6/id = 6
-popup/item_7/text = "Ocean"
-popup/item_7/id = 7
-popup/item_8/text = "Clouds"
-popup/item_8/id = 8
 
 [node name="MenuButton" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer"]
 process_mode = 3
@@ -514,6 +500,9 @@ text = "Cost :"
 [node name="RepairCost" type="Label" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins"]
+layout_mode = 2
 
 [node name="Bait&RodData" type="VBoxContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner"]
 layout_mode = 2
@@ -897,6 +886,7 @@ grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/background = SubResource("StyleBoxEmpty_t1t22")
 theme_override_styles/fill = SubResource("StyleBoxFlat_50fht")
+max_value = 60.0
 step = 1.0
 rounded = true
 show_percentage = false
@@ -909,6 +899,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_vewsg")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/TravelMenu"]
@@ -938,19 +929,32 @@ theme_override_font_sizes/font_size = 48
 text = "Travel"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
-custom_minimum_size = Vector2(48, 48)
+[node name="MaxSizeContainer" type="Container" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+script = ExtResource("33_2soq1")
+max_size = Vector2(48, 48)
+metadata/_custom_type_script = "uid://bhu0c64ewxc07"
+
+[node name="TravelCloseBtn" type="Button" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MaxSizeContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
 icon_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Button"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MaxSizeContainer/TravelCloseBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MaxSizeContainer/TravelCloseBtn/MarginContainer"]
+layout_mode = 2
 texture = ExtResource("26_24ehl")
 expand_mode = 5
 
@@ -964,33 +968,54 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+[node name="GridTravel" type="GridContainer" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
 layout_mode = 2
+mouse_filter = 0
 columns = 4
 
-[node name="TravelItem" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
+[node name="RodsMenu" type="PanelContainer" parent="CanvasLayer/FishingHud"]
+visible = false
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2soq1")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/RodsMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 160
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/FishingHud/RodsMenu/MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/RodsMenu/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/FishingHud/RodsMenu/MarginContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 
-[node name="TravelItem2" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
+[node name="GridRods" type="GridContainer" parent="CanvasLayer/FishingHud/RodsMenu/MarginContainer/PanelContainer/MarginContainer/ScrollContainer"]
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
-
-[node name="TravelItem3" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
-layout_mode = 2
-
-[node name="TravelItem4" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
-layout_mode = 2
-
-[node name="TravelItem5" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
-layout_mode = 2
-
-[node name="TravelItem6" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
-layout_mode = 2
-
-[node name="TravelItem7" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
-layout_mode = 2
-
-[node name="TravelItem8" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridContainer" instance=ExtResource("32_vewsg")]
-layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1009,6 +1034,7 @@ wait_time = 3.0
 one_shot = true
 
 [connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer/btn_shop" to="." method="_on_btn_shop_pressed"]
+[connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer/MenuButtonTravel" to="." method="_on_menu_button_travel_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/RepairRodBtn" to="." method="_on_repair_rod_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/Bait&RodData/BaitAndRodBtn" to="." method="_on_bait_and_rod_btn_pressed"]
@@ -1016,10 +1042,10 @@ one_shot = true
 [connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Fishing" method="_on_player_interact_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Detecting" method="_on_player_interact_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Catching" method="_on_player_interact_pressed"]
-[connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="CanvasLayer/FishingHud" method="_on_player_interact_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns/ResumeBtn" to="." method="_on_resume_btn_pressed"]
 [connection signal="button_down" from="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns/QuitDesktopBtn" to="." method="_on_quit_desktop_btn_button_down"]
 [connection signal="button_up" from="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns/QuitDesktopBtn" to="." method="_on_quit_desktop_btn_button_up"]
+[connection signal="pressed" from="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MaxSizeContainer/TravelCloseBtn" to="." method="_on_travel_close_btn_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Fishing" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="FishLurkTimer" to="StateMachine/Fishing" method="_on_fish_lurk_timer_timeout"]

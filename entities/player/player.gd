@@ -36,7 +36,6 @@ var QueuedFish = []
 @onready var btn_shop: Button = $CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer/btn_shop
 @onready var btn_fishlist: Button = $CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer/btn_fishlist
 @onready var menu_button: Button = $CanvasLayer/FishingHud/ButtonsMarginContainer/MenuButton
-
 #endregion
 
 #region timers for fishing logic
@@ -50,6 +49,15 @@ var QueuedFish = []
 @onready var sprite_saddened: Sprite3D = $Sprites/SaddenedSprite
 #endregion
 
+#region Travel menu
+
+@onready var travel_menu: PanelContainer = $CanvasLayer/FishingHud/TravelMenu
+@onready var travel_close_btn: Button = $CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MaxSizeContainer/TravelCloseBtn
+@onready var grid_travel: GridContainer = $CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/GridTravel
+@export var travel_item : PackedScene
+var travel_item_id : int = 0
+
+#endregion
 
 #region Money & Rod+Bait durability
 @onready var money_count: Label = $CanvasLayer/FishingHud/VBoxContainer/MoneyCount
@@ -63,7 +71,14 @@ var QueuedFish = []
 @onready var repair_rod_btn: Button = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/RepairRodBtn"
 @onready var repair_cost: Label = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/PanelContainer/RepairCost"
 
+@onready var grid_rods: GridContainer = $CanvasLayer/FishingHud/RodsMenu/MarginContainer/PanelContainer/MarginContainer/ScrollContainer/GridRods
+@onready var rods_menu: PanelContainer = $CanvasLayer/FishingHud/RodsMenu
+
+@export var rod_item : PackedScene
+var rod_item_id : int = 0
+
 #endregion
+
 #region Pause menu
 @onready var pause_menu: PanelContainer = $CanvasLayer/FishingHud/PauseMenu
 
@@ -83,28 +98,53 @@ var QueuedFish = []
 @onready var radio_pause_play: Button = $CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/RadioControls/RadioPausePlay
 @onready var radio_forward: Button = $CanvasLayer/FishingHud/RadioMarginContainer/RadioContainer/RadioControls/RadioForward
 
-
 #endregion
 
 @onready var state_machine: StateMachine = $StateMachine
 
 @onready var fishing_hud: Control = $CanvasLayer/FishingHud
 
+
 var locations_data : Array = [
 	{
 		"location_id":1,
+		"item_id": 0,
 		"icon_id": 111,
 		"location_name":"River",
-		"ticket" : 0
 	},
 	{
 		"location_id":2,
+		"item_id": 201,
 		"icon_id": 112,
 		"location_name":"Lake",
-		"ticket" : 0
 	},
 ]
-
+var rods_data : Array = [
+	{
+		"rod_id":1,
+		"item_id": 0,
+		"icon_id": 211,
+		"rod_name":"Wooden Rod",
+	},
+	{
+		"rod_id":2,
+		"item_id": 301,
+		"icon_id": 211,
+		"rod_name":"Fishin' Fun branded rod",
+	},
+	{
+		"rod_id":3,
+		"item_id": 302,
+		"icon_id": 211,
+		"rod_name":"Pro' fisher branded rod",
+	},
+	{
+		"rod_id":4,
+		"item_id": 303,
+		"icon_id": 211,
+		"rod_name":"Enticing rod",
+	},
+]
 
 var game_is_paused = false
 var desktop_btn_exit_pressed = false
@@ -122,6 +162,8 @@ func _ready() -> void:
 		debug_queue_panel.visible = true
 	debug_change_data("none", "", "", "")
 	resize()
+	hud_setup_travel()
+	hud_setup_rods()
 	match Playerinfo.playerLocation:
 		"DEVMAP":
 			pass
@@ -254,6 +296,29 @@ func _on_stop_fishing_pressed() -> void:
 
 #region Rod and bait menues
 
+func hud_setup_rods() -> void:
+	for data in rods_data:
+		var temp = rod_item.instantiate()
+		temp.rod_item_pressed.connect(on_rod_item_pressed)
+		#temp.item_hovered.connect(on_item_hovered)
+		grid_rods.add_child(temp)
+		temp.setup(data, rod_item_id)
+		#give_item_icon(temp.item_icon, temp.get_icon_id(data) )
+		rod_item_id += 1
+
+
+func on_rod_item_pressed(id : int) -> void:
+	print(locations_data[id]["location_id"])
+
+func rod_select_enable()-> void:
+	rods_menu.visible = true
+
+func rod_select_disable()-> void:
+	rods_menu.visible = false
+
+func rod_select_toggle()-> void:
+	rods_menu.visible = !rods_menu.visible
+
 func rodbait_menu_enable() -> void:
 	bait_rod_menu.visible = true
 
@@ -265,6 +330,7 @@ func rodbait_menu_toggle() -> void:
 
 func _on_bait_and_rod_btn_pressed() -> void:
 	rodbait_menu_toggle()
+	rod_select_toggle()
 
 func _on_repair_rod_btn_pressed() -> void:
 	Playerinfo.refill_rod_durability()
@@ -275,6 +341,38 @@ func _on_repair_rod_btn_pressed() -> void:
 #region Reset menues
 func reset_menus() -> void:
 	pass
+#endregion
+
+#region Travel menu
+
+func _on_menu_button_travel_pressed() -> void:
+	travel_menu_toggle()
+
+func _on_travel_close_btn_pressed() -> void:
+	travel_menu_disable()
+
+func hud_setup_travel() -> void:
+	for data in locations_data:
+		var temp = travel_item.instantiate()
+		temp.travel_destination_pressed.connect(on_travel_item_pressed)
+		#temp.item_hovered.connect(on_item_hovered)
+		grid_travel.add_child(temp)
+		temp.setup(data, travel_item_id)
+		#give_item_icon(temp.item_icon, temp.get_icon_id(data) )
+		travel_item_id += 1
+
+func on_travel_item_pressed(id : int) -> void:
+	print(locations_data[id]["location_id"])
+
+func travel_menu_enable() -> void:
+	travel_menu.visible = true
+
+func travel_menu_disable() -> void:
+	travel_menu.visible = false
+
+func travel_menu_toggle() -> void:
+	travel_menu.visible = !travel_menu.visible
+
 #endregion
 
 #region Menu buttons pressed
@@ -321,7 +419,6 @@ func _on_quit_desktop_btn_button_up() -> void:
 	while quit_desktop_progress_bar.value > 0:
 		quit_desktop_progress_bar.value -= 1
 		await get_tree().create_timer(0.01).timeout
-	print("btn isn't pressed ")
 
 
 #endregion
