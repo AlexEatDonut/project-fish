@@ -32,18 +32,16 @@ extends Node3D
 #endregion
 
 #region list of all icons used in shop
-## FRESHWATER FISHES - COMMON
-@export var spr_bait_generic = Texture2D
 #111
-@export var spr_ticket_generic = Texture2D
+@export var spr_bait_generic = Texture2D
 #211
+@export var spr_ticket_generic = Texture2D
+#311
+@export var spr_rods_generic = Texture2D
 
 
 #endregion
 
-
-# TODO : make a better system than that. Until then, this is in order : BAIT UPGRADE 1, LAKE TICKET, BAIT UPGRADE 2, BAIT UPGRADE 3
-var dev_prices = [300,3000,3000,10000]
 
 var shop_data : Array = [
 	{
@@ -93,7 +91,7 @@ var shop_data : Array = [
 	},
 	{
 		"item_id": 300,
-		"icon_id": 211,
+		"icon_id": 311,
 		"item_name":"Wooden Rod",
 		"item_description":"Your default rod ! Not very good, but can still get work done.",
 		"item_cost": 0,
@@ -102,7 +100,7 @@ var shop_data : Array = [
 	},
 	{
 		"item_id": 301,
-		"icon_id": 211,
+		"icon_id": 311,
 		"item_name":"Fishin' Fun branded rod",
 		"item_description":"Your run of the mill store rod. Better than a stick of wood, that's for sure.",
 		"item_cost": 48,
@@ -111,7 +109,7 @@ var shop_data : Array = [
 	},
 	{
 		"item_id": 302,
-		"icon_id": 211,
+		"icon_id": 311,
 		"item_name":"'Pro' fisher branded rod",
 		"item_description":"A pricier rod equipped with a bait enhancer.",
 		"item_cost": 64,
@@ -120,7 +118,7 @@ var shop_data : Array = [
 	},
 	{
 		"item_id": 303,
-		"icon_id": 211,
+		"icon_id": 311,
 		"item_name":"Enticing rod",
 		"item_description":"A rod that makes fish want to stay in its bait.",
 		"item_cost": 128,
@@ -139,6 +137,9 @@ func give_item_icon(SpriteRect, spritenumber)->void :
 		## TICKETS 
 		211:
 			SpriteRect.texture = spr_ticket_generic
+		##Rods
+		311:
+			SpriteRect.texture = spr_rods_generic
 		_:
 			SpriteRect.texture = null
 
@@ -155,17 +156,9 @@ func lock_button(target_button):
 
 func update_money():
 	money_count.text = str(Playerinfo.money)
-	#SoundManager.play_ui_sound(sfx_money_change)
 
-#TODO : Change this yandere dev type shit asap. This is misarable. Actually putting me to tears of sadness. This shit outta explode.
-#func check_all_items_availbability():
-	#var btn_array = [bait_up_1_btn, lake_ticket_btn, bait_up_2_btn, bait_up_3_btn]
-	#var ownership_array = [Playerinfo.bait_upgrade_ownership_1, Playerinfo.ticket_ownership_1, Playerinfo.bait_upgrade_ownership_2, Playerinfo.bait_upgrade_ownership_3]
-	#var i = 0
-	#for item in dev_prices:
-		#if (Playerinfo.money < dev_prices[i]) or (ownership_array[i] == true):
-			#lock_button(btn_array[i])
-		#i += 1
+func money_sfx():
+	SoundManager.play_ui_sound(sfx_money_change)
 
 func setup_shop() -> void:
 	for data in shop_data:
@@ -190,6 +183,7 @@ func on_item_buy_pressed(id : int) -> void:
 	print(shop_data[id]["item_name"])
 	Playerinfo.decrease_money(shop_data[id]["item_cost"])
 	update_money()
+	money_sfx()
 	Playerinfo.buy_upgrade(int(shop_data[id]["item_id"]))
 	SoundManager.play_ui_sound(sfx_item_bought)
 
@@ -199,30 +193,12 @@ func on_item_hovered(id : int):
 	hovered_item_name.text = shop_data[id]["item_name"]
 	hovered_item_desc.text = shop_data[id]["item_description"]
 	hovered_item_price.text = str(shop_data[id]["item_cost"])
-	
-#func _on_lake_ticket_btn_pressed() -> void:
-	#Playerinfo.buy_ticket_1()
-	#Playerinfo.decrease_money(dev_prices[1])
-	#update_money()
-	#check_all_items_availbability()
-#
-#func _on_bait_up_1_btn_pressed() -> void:
-	#Playerinfo.buy_bait_upgrade_1()
-	#Playerinfo.decrease_money(dev_prices[0])
-	#update_money()
-	#check_all_items_availbability()
-#
-#func _on_bait_up_2_btn_pressed() -> void:
-	#Playerinfo.buy_bait_upgrade_2()
-	#Playerinfo.decrease_money(dev_prices[2])
-	#update_money()
-	#check_all_items_availbability()
-#
-#func _on_bait_up_3_btn_pressed() -> void:
-	#Playerinfo.buy_bait_upgrade_3()
-	#Playerinfo.decrease_money(dev_prices[3])
-	#update_money()
-	#check_all_items_availbability()
+
+func reset_item_overview():
+	hovered_item_name.text = ""
+	hovered_item_desc.text = ""
+	hovered_item_price.text = ""
+
 
 func _on_return_btn_pressed() -> void:
 	SoundManager.stop_music(1)
@@ -241,3 +217,4 @@ func _on_return_btn_pressed() -> void:
 
 func _on_tab_container_tab_changed(tab: int) -> void:
 	SoundManager.play_ui_sound(sfx_change_category)
+	reset_item_overview()
