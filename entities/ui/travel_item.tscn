@@ -99,12 +99,12 @@ text = "ITEM_NAME"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ShopItemBtn" type="Button" parent="."]
+[node name="TravelItemBtn" type="Button" parent="."]
 z_index = 5
 layout_mode = 2
 disabled = true
 flat = true
 
-[connection signal="mouse_entered" from="ShopItemBtn" to="." method="_on_shop_item_btn_mouse_entered"]
-[connection signal="mouse_exited" from="ShopItemBtn" to="." method="_on_shop_item_btn_mouse_exited"]
-[connection signal="pressed" from="ShopItemBtn" to="." method="_on_shop_item_btn_pressed"]
+[connection signal="mouse_entered" from="TravelItemBtn" to="." method="_on_shop_item_btn_mouse_entered"]
+[connection signal="mouse_exited" from="TravelItemBtn" to="." method="_on_shop_item_btn_mouse_exited"]
+[connection signal="pressed" from="TravelItemBtn" to="." method="_on_travel_item_btn_pressed"]
