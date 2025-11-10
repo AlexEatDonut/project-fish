@@ -1,10 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk8bpmwb4p80a"]
+[gd_scene load_steps=10 format=3 uid="uid://dk8bpmwb4p80a"]
 
 [ext_resource type="Script" uid="uid://ie8sf2kwkrqp" path="res://entities/ui/rod_item.gd" id="1_xaxs3"]
+[ext_resource type="Shader" uid="uid://bfgd1jjcitu2o" path="res://shaders/darkened_blur.gdshader" id="2_635i4"]
 [ext_resource type="Script" uid="uid://bhu0c64ewxc07" path="res://addons/FreeControl/src/CustomClasses/SizeController/MaxSizeContainer.gd" id="2_h0gr1"]
 [ext_resource type="Texture2D" uid="uid://c8m1e7ph7co30" path="res://materials/placeholder/icons8-canne-à-pêche-64.png" id="3_xaxs3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uuto5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h1kwc"]
+shader = ExtResource("2_635i4")
+shader_parameter/lod = 0.6000000285
+shader_parameter/mix_percentage = 0.3
+shader_parameter/enabled = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qo5l"]
+bg_color = Color(0.11774104, 0.11774104, 0.11774104, 0.37)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5r8b"]
 bg_color = Color(0.8745098, 0.8745098, 1, 1)
@@ -25,15 +39,46 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [node name="RodItem" type="PanelContainer"]
-offset_right = 128.0
-offset_bottom = 163.0
-size_flags_horizontal = 6
+offset_right = 96.0
+offset_bottom = 128.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_uuto5")
 script = ExtResource("1_xaxs3")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+
+[node name="BlurPanel" type="PanelContainer" parent="MarginContainer"]
+visible = false
+z_index = 2
+material = SubResource("ShaderMaterial_h1kwc")
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_3qo5l")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/BlurPanel"]
+layout_mode = 2
+
+[node name="EquippedLabel" type="Label" parent="MarginContainer/BlurPanel/CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.9260749, 0.5573358, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "Equipped"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NotOwnedLabel" type="Label" parent="MarginContainer/BlurPanel/CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.28707156, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "NOT
+OWNED"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(32, 128)
@@ -104,6 +149,6 @@ layout_mode = 2
 disabled = true
 flat = true
 
-[connection signal="mouse_entered" from="RodItemBtn" to="." method="_on_shop_item_btn_mouse_entered"]
-[connection signal="mouse_exited" from="RodItemBtn" to="." method="_on_shop_item_btn_mouse_exited"]
-[connection signal="pressed" from="RodItemBtn" to="." method="_on_travel_item_btn_pressed"]
+[connection signal="mouse_entered" from="RodItemBtn" to="." method="_on_rod_item_btn_mouse_entered"]
+[connection signal="mouse_exited" from="RodItemBtn" to="." method="_on_rod_item_btn_mouse_exited"]
+[connection signal="pressed" from="RodItemBtn" to="." method="_on_rod_item_btn_pressed"]
