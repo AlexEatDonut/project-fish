@@ -465,7 +465,6 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 
 [node name="BaitRodMenu" type="PanelContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner"]
-visible = false
 layout_mode = 2
 
 [node name="Margins" type="MarginContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu"]
@@ -501,9 +500,6 @@ text = "Cost :"
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins"]
-layout_mode = 2
-
 [node name="Bait&RodData" type="VBoxContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner"]
 layout_mode = 2
 size_flags_horizontal = 8
@@ -530,7 +526,7 @@ value = 100.0
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-text = "bait and rod"
+text = "Manage bait and rod"
 
 [node name="DebugQueuePanel" type="Panel" parent="CanvasLayer/FishingHud"]
 visible = false
@@ -974,12 +970,15 @@ mouse_filter = 0
 columns = 4
 
 [node name="RodsMenu" type="PanelContainer" parent="CanvasLayer/FishingHud"]
-visible = false
 layout_mode = 1
-anchors_preset = 11
+anchors_preset = 6
 anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -192.0
+offset_bottom = 192.0
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 1
@@ -988,9 +987,9 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_2soq1")
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/RodsMenu"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 128
+theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 160
+theme_override_constants/margin_bottom = 16
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/FishingHud/RodsMenu/MarginContainer"]
 layout_mode = 2
@@ -1006,14 +1005,22 @@ theme_override_constants/margin_bottom = 16
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/FishingHud/RodsMenu/MarginContainer/PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
+horizontal_scroll_mode = 0
 
-[node name="GridRods" type="GridContainer" parent="CanvasLayer/FishingHud/RodsMenu/MarginContainer/PanelContainer/MarginContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/RodsMenu/MarginContainer/PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 6
+
+[node name="GridRods" type="GridContainer" parent="CanvasLayer/FishingHud/RodsMenu/MarginContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer"]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 0
-theme_override_constants/h_separation = 8
+theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 8
 columns = 3
 

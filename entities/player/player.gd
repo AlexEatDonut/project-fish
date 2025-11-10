@@ -71,7 +71,8 @@ var travel_item_id : int = 0
 @onready var repair_rod_btn: Button = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/RepairRodBtn"
 @onready var repair_cost: Label = $"CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/PanelContainer/RepairCost"
 
-@onready var grid_rods: GridContainer = $CanvasLayer/FishingHud/RodsMenu/MarginContainer/PanelContainer/MarginContainer/ScrollContainer/GridRods
+
+@onready var grid_rods: GridContainer = $CanvasLayer/FishingHud/RodsMenu/MarginContainer/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/GridRods
 @onready var rods_menu: PanelContainer = $CanvasLayer/FishingHud/RodsMenu
 
 @export var rod_item : PackedScene
@@ -122,7 +123,7 @@ var locations_data : Array = [
 var rods_data : Array = [
 	{
 		"rod_id":1,
-		"item_id": 0,
+		"item_id": 300,
 		"icon_id": 211,
 		"rod_name":"Wooden Rod",
 	},
@@ -308,7 +309,14 @@ func hud_setup_rods() -> void:
 
 
 func on_rod_item_pressed(id : int) -> void:
-	print(locations_data[id]["location_id"])
+	print(Playerinfo.can_switch_rod)
+	if Playerinfo.can_switch_rod == true:
+		Playerinfo.equipped_rod = rods_data[id]["item_id"]
+		print(Playerinfo.equipped_rod)
+		Playerinfo.update_rod_switch()
+		update_roddurability()
+	else:
+		pass
 
 func rod_select_enable()-> void:
 	rods_menu.visible = true
@@ -334,8 +342,11 @@ func _on_bait_and_rod_btn_pressed() -> void:
 
 func _on_repair_rod_btn_pressed() -> void:
 	Playerinfo.refill_rod_durability()
+	print("click :)")
 	update_roddurability()
 	update_money()
+
+
 #endregion
 
 #region Reset menues

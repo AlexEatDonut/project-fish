@@ -1,6 +1,7 @@
 extends Node
 
 var can_repair_rod : bool = false
+var can_switch_rod : bool = true
 
 var rodsDataFile = "res://scripts/rods_data.json"
 var json_as_text = FileAccess.get_file_as_string(rodsDataFile)
@@ -139,6 +140,13 @@ func repair_rod_eligibility():
 func repair_rod_free():
 	rod_durability = max_rod_durability
 
+func switch_rod_eligibility():
+	if CurrentState == "IDLE":
+		can_switch_rod == true
+	else:
+		can_switch_rod == false
+
+
 func get_rod_data():
 	match equipped_rod:
 		300:
@@ -233,3 +241,9 @@ func _ready():
 
 func _process(delta: float) -> void:
 	repair_rod_eligibility()
+	switch_rod_eligibility()
+	
+func update_rod_switch():
+	get_rod_data()
+	set_max_rod_durability(equipped_rod_data["base_durability"])
+	repair_rod_free()
