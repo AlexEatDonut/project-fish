@@ -109,15 +109,17 @@ var rod_item_id : int = 0
 var locations_data : Array = [
 	{
 		"location_id":1,
-		"item_id": 0,
+		"item_id": 200,
 		"icon_id": 111,
-		"location_name":"River",
+		"location_name":"RIVER",
+		"map_file" : "res://maps/fishingspot_river.tscn"
 	},
 	{
 		"location_id":2,
 		"item_id": 201,
 		"icon_id": 112,
-		"location_name":"Lake",
+		"location_name":"LAKE",
+		"map_file" : "res://maps/fishingspot_lake.tscn"
 	},
 ]
 var rods_data : Array = [
@@ -309,10 +311,8 @@ func hud_setup_rods() -> void:
 
 
 func on_rod_item_pressed(id : int) -> void:
-	print(Playerinfo.can_switch_rod)
 	if Playerinfo.can_switch_rod == true:
 		Playerinfo.equipped_rod = rods_data[id]["item_id"]
-		print(Playerinfo.equipped_rod)
 		Playerinfo.update_rod_switch()
 		update_roddurability()
 	else:
@@ -342,7 +342,6 @@ func _on_bait_and_rod_btn_pressed() -> void:
 
 func _on_repair_rod_btn_pressed() -> void:
 	Playerinfo.refill_rod_durability()
-	print("click :)")
 	update_roddurability()
 	update_money()
 
@@ -373,7 +372,11 @@ func hud_setup_travel() -> void:
 		travel_item_id += 1
 
 func on_travel_item_pressed(id : int) -> void:
+	if locations_data[id]["location_name"] != Playerinfo.playerLocation:
+		await get_tree().create_timer(0.25).timeout
+		get_tree().change_scene_to_file(locations_data[id]["map_file"])
 	print(locations_data[id]["location_id"])
+
 
 func travel_menu_enable() -> void:
 	travel_menu.visible = true
