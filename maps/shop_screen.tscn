@@ -577,6 +577,7 @@ text = "0"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 16
 alignment = 1
 
@@ -611,6 +612,7 @@ text = "Bait Upgrades"
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_dx2t8")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer"]
@@ -777,6 +779,7 @@ text = "Bait Upgrades"
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_dx2t8")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Rod/PanelContainer"]
@@ -943,6 +946,7 @@ text = "Travel tickets"
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Misc"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_dx2t8")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Misc/PanelContainer"]
