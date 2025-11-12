@@ -465,6 +465,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 
 [node name="BaitRodMenu" type="PanelContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner"]
+visible = false
 layout_mode = 2
 
 [node name="Margins" type="MarginContainer" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu"]
@@ -890,9 +891,15 @@ show_percentage = false
 [node name="TravelMenu" type="PanelContainer" parent="CanvasLayer/FishingHud"]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -181.0
+offset_right = 202.0
+offset_bottom = 181.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -900,10 +907,10 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_vewsg")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/FishingHud/TravelMenu"]
 layout_mode = 2
-theme_override_constants/margin_left = 128
-theme_override_constants/margin_top = 128
-theme_override_constants/margin_right = 128
-theme_override_constants/margin_bottom = 128
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/FishingHud/TravelMenu/MarginContainer"]
 layout_mode = 2
@@ -970,6 +977,7 @@ mouse_filter = 0
 columns = 4
 
 [node name="RodsMenu" type="PanelContainer" parent="CanvasLayer/FishingHud"]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
