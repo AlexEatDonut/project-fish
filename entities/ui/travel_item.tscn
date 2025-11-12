@@ -1,17 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://ca1y33bbhgrhw"]
+[gd_scene load_steps=10 format=3 uid="uid://ca1y33bbhgrhw"]
 
 [ext_resource type="Script" uid="uid://darst24o2xnoo" path="res://entities/ui/travel_item.gd" id="1_fdvcb"]
+[ext_resource type="Texture2D" uid="uid://0rub2r2wkdkw" path="res://materials/ui/travel_locations/location_lake_thumb.png" id="3_6xosp"]
 [ext_resource type="Script" uid="uid://bhu0c64ewxc07" path="res://addons/FreeControl/src/CustomClasses/SizeController/MaxSizeContainer.gd" id="3_g17e0"]
-[ext_resource type="Texture2D" uid="uid://ddfdhfhidas2f" path="res://materials/ui/menu_buttons/ticket-fill.svg" id="4_7uska"]
+[ext_resource type="Shader" uid="uid://bfgd1jjcitu2o" path="res://shaders/darkened_blur.gdshader" id="4_fdvcb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uuto5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5r8b"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdvcb"]
 bg_color = Color(0.8745098, 0.8745098, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
@@ -21,6 +18,19 @@ corner_radius_bottom_left = 20
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87g8p"]
 bg_color = Color(0.18431373, 0.18431373, 0.18431373, 1)
 border_color = Color(0.29803923, 0.29803923, 0.29803923, 1)
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cx7sq"]
+shader = ExtResource("4_fdvcb")
+shader_parameter/lod = 0.6000000285
+shader_parameter/mix_percentage = 0.3
+shader_parameter/enabled = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g17e0"]
+bg_color = Color(0.11774104, 0.11774104, 0.11774104, 0.37)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
@@ -51,14 +61,16 @@ max_size = Vector2(160, 128)
 metadata/_custom_type_script = "uid://bhu0c64ewxc07"
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/MaxSizeContainer"]
+clip_children = 1
+clip_contents = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n5r8b")
+theme_override_styles/panel = SubResource("StyleBoxFlat_fdvcb")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MaxSizeContainer/PanelContainer2"]
 layout_mode = 2
-texture = ExtResource("4_7uska")
-expand_mode = 2
-stretch_mode = 5
+texture = ExtResource("3_6xosp")
+expand_mode = 5
+stretch_mode = 6
 
 [node name="MaxSizeContainer2" type="Container" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(160, 64)
@@ -98,6 +110,37 @@ theme_override_font_sizes/font_size = 12
 text = "ITEM_NAME"
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="BlurPanel" type="PanelContainer" parent="MarginContainer"]
+visible = false
+z_index = 2
+material = SubResource("ShaderMaterial_cx7sq")
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_g17e0")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/BlurPanel"]
+layout_mode = 2
+
+[node name="HereLabel" type="Label" parent="MarginContainer/BlurPanel/CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.9260749, 0.5573358, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "YOU ARE HERE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LockedLabel" type="Label" parent="MarginContainer/BlurPanel/CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.28707156, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "LOCKED"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TravelItemBtn" type="Button" parent="."]
 z_index = 5
