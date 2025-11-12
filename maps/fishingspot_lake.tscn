@@ -6,9 +6,9 @@
 [ext_resource type="ArrayMesh" uid="uid://b5airhpgh0r46" path="res://godotvmfcontent/geometry/fishingspot_lake_vmf_import.mesh" id="3_l2ujn"]
 [ext_resource type="Shape3D" uid="uid://dqk5k1ie5ucdq" path="res://godotvmfcontent/geometry/fishingspot_lake_vmf_collision_surface_prop_default.res" id="4_7g8ox"]
 [ext_resource type="PackedScene" uid="uid://cwxttgf1xbejo" path="res://godotvmfcontent/entities/light_environment.tscn" id="5_65atu"]
-[ext_resource type="PackedScene" path="res://godotvmfcontent/entities/func_detail.tscn" id="7_bacqe"]
+[ext_resource type="PackedScene" uid="uid://cdbxndr06faie" path="res://godotvmfcontent/entities/func_detail.tscn" id="7_bacqe"]
 [ext_resource type="Material" uid="uid://cci7qd6tfskmf" path="res://godotvmfcontent/materials/devkenney/kenney-orange-texture08.vmt" id="9_dvvlv"]
-[ext_resource type="PackedScene" path="res://godotvmfcontent/entities/func_brush.tscn" id="10_b7wlf"]
+[ext_resource type="PackedScene" uid="uid://bo4xlhwkwv05o" path="res://godotvmfcontent/entities/func_brush.tscn" id="10_b7wlf"]
 [ext_resource type="Material" uid="uid://chy3w3lu8e8rg" path="res://godotvmfcontent/materials/devkenney/kenney-dark-texture09.vmt" id="11_h40fp"]
 [ext_resource type="Material" uid="uid://bte1kh3svl4gn" path="res://godotvmfcontent/materials/devkenney/kenney-light-texture09.vmt" id="12_tbmmx"]
 
