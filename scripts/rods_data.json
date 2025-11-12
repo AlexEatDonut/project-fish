@@ -52,7 +52,7 @@
 		"baseline_repair_cost" : 10,
 		"durability_repair_multiplier" : 4,
 		"lurk_time_multiplier" : 1.05,
-		"catch_window_multiplier" : 1,
+		"catch_window_multiplier" : 1.1,
 		"fish_weights_multiplier" : [1,1,1,1,1]
 	}
 }
