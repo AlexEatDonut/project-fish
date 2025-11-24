@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctmommse83rve"]
+[gd_scene load_steps=7 format=3 uid="uid://ctmommse83rve"]
+
+[ext_resource type="Script" uid="uid://q6u5fgrhmgn2" path="res://entities/ui/logbook.gd" id="1_31c1s"]
+[ext_resource type="Script" uid="uid://bhu0c64ewxc07" path="res://addons/FreeControl/src/CustomClasses/SizeController/MaxSizeContainer.gd" id="1_dtnqg"]
+[ext_resource type="Texture2D" uid="uid://7xjxffd31ch4" path="res://materials/ui/icons/wip_icon.png" id="2_31c1s"]
+[ext_resource type="Texture2D" uid="uid://c6t6fjbgmafkj" path="res://materials/ui/icons/equal.png" id="4_8nkcu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_doh6h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_31c1s"]
+bg_color = Color(0.09320182, 0.09320182, 0.09320182, 0.70000005)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="Logbook" type="Control"]
 layout_mode = 3
@@ -9,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_31c1s")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -55,9 +68,10 @@ theme_override_constants/separation = 16
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_doh6h")
-current_tab = 0
+current_tab = 2
 
 [node name="Fishes" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -69,28 +83,368 @@ theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Fishes/MarginContainer"]
+visible = false
 layout_mode = 2
 columns = 8
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(420, 0)
+[node name="WIP_indicator" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Fishes/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Fishes/MarginContainer/WIP_indicator"]
+layout_mode = 2
+text = "This tab is under developpement."
+horizontal_alignment = 1
+
+[node name="MaxSizeContainer" type="Container" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Fishes/MarginContainer/WIP_indicator"]
+layout_mode = 2
+script = ExtResource("1_dtnqg")
+max_size = Vector2(256, -1)
+metadata/_custom_type_script = "uid://bhu0c64ewxc07"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Fishes/MarginContainer/WIP_indicator/MaxSizeContainer"]
+layout_mode = 2
+texture = ExtResource("2_31c1s")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Fishes/MarginContainer/WIP_indicator"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "This tab requires the game to keep track on caught fishes. 
+This may or may not actually be added into the game during this prototyping phase."
+horizontal_alignment = 1
+autowrap_mode = 1
+autowrap_trim_flags = 128
+
+[node name="Fishing Rods" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Fishing Rods"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Fishing Rods/MarginContainer"]
+layout_mode = 2
+columns = 8
+
+[node name="WIP_indicator" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Fishing Rods/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Fishing Rods/MarginContainer/WIP_indicator"]
+layout_mode = 2
+text = "This tab is under developpement."
+horizontal_alignment = 1
+
+[node name="MaxSizeContainer" type="Container" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Fishing Rods/MarginContainer/WIP_indicator"]
+layout_mode = 2
+script = ExtResource("1_dtnqg")
+max_size = Vector2(256, -1)
+metadata/_custom_type_script = "uid://bhu0c64ewxc07"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Fishing Rods/MarginContainer/WIP_indicator/MaxSizeContainer"]
+layout_mode = 2
+texture = ExtResource("2_31c1s")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Misc" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Misc"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Misc/MarginContainer"]
+visible = false
+layout_mode = 2
+columns = 8
+
+[node name="WIP_indicator" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Misc/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Misc/MarginContainer/WIP_indicator"]
+layout_mode = 2
+text = "This tab is under developpement."
+horizontal_alignment = 1
+
+[node name="MaxSizeContainer" type="Container" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Misc/MarginContainer/WIP_indicator"]
+layout_mode = 2
+script = ExtResource("1_dtnqg")
+max_size = Vector2(256, -1)
+metadata/_custom_type_script = "uid://bhu0c64ewxc07"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Misc/MarginContainer/WIP_indicator/MaxSizeContainer"]
+layout_mode = 2
+texture = ExtResource("2_31c1s")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/TabContainer/Misc/MarginContainer/WIP_indicator"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "This tab will keep track of tickets, music tapes and more."
+horizontal_alignment = 1
+autowrap_mode = 1
+autowrap_trim_flags = 128
+
+[node name="ItemInfoBox" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="IntoTitle" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Info :"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ItemPanel1" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_31c1s")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/ItemPanel1"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/ItemPanel1/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="LabelName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/ItemPanel1/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Info :"
-horizontal_alignment = 1
+text = "#ITEM_NAME"
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/ItemPanel1/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="LabelTypeTitle" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/ItemPanel1/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Type : "
+
+[node name="LabelType" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/ItemPanel1/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "#ITEM_TYPE"
+
+[node name="RodsPanel1" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_31c1s")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelNotesTitle" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Rod data :"
+
+[node name="RodBaseDurability" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelBaseDurabilityTitle" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer/RodBaseDurability"]
+layout_mode = 2
+text = "Base Durability :"
+
+[node name="LabelBaseDurability" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer/RodBaseDurability"]
+layout_mode = 2
+text = "#ROD_BASE_DURABILITY"
+
+[node name="RodBaseRepairCost" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelBaseRepairCostTitle" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer/RodBaseRepairCost"]
+layout_mode = 2
+text = "Base Repair Cost :"
+
+[node name="LabelBaseRepairCost" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer/RodBaseRepairCost"]
+layout_mode = 2
+text = "#ROD_BASE_REPAIR_COST"
+
+[node name="RodDurabilityRepairMult" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelDurabilityRepairMultTitle" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer/RodDurabilityRepairMult"]
+layout_mode = 2
+text = "Durability Repair Multiplier :"
+
+[node name="LabelDurabilityRepairMult" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer/RodDurabilityRepairMult"]
+layout_mode = 2
+text = "#ROD_DURABILITY_REPAIR_MULT"
+
+[node name="RodLurkTimeMult" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelLurkTimeMultTitle" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer/RodLurkTimeMult"]
+layout_mode = 2
+text = "Fish Lurk Time Multiplier :"
+
+[node name="LabelLurkTimeMult" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer/RodLurkTimeMult"]
+layout_mode = 2
+text = "#ROD_LURK_TIME_MULT"
+
+[node name="RodCatchWindowMult" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelCatchWindowMultTitle" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer/RodCatchWindowMult"]
+layout_mode = 2
+text = "Catch window Multiplier :"
+
+[node name="LabelCatchWindowMult" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel1/MarginContainer/VBoxContainer/RodCatchWindowMult"]
+layout_mode = 2
+text = "#ROD_CATCH_WINDOW_MULT"
+
+[node name="RodsPanel2" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_31c1s")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelNotesTitle" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Rod's fish rarities multipliers :"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="FishWeight1" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer/FishWeight1"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 10
+text = "Common"
+vertical_alignment = 1
+
+[node name="TextureFishWeight1" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer/FishWeight1"]
+layout_mode = 2
+texture = ExtResource("4_8nkcu")
+expand_mode = 2
+
+[node name="FishWeight2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer/FishWeight2"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 10
+text = "Uncommon"
+vertical_alignment = 1
+
+[node name="TextureFishWeight2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer/FishWeight2"]
+layout_mode = 2
+texture = ExtResource("4_8nkcu")
+expand_mode = 2
+
+[node name="FishWeight3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer/FishWeight3"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 10
+text = "Rare"
+vertical_alignment = 1
+
+[node name="TextureFishWeight3" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer/FishWeight3"]
+layout_mode = 2
+texture = ExtResource("4_8nkcu")
+expand_mode = 2
+
+[node name="FishWeight4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer/FishWeight4"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 10
+text = "Unusual"
+vertical_alignment = 1
+
+[node name="TextureFishWeight4" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer/FishWeight4"]
+layout_mode = 2
+texture = ExtResource("4_8nkcu")
+expand_mode = 2
+
+[node name="FishWeight5" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer/FishWeight5"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 10
+text = "Legendary"
+vertical_alignment = 1
+
+[node name="TextureFishWeight5" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/RodsPanel2/MarginContainer/VBoxContainer/HBoxContainer/FishWeight5"]
+layout_mode = 2
+texture = ExtResource("4_8nkcu")
+expand_mode = 2
+
+[node name="ItemPanel2" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_31c1s")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/ItemPanel2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/ItemPanel2/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelNotesTitle" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/ItemPanel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Notes :"
+
+[node name="LabelNotes" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ItemInfoBox/MarginContainer/VBoxContainer/ItemPanel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "#ITEM_DESCRIPTION"
