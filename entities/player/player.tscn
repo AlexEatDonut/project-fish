@@ -68,13 +68,13 @@ bg_color = Color(0.42745098, 0.6784314, 0.29411766, 0.69411767)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cpdjg"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_wq0jh"]
+[sub_resource type="InputEventKey" id="InputEventKey_8q4fm"]
 device = -1
-keycode = 32
-unicode = 32
+keycode = 70
+unicode = 102
 
 [sub_resource type="Shortcut" id="Shortcut_t1t22"]
-events = [SubResource("InputEventKey_wq0jh")]
+events = [SubResource("InputEventKey_8q4fm")]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1t22"]
 bg_color = Color(0.23031491, 0.23031494, 0.23031485, 1)
