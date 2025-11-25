@@ -1,10 +1,5 @@
 extends Node
 
-var fishDataFile = "res://scripts/fish_data.json"
-var json_as_text = FileAccess.get_file_as_string(fishDataFile)
-var fish_dict = JSON.parse_string(json_as_text)
-#if json_as_dict:
-	#print(json_as_dict)
 
 
 
@@ -124,21 +119,21 @@ func get_fishes_by_sorting(biome : String, rng_rarity : bool = true, defined_rar
 	match [willSortByRarity, willSortByRNGRarity]:
 #		will sort by rng rarity
 		[true, true]:
-			for item in fish_dict:
-				if fish_dict[item]["fish_locations"].has(biome) and fish_dict[item]["fish_type"] == rng_selected_rarity and fish_dict[item]["bait_value"] <= current_bait_value:
-					foundFishes.append(fish_dict[item])
+			for item in Playerinfo.fish_dict:
+				if Playerinfo.fish_dict[item]["fish_locations"].has(biome) and Playerinfo.fish_dict[item]["fish_type"] == rng_selected_rarity and Playerinfo.fish_dict[item]["bait_value"] <= current_bait_value:
+					foundFishes.append(Playerinfo.fish_dict[item])
 			return foundFishes
 #		will sort by rarity, but a defined one
 		[true, false]:
-			for item in fish_dict:
-				if fish_dict[item]["fish_locations"].has(biome) and fish_dict[item]["fish_type"] == defined_rarity and fish_dict[item]["bait_value"] <= current_bait_value :
-					foundFishes.append(fish_dict[item])
+			for item in Playerinfo.fish_dict:
+				if Playerinfo.fish_dict[item]["fish_locations"].has(biome) and Playerinfo.fish_dict[item]["fish_type"] == defined_rarity and Playerinfo.fish_dict[item]["bait_value"] <= current_bait_value :
+					foundFishes.append(Playerinfo.fish_dict[item])
 			return foundFishes
 #		will not sort by rarity, doesn't matter if it is random or not
 		[false, true or false] :
-			for item in fish_dict:
-				if fish_dict[item]["fish_locations"].has(biome) :
-					foundFishes.append(fish_dict[item])
+			for item in Playerinfo.fish_dict:
+				if Playerinfo.fish_dict[item]["fish_locations"].has(biome) :
+					foundFishes.append(Playerinfo.fish_dict[item])
 			return foundFishes
 
 

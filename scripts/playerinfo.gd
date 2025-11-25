@@ -11,6 +11,9 @@ var shopItemsDataFile = "res://scripts/items_data.json"
 var shopitems_json_as_text = FileAccess.get_file_as_string(shopItemsDataFile)
 var shop_items = JSON.parse_string(shopitems_json_as_text)
 
+var fishDataFile = "res://scripts/fish_data.json"
+var fishes_json_as_text = FileAccess.get_file_as_string(fishDataFile)
+var fish_dict = JSON.parse_string(fishes_json_as_text)
 
 var all_rods_duability = []
 
