@@ -1,7 +1,7 @@
 {
 	"101" :{
 		"item_id":101,
-		"icon_id": 111,
+		"icon_id": 112,
 		"item_name":"Rare Bait",
 		"item_description":"A unique blend of spices bundled into one bait. Allows you to catch rare fishes",
 		"item_cost": 300,
@@ -10,7 +10,7 @@
 	},
 	"102" :{
 		"item_id" : 102,
-		"icon_id": 111,
+		"icon_id": 113,
 		"item_name":"Unusual Bait",
 		"item_description":"A weird odor comes from this bait, it's unpleasant yet appealing at the same time. Allows you to catch unusual fishes.",
 		"item_cost": 1700,
@@ -19,7 +19,7 @@
 	},
 	"103": {
 		"item_id": 103,
-		"icon_id": 111,
+		"icon_id": 114,
 		"item_name":"Legendary Bait",
 		"item_description":"An odorless bait that leaves you wandering if you got scammed. It looks mundane, but you cannot decifer what is in there. Allows you to catch legendary fishes.",
 		"item_cost": 6400,
