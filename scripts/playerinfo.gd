@@ -4,8 +4,12 @@ var can_repair_rod : bool = false
 var can_switch_rod : bool = true
 
 var rodsDataFile = "res://scripts/rods_data.json"
-var json_as_text = FileAccess.get_file_as_string(rodsDataFile)
-var fishing_rods = JSON.parse_string(json_as_text)
+var rods_json_as_text = FileAccess.get_file_as_string(rodsDataFile)
+var fishing_rods = JSON.parse_string(rods_json_as_text)
+
+var shopItemsDataFile = "res://scripts/items_data.json"
+var shopitems_json_as_text = FileAccess.get_file_as_string(shopItemsDataFile)
+var shop_items = JSON.parse_string(shopitems_json_as_text)
 
 
 var all_rods_duability = []

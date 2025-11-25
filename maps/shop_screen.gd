@@ -43,90 +43,6 @@ extends Node3D
 #endregion
 
 
-var shop_data : Array = [
-	{
-		"item_id":101,
-		"icon_id": 111,
-		"item_name":"Rare Bait",
-		"item_description":"A unique blend of spices bundled into one bait. Allows you to catch rare fishes",
-		"item_cost": 300,
-		"category":"bait",
-		"requirements" : 0
-	},
-	{
-		"item_id" : 102,
-		"icon_id": 111,
-		"item_name":"Unusual Bait",
-		"item_description":"A weird odor comes from this bait, it's unpleasant yet appealing at the same time. Allows you to catch unusual fishes.",
-		"item_cost": 1700,
-		"category":"bait",
-		"requirements" : 101
-	},
-	{
-		"item_id": 103,
-		"icon_id": 111,
-		"item_name":"Legendary Bait",
-		"item_description":"An odorless bait that leaves you wandering if you got scammed. It looks mundane, but you cannot decifer what is in there. Allows you to catch legendary fishes.",
-		"item_cost": 6400,
-		"category":"bait",
-		"requirements" : 102
-	},
-	{
-		"item_id": 201,
-		"icon_id": 211,
-		"item_name":"Ticket : Lakeside",
-		"item_description":"A reusable traveling ticket to the lakeside. Allows access to the lakeside from the Travel menu",
-		"item_cost": 3000,
-		"category":"misc",
-		"requirements" : 0
-	},
-	{
-		"item_id": 202,
-		"icon_id": 211,
-		"item_name":"Ticket : Port",
-		"item_description":"A reusable traveling ticket to the lakeside. Allows access to the lakeside from the Travel menu. NONFUNCTIONAL YET. ONLY FOR TESTING PURPOSES",
-		"item_cost": 6000,
-		"category":"misc",
-		"requirements" : 0
-	},
-	{
-		"item_id": 300,
-		"icon_id": 311,
-		"item_name":"Wooden Rod",
-		"item_description":"Your default rod ! Not very good, but can still get work done.",
-		"item_cost": 0,
-		"category":"rod",
-		"requirements" : -1,
-	},
-	{
-		"item_id": 301,
-		"icon_id": 311,
-		"item_name":"Fishin' Fun branded rod",
-		"item_description":"Your run of the mill store rod. Better than a stick of wood, that's for sure.",
-		"item_cost": 48,
-		"category":"rod",
-		"requirements" : 0,
-	},
-	{
-		"item_id": 302,
-		"icon_id": 311,
-		"item_name":"'Pro' fisher branded rod",
-		"item_description":"A pricier rod equipped with a bait enhancer.",
-		"item_cost": 64,
-		"category":"rod",
-		"requirements" : 0,
-	},
-	{
-		"item_id": 303,
-		"icon_id": 311,
-		"item_name":"Enticing rod",
-		"item_description":"A rod that makes fish want to stay in its bait.",
-		"item_cost": 128,
-		"category":"rod",
-		"requirements" : 0,
-	}
-]
-
 var shop_item_id : int = 0
 
 func give_item_icon(SpriteRect, spritenumber)->void :
@@ -149,7 +65,6 @@ func _ready() -> void:
 	SoundManager.play_music(bg_curio_music)
 	update_money()
 	#check_all_items_availbability()
-	print(Playerinfo.rod_bait_value)
 
 func lock_button(target_button):
 	target_button.disabled = true
@@ -161,7 +76,7 @@ func money_sfx():
 	SoundManager.play_ui_sound(sfx_money_change)
 
 func setup_shop() -> void:
-	for data in shop_data:
+	for data in Playerinfo.shop_items:
 		var temp = shop_item.instantiate()
 		temp.item_buy_pressed.connect(on_item_buy_pressed)
 		temp.item_hovered.connect(on_item_hovered)
@@ -174,25 +89,27 @@ func setup_shop() -> void:
 				print("Item is a player upgrade, but no player upgrade tab is available.")
 			"misc":
 				grid_misc.add_child(temp)
+			"":
+				print("Item was unable to find corresponding category")
 		#grid.add_child(temp)
 		temp.setup(data, shop_item_id)
-		give_item_icon(temp.item_icon, temp.get_icon_id(data) )
+		give_item_icon(temp.item_icon, temp.get_icon_id(data))
 		shop_item_id += 1
 
-func on_item_buy_pressed(id : int) -> void:
-	print(shop_data[id]["item_name"])
-	Playerinfo.decrease_money(shop_data[id]["item_cost"])
+func on_item_buy_pressed(id : String) -> void:
+	print(id)
+	Playerinfo.decrease_money(Playerinfo.shop_items[id]["item_cost"])
 	update_money()
 	money_sfx()
-	Playerinfo.buy_upgrade(int(shop_data[id]["item_id"]))
+	Playerinfo.buy_upgrade(int(Playerinfo.shop_items[id]["item_id"]))
 	SoundManager.play_ui_sound(sfx_item_bought)
 
-func on_item_hovered(id : int):
+func on_item_hovered(id : String):
 	SoundManager.play_ui_sound(sfx_item_hover)
 	#hovered_item_texture.texture = shop_data[id]["icon_id"]
-	hovered_item_name.text = shop_data[id]["item_name"]
-	hovered_item_desc.text = shop_data[id]["item_description"]
-	hovered_item_price.text = str(shop_data[id]["item_cost"])
+	hovered_item_name.text = Playerinfo.shop_items[id]["item_name"]
+	hovered_item_desc.text = Playerinfo.shop_items[id]["item_description"]
+	hovered_item_price.text = str(Playerinfo.shop_items[id]["item_cost"])
 
 func reset_item_overview():
 	hovered_item_name.text = ""
@@ -203,7 +120,6 @@ func reset_item_overview():
 func _on_return_btn_pressed() -> void:
 	SoundManager.stop_music(1)
 	var map_id = Playerinfo.playerLocationNumber
-	print(map_id)
 	match(map_id):
 		0:
 			get_tree().change_scene_to_file("res://maps/devmap_1.tscn")
