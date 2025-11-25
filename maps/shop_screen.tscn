@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://dihevx82mh14p"]
+[gd_scene load_steps=69 format=4 uid="uid://dihevx82mh14p"]
 
 [ext_resource type="Script" uid="uid://cxlc57q27wmc4" path="res://maps/shop_screen.gd" id="1_6n44y"]
 [ext_resource type="FontFile" uid="uid://5j16yawegu2w" path="res://fonts/Fish Strike.ttf" id="1_8afw2"]
@@ -14,9 +14,12 @@
 [ext_resource type="AudioStream" uid="uid://dhs6emecvokgv" path="res://sounds/placeholder/ui/ui_menu_hover_11.wav" id="5_krtpt"]
 [ext_resource type="AudioStream" uid="uid://bmbs3lvgvjmnh" path="res://sounds/placeholder/ui/ui_get_gold_01.wav" id="6_gdnaf"]
 [ext_resource type="AudioStream" uid="uid://b1kar3ssq4bj3" path="res://sounds/placeholder/ui/ui_shop_panel_page_01.wav" id="7_dnd2w"]
+[ext_resource type="Texture2D" uid="uid://cvubl7u84p7m" path="res://materials/placeholder/ER_Thawfrost_Boluses.png" id="9_exfuh"]
 [ext_resource type="ArrayMesh" uid="uid://dxi1os47o6lg3" path="res://godotvmfcontent/geometry/shop_fishhouse_vmf_import.mesh" id="10_6hdri"]
 [ext_resource type="Script" uid="uid://h4idhujg1k" path="res://addons/godotvmf/src/vmf_node.gd" id="10_b7de1"]
 [ext_resource type="Texture2D" uid="uid://c8m1e7ph7co30" path="res://materials/placeholder/icons8-canne-à-pêche-64.png" id="10_gdnaf"]
+[ext_resource type="Texture2D" uid="uid://k3tjynoe6sn1" path="res://materials/placeholder/ER_Stimulating_Boluses.png" id="10_lrnhp"]
+[ext_resource type="Texture2D" uid="uid://1nvf7ht4ea5p" path="res://materials/placeholder/ER_Clarifying_Boluses.png" id="11_2oeb4"]
 [ext_resource type="Shape3D" uid="uid://tse576k5miaf" path="res://godotvmfcontent/geometry/shop_fishhouse_vmf_collision_surface_prop_default.res" id="11_b7de1"]
 [ext_resource type="PackedScene" uid="uid://cdbxndr06faie" path="res://godotvmfcontent/entities/func_detail.tscn" id="12_dx2t8"]
 [ext_resource type="Material" uid="uid://byxersiup66oc" path="res://godotvmfcontent/materials/devkenney/kenney-light-texture08.vmt" id="14_o74xp"]
@@ -487,6 +490,9 @@ sfx_item_hover = ExtResource("5_krtpt")
 sfx_money_change = ExtResource("6_gdnaf")
 sfx_change_category = ExtResource("7_dnd2w")
 spr_bait_generic = ExtResource("5_b7de1")
+spr_bait_rare = ExtResource("9_exfuh")
+spr_bait_unusual = ExtResource("10_lrnhp")
+spr_bait_legendary = ExtResource("11_2oeb4")
 spr_ticket_generic = ExtResource("2_jf3u5")
 spr_rods_generic = ExtResource("10_gdnaf")
 

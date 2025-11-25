@@ -34,6 +34,12 @@ extends Node3D
 #region list of all icons used in shop
 #111
 @export var spr_bait_generic = Texture2D
+#112
+@export var spr_bait_rare = Texture2D
+#113
+@export var spr_bait_unusual = Texture2D
+#114
+@export var spr_bait_legendary = Texture2D
 #211
 @export var spr_ticket_generic = Texture2D
 #311
@@ -50,6 +56,13 @@ func give_item_icon(SpriteRect, spritenumber)->void :
 		## BAITS
 		111:
 			SpriteRect.texture = spr_bait_generic
+		112:
+			SpriteRect.texture = spr_bait_rare
+		113:
+			SpriteRect.texture = spr_bait_unusual
+		114:
+			SpriteRect.texture = spr_bait_legendary
+		
 		## TICKETS 
 		211:
 			SpriteRect.texture = spr_ticket_generic
@@ -106,7 +119,7 @@ func on_item_buy_pressed(id : String) -> void:
 
 func on_item_hovered(id : String):
 	SoundManager.play_ui_sound(sfx_item_hover)
-	#hovered_item_texture.texture = shop_data[id]["icon_id"]
+	#hovered_item_texture.texture = Playerinfo.shop_items[id]["icon_id"]
 	hovered_item_name.text = Playerinfo.shop_items[id]["item_name"]
 	hovered_item_desc.text = Playerinfo.shop_items[id]["item_description"]
 	hovered_item_price.text = str(Playerinfo.shop_items[id]["item_cost"])
