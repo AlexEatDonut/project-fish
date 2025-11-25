@@ -52,9 +52,11 @@ Addons can be catagorized this way :
 
 <a href="https://www.textures-resource.com/wii/wiiplay/texture/12550/">wii play fishes (placeholder icons)</a>
 
-<a href="https://www.flaticon.com/free-icon/bait_6371144?term=fishing%20rod&page=1&position=11&origin=tag&related_id=6371144"> I won't pay for a png thank you very much (bait icon)</a>
+<a href="https://www.flaticon.com/free-icon/bait_6371144?term=fishing%20rod&page=1&position=11&origin=tag&related_id=6371144"> Bait icon</a>
 
 <a href="https://icones8.fr/icons/set/fishing-rod"> Fishing rod icon</a>
+
+<a href="https://eldenring.wiki.gg/wiki/"> Sprites of various Elden ring items (Boluses)</a> 
 
 ## Models
 
