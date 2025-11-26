@@ -11,6 +11,9 @@ game_scene_path = "uid://q131ryf8j1ch"
 options_packed_scene = ExtResource("3_hthpe")
 credits_packed_scene = ExtResource("4_0nqn7")
 
+[node name="VersionLabel" parent="VersionMargin/VersionContainer" index="0"]
+text = "v0.0.3"
+
 [node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" index="0"]
 text = "project-fish"
 
