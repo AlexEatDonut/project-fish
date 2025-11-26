@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://dihevx82mh14p"]
+[gd_scene load_steps=70 format=4 uid="uid://dihevx82mh14p"]
 
 [ext_resource type="Script" uid="uid://cxlc57q27wmc4" path="res://maps/shop_screen.gd" id="1_6n44y"]
 [ext_resource type="FontFile" uid="uid://5j16yawegu2w" path="res://fonts/Fish Strike.ttf" id="1_8afw2"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://de4hgb42xs07w" path="res://entities/ui/shop_item.tscn" id="2_6hdri"]
 [ext_resource type="StyleBox" uid="uid://djex00xcoflvd" path="res://ui_stylings/shop_item_stylebox.tres" id="2_71k4w"]
 [ext_resource type="Texture2D" uid="uid://ddfdhfhidas2f" path="res://materials/ui/menu_buttons/ticket-fill.svg" id="2_jf3u5"]
-[ext_resource type="AudioStream" uid="uid://cyb8d5lltqfis" path="res://sounds/placeholder/music/deadlock_curio_music.wav" id="3_b7de1"]
+[ext_resource type="AudioStream" uid="uid://d2cpccgff7si3" path="res://sounds/music/803856__univxrse_music__nebula.wav" id="3_exfuh"]
 [ext_resource type="Texture2D" uid="uid://bo5eexpe88ra5" path="res://materials/ui/menu_buttons/currency-dollar.svg" id="3_jf3u5"]
 [ext_resource type="AudioStream" uid="uid://dco5on3sy7h4p" path="res://sounds/placeholder/ui/ui_shop_purchase_item_01.wav" id="4_dx2t8"]
 [ext_resource type="Texture2D" uid="uid://cfv11w0nbn68" path="res://materials/ui/menu_buttons/bait-icon.svg" id="5_b7de1"]
@@ -25,6 +25,7 @@
 [ext_resource type="Material" uid="uid://byxersiup66oc" path="res://godotvmfcontent/materials/devkenney/kenney-light-texture08.vmt" id="14_o74xp"]
 [ext_resource type="Material" uid="uid://chy3w3lu8e8rg" path="res://godotvmfcontent/materials/devkenney/kenney-dark-texture09.vmt" id="15_krtpt"]
 [ext_resource type="PackedScene" uid="uid://sfoe4ws1pqsq" path="res://godotvmfcontent/entities/func_lod.tscn" id="16_gdnaf"]
+[ext_resource type="Material" uid="uid://cwrk5o623s5im" path="res://shaders/posterize_shader.tres" id="26_lrnhp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6hdri"]
 
@@ -484,7 +485,7 @@ fog_light_color = Color(0.784314, 0.792157, 0.901961, 1)
 [node name="ShopMap" type="Node3D"]
 script = ExtResource("1_6n44y")
 shop_item = ExtResource("2_6hdri")
-bg_curio_music = ExtResource("3_b7de1")
+bg_curio_music = ExtResource("3_exfuh")
 sfx_item_bought = ExtResource("4_dx2t8")
 sfx_item_hover = ExtResource("5_krtpt")
 sfx_money_change = ExtResource("6_gdnaf")
@@ -4479,6 +4480,24 @@ skeleton = NodePath("../..")
 environment = SubResource("Environment_gsnni")
 
 [node name="Camera3D" type="Camera3D" parent="NonVMFEntities"]
+transform = Transform3D(-0.9659259, 0.06698733, -0.24999997, 2.2626681e-08, 0.9659259, 0.25881913, 0.258819, 0.25000006, -0.9330127, -0.6821103, 4.470025, 18.01877)
+current = true
+fov = 30.0
+size = 2.9
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="NonVMFEntities/Camera3D"]
+material = ExtResource("26_lrnhp")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="NonVMFEntities/Camera3D/SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="NonVMFEntities/Camera3D/SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.9659259, 0.06698733, -0.24999997, 2.2626681e-08, 0.9659259, 0.25881913, 0.258819, 0.25000006, -0.9330127, -0.6821103, 4.470025, 18.01877)
 current = true
 fov = 30.0

@@ -5,6 +5,9 @@ extends Node3D
 #@onready var bait_up_2_btn: Button = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridBaits/BaitUp2/MarginContainer/HBoxContainer/VBoxContainer/BaitUp2Btn
 #@onready var bait_up_3_btn: Button = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/TabContainer/Baits/PanelContainer/MarginContainer/GridBaits/BaitUp3/MarginContainer/HBoxContainer/VBoxContainer/BaitUp3Btn
 
+@onready var sub_viewport: SubViewport = $NonVMFEntities/Camera3D/SubViewportContainer/SubViewport
+
+
 @onready var money_count: Label = $CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/PanelContainer/MoneyContainer/VBoxContainer/MoneyCount
 
 # TODO : figure out how to add some god damn scrolling
@@ -45,7 +48,6 @@ extends Node3D
 #311
 @export var spr_rods_generic = Texture2D
 
-
 #endregion
 
 
@@ -72,12 +74,21 @@ func give_item_icon(SpriteRect, spritenumber)->void :
 		_:
 			SpriteRect.texture = null
 
+func resize():
+	if sub_viewport != null:
+		sub_viewport.size = DisplayServer.window_get_size()
 
 func _ready() -> void:
 	setup_shop()
 	SoundManager.play_music(bg_curio_music)
+	SoundManager.set_music_volume(0.5)
 	update_money()
+	resize()
 	#check_all_items_availbability()
+
+func _load_scene(scene_path: String) -> void:
+	get_tree().paused = false
+	SceneLoader.load_scene(scene_path)
 
 func lock_button(target_button):
 	target_button.disabled = true
@@ -135,13 +146,13 @@ func _on_return_btn_pressed() -> void:
 	var map_id = Playerinfo.playerLocationNumber
 	match(map_id):
 		0:
-			get_tree().change_scene_to_file("res://maps/devmap_1.tscn")
+			_load_scene("res://maps/devmap_1.tscn")
 		1:
-			get_tree().change_scene_to_file("res://maps/fishingspot_river.tscn")
+			_load_scene("res://maps/fishingspot_river.tscn")
 		2:
-			get_tree().change_scene_to_file("res://maps/fishingspot_lake.tscn")
+			_load_scene("res://maps/fishingspot_lake.tscn")
 		_:
-			get_tree().change_scene_to_file("res://maps/fishingspot_river.tscn")
+			_load_scene("res://maps/fishingspot_river.tscn")
 
 
 func _on_tab_container_tab_changed(tab: int) -> void:
