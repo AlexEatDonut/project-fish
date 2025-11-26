@@ -1,6 +1,9 @@
 class_name Player
 extends CharacterBody3D
 
+# TODO : Move every function related to UI and HUD to fishing_hud.gd
+# Currently, the player GD handles everything. This isn't bad or illogical, just makes this file more bloated than needs to be.
+
 var QueuedFish = []
 
 @export var cast_audio : AudioStreamWAV
@@ -81,7 +84,9 @@ var rod_item_id : int = 0
 #endregion
 
 #region Pause menu
-@onready var pause_menu: PanelContainer = $CanvasLayer/FishingHud/PauseMenu
+#@onready var pause_menu: PanelContainer = $CanvasLayer/FishingHud/PauseMenu
+@export var pause_menu: PackedScene
+
 
 @onready var resume_btn: Button = $CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns/ResumeBtn
 
@@ -394,45 +399,6 @@ func _on_btn_shop_pressed() -> void:
 	get_tree().change_scene_to_file("res://maps/shop_screen.tscn")
 
 func _on_menu_button_pressed() -> void:
-	#TODO : pause the game, hide all other menues and show the menu and its choices
-	match pause_menu.visible:
-		true:
-			unpause_game_menu()
-		false :
-			pause_game_menu()
-
-
-#endregion
-#region Pause Menu buttons pressed
-
-func pause_game_menu():
-	pause_menu.visible = true
-	game_is_paused = true
-	get_tree().paused = true
-
-func unpause_game_menu():
-	get_tree().paused = false
-	game_is_paused = false
-	pause_menu.visible = false
-
-func _on_resume_btn_pressed() -> void:
-	unpause_game_menu()
-
-
-func _on_quit_desktop_btn_button_down() -> void:
-	desktop_btn_exit_pressed = true
-	while desktop_btn_exit_pressed == true:
-		quit_desktop_progress_bar.value += 1
-		await get_tree().create_timer(0.016).timeout
-		if quit_desktop_progress_bar.value == quit_desktop_progress_bar.max_value:
-			get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
-			await get_tree().create_timer(0.25).timeout
-			get_tree().quit() 
-func _on_quit_desktop_btn_button_up() -> void:
-	desktop_btn_exit_pressed = false
-	while quit_desktop_progress_bar.value > 0:
-		quit_desktop_progress_bar.value -= 1
-		await get_tree().create_timer(0.01).timeout
-
-
-#endregion
+	var init_pause_menu = pause_menu.instantiate()
+	fishing_hud.add_child(init_pause_menu)
+endregion

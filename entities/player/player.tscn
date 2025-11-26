@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://516jobpkflmg" path="res://entities/ui/fishing_hud.gd" id="13_afbqv"]
 [ext_resource type="FontFile" uid="uid://dcnld1ddcnbdm" path="res://fonts/Super Trend.ttf" id="14_yqrof"]
 [ext_resource type="Texture2D" uid="uid://bkxo6womsgron" path="res://materials/fishes/freshwater/rare_freshwater_1-kittyfish.png" id="16_gt4e4"]
+[ext_resource type="PackedScene" uid="uid://dmxqve73appkc" path="res://maaack-menus/scenes/overlaid_menus/pause_menu.tscn" id="16_np63p"]
 [ext_resource type="Texture2D" uid="uid://drlbyphkr5l8n" path="res://materials/ui/radio/stop-circle-fill.svg" id="17_mtric"]
 [ext_resource type="Texture2D" uid="uid://bw8snn6mkqtqw" path="res://materials/ui/menu_buttons/basket2-fill.svg" id="17_t1t22"]
 [ext_resource type="Texture2D" uid="uid://p7j5ogilm50w" path="res://materials/ui/menu_buttons/book-fill.svg" id="18_50fht"]
@@ -26,7 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://j3yl6aw8kjy0" path="res://materials/ui/radio/skip-forward-circle-fill.svg" id="20_ghoj8"]
 [ext_resource type="Texture2D" uid="uid://efgi7eel561" path="res://materials/ui/menu_buttons/list.svg" id="20_qpopc"]
 [ext_resource type="Texture2D" uid="uid://dfo5m2wr8gjln" path="res://materials/fishes/freshwater/common_freshwater_3-gilly.png" id="23_8q4fm"]
-[ext_resource type="Texture2D" uid="uid://37io7cx7g5u6" path="res://materials/ui/menu_buttons/file-text-fill.svg" id="25_wq0jh"]
 [ext_resource type="Texture2D" uid="uid://dphkvmemwdlfe" path="res://materials/ui/menu_buttons/escape.svg" id="26_24ehl"]
 [ext_resource type="Texture2D" uid="uid://c8ek6xna6kh3q" path="res://materials/ui/menu_buttons/gear-fill.svg" id="26_gt4e4"]
 [ext_resource type="Texture2D" uid="uid://d24xcvjgvaep2" path="res://materials/ui/menu_buttons/display-fill.svg" id="27_24ehl"]
@@ -221,6 +221,7 @@ cast_audio = ExtResource("2_7thud")
 detect_audio = ExtResource("3_yqrof")
 travel_item = ExtResource("32_vewsg")
 rod_item = ExtResource("5_8q4fm")
+pause_menu = ExtResource("16_np63p")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_sfv1e")
@@ -530,6 +531,7 @@ size_flags_vertical = 8
 text = "Manage bait and rod"
 
 [node name="DebugQueuePanel" type="Panel" parent="CanvasLayer/FishingHud"]
+visible = false
 layout_mode = 0
 offset_left = 28.0
 offset_top = 130.0
@@ -847,12 +849,8 @@ layout_mode = 2
 text = "Resume"
 icon = ExtResource("26_24ehl")
 
-[node name="StatsBtn" type="Button" parent="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns"]
-layout_mode = 2
-text = "Stats"
-icon = ExtResource("25_wq0jh")
-
 [node name="SettingsBtn" type="Button" parent="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns"]
+visible = false
 layout_mode = 2
 text = "Settings"
 icon = ExtResource("26_gt4e4")
@@ -1057,6 +1055,7 @@ one_shot = true
 [connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Detecting" method="_on_player_interact_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/PlayerInteract/PlayerInteract" to="StateMachine/Catching" method="_on_player_interact_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns/ResumeBtn" to="." method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns/QuitMenuBtn" to="." method="_on_quit_menu_btn_pressed"]
 [connection signal="button_down" from="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns/QuitDesktopBtn" to="." method="_on_quit_desktop_btn_button_down"]
 [connection signal="button_up" from="CanvasLayer/FishingHud/PauseMenu/MarginContainer/VBoxAll/VBoxBtns/QuitDesktopBtn" to="." method="_on_quit_desktop_btn_button_up"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/TravelMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MaxSizeContainer/TravelCloseBtn" to="." method="_on_travel_close_btn_pressed"]
