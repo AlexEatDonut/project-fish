@@ -37,14 +37,15 @@ func setup(data: Dictionary, p_id : int) -> void:
 	is_owned = check_item_owned(rod_item_id)
 	is_equipped = check_item_equipped(rod_item_id)
 	set_item_equipped()
-	is_item_clickable()
+	is_item_equipable()
 
 
 func _process(delta: float) -> void:
 	set_item_equipped()
-	is_item_clickable()
+	is_item_owned()
+	is_item_equipable()
 
-func is_item_clickable():
+func is_item_owned():
 	match check_item_owned(rod_item_id):
 		true:
 			rod_item_btn.disabled = false
@@ -52,6 +53,12 @@ func is_item_clickable():
 			rod_item_btn.disabled = true
 			blur_panel.visible = true
 			not_owned_label.visible = true
+
+func is_item_equipable():
+	if Playerinfo.can_switch_rod == true:
+		rod_item_btn.disabled = false
+	else :
+		rod_item_btn.disabled = true
 
 func set_item_equipped():
 	match check_item_equipped(rod_item_id):
@@ -77,7 +84,6 @@ func check_item_equipped(rodid : int):
 
 func _on_rod_item_btn_pressed() -> void:
 	emit_signal("rod_item_pressed", id)
-
 
 func _on_rod_item_btn_mouse_entered() -> void:
 	if is_owned == true and !is_equipped:
