@@ -1,5 +1,8 @@
 extends Node
 
+# TODO : Move every var and function related to data to a new simpleton.
+# Currently, Playerinfo handles everything. This IS bad AND illogical.
+
 var can_repair_rod : bool = false
 var can_switch_rod : bool = true
 
@@ -16,11 +19,6 @@ var fishes_json_as_text = FileAccess.get_file_as_string(fishDataFile)
 var fish_dict = JSON.parse_string(fishes_json_as_text)
 
 var all_rods_duability = []
-
-#var r300_durability : float
-#var r301_durability : float
-#var r302_durability : float
-#var r303_durability : float
 
 @export var DEFAULT_ROD_REPAIR_COST : float = 10
 var RepairCost = DEFAULT_ROD_REPAIR_COST
@@ -124,7 +122,6 @@ func refill_rod_durability():
 		decrease_money(RepairCost)
 		emit_signal("rod_durability_increased")
 
-
 func repair_rod_eligibility():
 	if rod_durability == max_rod_durability:
 		can_repair_rod = false
@@ -149,9 +146,9 @@ func repair_rod_free():
 
 func switch_rod_eligibility():
 	if CurrentState == "IDLE":
-		can_switch_rod == true
+		can_switch_rod = true
 	else:
-		can_switch_rod == false
+		can_switch_rod = false
 
 
 func get_rod_data():
