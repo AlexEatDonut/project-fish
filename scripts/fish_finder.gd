@@ -1,13 +1,6 @@
 extends Node
 
 
-
-
-@export var devsprite1 = Texture
-@export var devsprite2 = Texture
-@export var devsprite3 = Texture
-@export var devsprite4 = Texture
-
 #region list of all fish sprites
 ## FRESHWATER FISHES - COMMON
 @export var spr_fresh_1_1 = Texture2D

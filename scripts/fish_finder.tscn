@@ -1,10 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://b3mjqq2w07l0j"]
+[gd_scene load_steps=15 format=3 uid="uid://b3mjqq2w07l0j"]
 
 [ext_resource type="Script" uid="uid://bpfm4mjx5jpki" path="res://scripts/fish_finder.gd" id="1_7jkcm"]
-[ext_resource type="Texture2D" uid="uid://ym2al7f2xtis" path="res://materials/placeholder/blublub1.png" id="2_j5m6c"]
-[ext_resource type="Texture2D" uid="uid://cny1wfr6et5pp" path="res://materials/placeholder/blublub2.png" id="3_srhex"]
-[ext_resource type="Texture2D" uid="uid://sjjgpoq8bijr" path="res://materials/placeholder/blublub3.png" id="4_f6u10"]
-[ext_resource type="Texture2D" uid="uid://de1iraka2b5yd" path="res://materials/placeholder/blublub4.png" id="5_3yxh0"]
 [ext_resource type="Texture2D" uid="uid://d2kw7k0pks8ss" path="res://materials/fishes/freshwater/common_freshwater_1-shinefish.png" id="6_3yxh0"]
 [ext_resource type="Texture2D" uid="uid://ctl2jxw1f81a5" path="res://materials/fishes/freshwater/common_freshwater_2-sanamon.png" id="7_xskg7"]
 [ext_resource type="Texture2D" uid="uid://dfo5m2wr8gjln" path="res://materials/fishes/freshwater/common_freshwater_3-gilly.png" id="8_l0gv5"]
@@ -21,10 +17,6 @@
 
 [node name="FishFinder" type="Node"]
 script = ExtResource("1_7jkcm")
-devsprite1 = ExtResource("2_j5m6c")
-devsprite2 = ExtResource("3_srhex")
-devsprite3 = ExtResource("4_f6u10")
-devsprite4 = ExtResource("5_3yxh0")
 spr_fresh_1_1 = ExtResource("6_3yxh0")
 spr_fresh_1_2 = ExtResource("7_xskg7")
 spr_fresh_1_3 = ExtResource("8_l0gv5")
