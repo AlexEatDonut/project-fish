@@ -29,12 +29,37 @@ extends Control
 
 @onready var fishing_rods = Playerinfo.fishing_rods
 
+@export_file("*.tscn") var main_menu_scene_path : String
+
+func get_main_menu_scene_path() -> String:
+	if main_menu_scene_path.is_empty():
+		return AppConfig.main_menu_scene_path
+	return main_menu_scene_path
+
+
+
 func _ready() -> void:
 	print("hello world")
 
 func _process(delta: float) -> void:
 	pass
 
+func _load_scene(scene_path: String) -> void:
+	get_tree().paused = false
+	SceneLoader.load_scene(scene_path)
 
 func _on_header_back_btn_pressed() -> void:
-	pass # Replace with function body.
+	_load_scene(get_main_menu_scene_path())
+
+
+func _on_header_game_btn_pressed() -> void:
+	var map_id = Playerinfo.playerLocationNumber
+	match(map_id):
+		0:
+			_load_scene("res://maps/devmap_1.tscn")
+		1:
+			_load_scene("res://maps/fishingspot_river.tscn")
+		2:
+			_load_scene("res://maps/fishingspot_lake.tscn")
+		_:
+			_load_scene("res://maps/fishingspot_river.tscn")

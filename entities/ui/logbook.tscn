@@ -49,15 +49,26 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HeaderBackBtn" type="Button" parent="MarginContainer/VBoxContainer/LogbookHeader/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "Back"
-
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LogbookHeader/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Logbook"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LogbookHeader/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 16
+
+[node name="HeaderGameBtn" type="Button" parent="MarginContainer/VBoxContainer/LogbookHeader/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Back to the game"
+
+[node name="HeaderBackBtn" type="Button" parent="MarginContainer/VBoxContainer/LogbookHeader/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(1, 0.6614332, 0.67033195, 1)
+text = "Back to main menu"
 
 [node name="LogbookContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -68,10 +79,9 @@ theme_override_constants/separation = 16
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_doh6h")
-current_tab = 2
+current_tab = 0
 
 [node name="Fishes" type="PanelContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -82,32 +92,39 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishes/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishes/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishes/MarginContainer/ScrollContainer"]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 columns = 8
 
-[node name="WIP_indicator" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishes/MarginContainer"]
+[node name="WIP_indicator" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishes/MarginContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishes/MarginContainer/WIP_indicator"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishes/MarginContainer/ScrollContainer/WIP_indicator"]
 layout_mode = 2
 text = "This tab is under developpement."
 horizontal_alignment = 1
 
-[node name="MaxSizeContainer" type="Container" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishes/MarginContainer/WIP_indicator"]
+[node name="MaxSizeContainer" type="Container" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishes/MarginContainer/ScrollContainer/WIP_indicator"]
 layout_mode = 2
 script = ExtResource("1_dtnqg")
 max_size = Vector2(256, -1)
 metadata/_custom_type_script = "uid://bhu0c64ewxc07"
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishes/MarginContainer/WIP_indicator/MaxSizeContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishes/MarginContainer/ScrollContainer/WIP_indicator/MaxSizeContainer"]
 layout_mode = 2
 texture = ExtResource("2_31c1s")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishes/MarginContainer/WIP_indicator"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishes/MarginContainer/ScrollContainer/WIP_indicator"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "This tab requires the game to keep track on caught fishes. 
@@ -128,32 +145,40 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishing Rods/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishing Rods/MarginContainer"]
 layout_mode = 2
-columns = 8
 
-[node name="WIP_indicator" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishing Rods/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishing Rods/MarginContainer/ScrollContainer"]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 8
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishing Rods/MarginContainer/WIP_indicator"]
+[node name="WIP_indicator" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishing Rods/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishing Rods/MarginContainer/ScrollContainer/WIP_indicator"]
 layout_mode = 2
 text = "This tab is under developpement."
 horizontal_alignment = 1
 
-[node name="MaxSizeContainer" type="Container" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishing Rods/MarginContainer/WIP_indicator"]
+[node name="MaxSizeContainer" type="Container" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishing Rods/MarginContainer/ScrollContainer/WIP_indicator"]
 layout_mode = 2
 script = ExtResource("1_dtnqg")
 max_size = Vector2(256, -1)
 metadata/_custom_type_script = "uid://bhu0c64ewxc07"
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishing Rods/MarginContainer/WIP_indicator/MaxSizeContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Fishing Rods/MarginContainer/ScrollContainer/WIP_indicator/MaxSizeContainer"]
 layout_mode = 2
 texture = ExtResource("2_31c1s")
 expand_mode = 4
 stretch_mode = 5
 
 [node name="Misc" type="PanelContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -164,32 +189,39 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Misc/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Misc/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Misc/MarginContainer/ScrollContainer"]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 columns = 8
 
-[node name="WIP_indicator" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Misc/MarginContainer"]
+[node name="WIP_indicator" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Misc/MarginContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Misc/MarginContainer/WIP_indicator"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Misc/MarginContainer/ScrollContainer/WIP_indicator"]
 layout_mode = 2
 text = "This tab is under developpement."
 horizontal_alignment = 1
 
-[node name="MaxSizeContainer" type="Container" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Misc/MarginContainer/WIP_indicator"]
+[node name="MaxSizeContainer" type="Container" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Misc/MarginContainer/ScrollContainer/WIP_indicator"]
 layout_mode = 2
 script = ExtResource("1_dtnqg")
 max_size = Vector2(256, -1)
 metadata/_custom_type_script = "uid://bhu0c64ewxc07"
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Misc/MarginContainer/WIP_indicator/MaxSizeContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Misc/MarginContainer/ScrollContainer/WIP_indicator/MaxSizeContainer"]
 layout_mode = 2
 texture = ExtResource("2_31c1s")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Misc/MarginContainer/WIP_indicator"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/LogbookContainer/TabContainer/Misc/MarginContainer/ScrollContainer/WIP_indicator"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "This tab will keep track of tickets, music tapes and more."
@@ -345,6 +377,7 @@ layout_mode = 2
 text = "#ROD_CATCH_WINDOW_MULT"
 
 [node name="RodsPanel2" type="PanelContainer" parent="MarginContainer/VBoxContainer/LogbookContainer/ItemInfoBox/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_31c1s")
 
@@ -471,4 +504,5 @@ text = "Notes :"
 layout_mode = 2
 text = "#ITEM_DESCRIPTION"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/LogbookHeader/MarginContainer/HeaderBackBtn" to="." method="_on_header_back_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LogbookHeader/MarginContainer/HBoxContainer/HeaderGameBtn" to="." method="_on_header_game_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LogbookHeader/MarginContainer/HBoxContainer/HeaderBackBtn" to="." method="_on_header_back_btn_pressed"]
