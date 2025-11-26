@@ -15,7 +15,6 @@
 [ext_resource type="Script" uid="uid://dm7vbj77aejfp" path="res://resources/state_machine/states_player/failcatch.gd" id="7_qiwj3"]
 [ext_resource type="Material" uid="uid://cwrk5o623s5im" path="res://shaders/posterize_shader.tres" id="12_gx6sm"]
 [ext_resource type="Script" uid="uid://516jobpkflmg" path="res://entities/ui/fishing_hud.gd" id="13_afbqv"]
-[ext_resource type="Texture2D" uid="uid://ym2al7f2xtis" path="res://materials/placeholder/blublub1.png" id="14_gx6sm"]
 [ext_resource type="FontFile" uid="uid://dcnld1ddcnbdm" path="res://fonts/Super Trend.ttf" id="14_yqrof"]
 [ext_resource type="Texture2D" uid="uid://bkxo6womsgron" path="res://materials/fishes/freshwater/rare_freshwater_1-kittyfish.png" id="16_gt4e4"]
 [ext_resource type="Texture2D" uid="uid://drlbyphkr5l8n" path="res://materials/ui/radio/stop-circle-fill.svg" id="17_mtric"]
@@ -26,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://ds3o70de8sbfa" path="res://materials/ui/menu_buttons/person-walking.svg" id="19_wuv6x"]
 [ext_resource type="Texture2D" uid="uid://j3yl6aw8kjy0" path="res://materials/ui/radio/skip-forward-circle-fill.svg" id="20_ghoj8"]
 [ext_resource type="Texture2D" uid="uid://efgi7eel561" path="res://materials/ui/menu_buttons/list.svg" id="20_qpopc"]
+[ext_resource type="Texture2D" uid="uid://dfo5m2wr8gjln" path="res://materials/fishes/freshwater/common_freshwater_3-gilly.png" id="23_8q4fm"]
 [ext_resource type="Texture2D" uid="uid://37io7cx7g5u6" path="res://materials/ui/menu_buttons/file-text-fill.svg" id="25_wq0jh"]
 [ext_resource type="Texture2D" uid="uid://dphkvmemwdlfe" path="res://materials/ui/menu_buttons/escape.svg" id="26_24ehl"]
 [ext_resource type="Texture2D" uid="uid://c8ek6xna6kh3q" path="res://materials/ui/menu_buttons/gear-fill.svg" id="26_gt4e4"]
@@ -530,7 +530,6 @@ size_flags_vertical = 8
 text = "Manage bait and rod"
 
 [node name="DebugQueuePanel" type="Panel" parent="CanvasLayer/FishingHud"]
-visible = false
 layout_mode = 0
 offset_left = 28.0
 offset_top = 130.0
@@ -580,8 +579,8 @@ offset_top = -14.5
 offset_right = 43.0
 offset_bottom = 14.5
 grow_vertical = 2
-texture = ExtResource("14_gx6sm")
-expand_mode = 1
+texture = ExtResource("23_8q4fm")
+expand_mode = 2
 
 [node name="weightlabel" type="Label" parent="CanvasLayer/FishingHud/DebugQueuePanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
