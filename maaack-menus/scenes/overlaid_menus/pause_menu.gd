@@ -92,3 +92,10 @@ func _on_confirm_main_menu_confirmed() -> void:
 
 func _on_confirm_exit_confirmed() -> void:
 	get_tree().quit()
+
+func _on_logbook_button_pressed() -> void:
+	%ConfirmLogbook.popup_centered()
+	popup_open = %ConfirmLogbook
+
+func _on_confirm_logbook_confirmed() -> void:
+	_load_scene("res://entities/ui/logbook.tscn")
