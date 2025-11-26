@@ -33,7 +33,7 @@ window/size/viewport_height=720
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/FreeControl/plugin.cfg", "res://addons/godotvmf/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/project-time-tracker/plugin.cfg", "res://addons/scene_container/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/ui_outlines/plugin.cfg")
+enabled=PackedStringArray("res://addons/FreeControl/plugin.cfg", "res://addons/godotvmf/plugin.cfg", "res://addons/project-time-tracker/plugin.cfg", "res://addons/scene_container/plugin.cfg", "res://addons/sound_manager/plugin.cfg", "res://addons/ui_outlines/plugin.cfg")
 
 [file_customization]
 
