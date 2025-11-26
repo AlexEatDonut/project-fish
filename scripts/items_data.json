@@ -21,7 +21,7 @@
 		"item_id": 103,
 		"icon_id": 114,
 		"item_name":"Legendary Bait",
-		"item_description":"An odorless bait that leaves you wandering if you got scammed. It looks mundane, but you cannot decifer what is in there. Allows you to catch legendary fishes.",
+		"item_description":"An odorless bait that leaves you wandering if you got scammed. It looks weird, but you cannot decifer what is in there. Allows you to catch legendary fishes.",
 		"item_cost": 6400,
 		"category":"bait",
 		"requirements" : 102
