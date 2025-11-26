@@ -12,10 +12,19 @@ options_packed_scene = ExtResource("3_hthpe")
 credits_packed_scene = ExtResource("4_0nqn7")
 
 [node name="VersionLabel" parent="VersionMargin/VersionContainer" index="0"]
-text = "v0.0.3"
-
-[node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" index="0"]
-text = "project-fish"
+text = "v0.0.0.3"
 
 [node name="SubTitleLabel" parent="MenuContainer/SubTitleMargin/SubTitleContainer" index="0"]
 text = "Prototype n°3"
+
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/lights/light_environment"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_detail_77"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_detail_96"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_detail_115"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_brush_139"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_brush_145"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_detail_405"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_detail_1141"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_detail_1369"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_detail_1388"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_brush_1570"]

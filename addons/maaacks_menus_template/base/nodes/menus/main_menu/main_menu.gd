@@ -29,6 +29,16 @@ var sub_menu : Control
 @onready var credits_button = %CreditsButton
 @onready var exit_button = %ExitButton
 
+@onready var sub_viewport1: SubViewport = $SubViewportContainer/SubViewport
+@onready var sub_viewport2: SubViewport = $SubViewportContainer/SubViewport/Node3D/NonVMFEntities/Camera3D/SubViewportContainer/SubViewport
+
+func resize():
+	if sub_viewport1 != null:
+		sub_viewport1.size = DisplayServer.window_get_size()
+	if sub_viewport2 != null:
+		sub_viewport2.size = DisplayServer.window_get_size()
+
+
 func get_game_scene_path() -> String:
 	if game_scene_path.is_empty():
 		return AppConfig.game_scene_path
@@ -102,6 +112,7 @@ func _ready() -> void:
 	_hide_options_if_unset()
 	_hide_credits_if_unset()
 	_hide_new_game_if_unset()
+	resize()
 
 func _on_new_game_button_pressed() -> void:
 	new_game()

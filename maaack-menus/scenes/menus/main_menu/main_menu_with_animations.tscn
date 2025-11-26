@@ -332,14 +332,18 @@ parameters/conditions/intro_done = false
 [node name="VersionContainer" parent="VersionMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
 
-[node name="VersionLabel" parent="VersionMargin/VersionContainer" index="0"]
-text = "v0.0.0.3"
+[node name="MouseFilter" type="Control" parent="." index="7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="TitleContainer" parent="MenuContainer/TitleMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
-
-[node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" index="0"]
-text = "project-fish"
 
 [node name="SubTitleContainer" parent="MenuContainer/SubTitleMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
@@ -353,12 +357,14 @@ modulate = Color(1, 1, 1, 0)
 [node name="MenuButtonsBoxContainer" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer" index="0"]
 lock = true
 
-[node name="MouseFilter" type="Control" parent="." index="7"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-metadata/_edit_lock_ = true
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/lights/light_environment"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_detail_77"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_detail_96"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_detail_115"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_brush_139"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_brush_145"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_detail_405"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_detail_1141"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_detail_1369"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_detail_1388"]
+[editable path="SubViewportContainer/SubViewport/Node3D/VMFNode/Entities/funcs/func_brush_1570"]
