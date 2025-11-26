@@ -72,7 +72,9 @@ Addons can be catagorized this way :
 
 <a href="https://freesound.org/people/mikoroonii/sounds/761491/">Marimba UI Sounds</a> by <a href="https://freesound.org/people/mikoroonii/">mikoroonii</a> | License: <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons 0</a>
 
-<a href="https://store.steampowered.com/app/1422450/Deadlock/">Deadlock's curio_music (placeholder music)</a>
+<a href="https://freesound.org/people/UNIVXRSE_Music_/sounds/803856/">Nebula</a> by <a href="https://freesound.org/people/UNIVXRSE_Music_/">UNIVXRSE_Music_</a> | License: <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons 0</a>
+
+<a href="https://store.steampowered.com/app/1422450/Deadlock/">Various sounds from Deadlock (placeholder sounds)</a>
 
 <hr>
 
