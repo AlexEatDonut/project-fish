@@ -442,7 +442,7 @@ icon = ExtResource("17_t1t22")
 
 [node name="btn_fishlist" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer"]
 layout_mode = 2
-text = "bestiary"
+text = "Logbook"
 icon = ExtResource("18_50fht")
 
 [node name="MenuButtonTravel" type="Button" parent="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer"]
