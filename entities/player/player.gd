@@ -165,18 +165,13 @@ func _ready() -> void:
 	update_money()
 	update_roddurability()
 	Playerinfo.check_bait_value()
-	print(Playerinfo.rod_bait_value)
+	#print(Playerinfo.rod_bait_value)
 	if Playerinfo.debug_mode == true :
 		debug_queue_panel.visible = true
 	debug_change_data("none", "", "", "")
 	resize()
 	hud_setup_travel()
 	hud_setup_rods()
-	match Playerinfo.playerLocation:
-		"DEVMAP":
-			pass
-		"RIVER":
-			pass
 
 func _process(delta: float) -> void:
 	resize()
@@ -380,7 +375,7 @@ func on_travel_item_pressed(id : int) -> void:
 	if locations_data[id]["location_name"] != Playerinfo.playerLocation:
 		await get_tree().create_timer(0.25).timeout
 		get_tree().change_scene_to_file(locations_data[id]["map_file"])
-	print(locations_data[id]["location_id"])
+	#print(locations_data[id]["location_id"])
 
 
 func travel_menu_enable() -> void:
@@ -401,4 +396,4 @@ func _on_btn_shop_pressed() -> void:
 func _on_menu_button_pressed() -> void:
 	var init_pause_menu = pause_menu.instantiate()
 	fishing_hud.add_child(init_pause_menu)
-endregion
+#endregion
