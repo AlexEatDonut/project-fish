@@ -34,45 +34,12 @@ extends Node3D
 
 #endregion
 
-#region list of all icons used in shop
-#111
-@export var spr_bait_generic = Texture2D
-#112
-@export var spr_bait_rare = Texture2D
-#113
-@export var spr_bait_unusual = Texture2D
-#114
-@export var spr_bait_legendary = Texture2D
-#211
-@export var spr_ticket_generic = Texture2D
-#311
-@export var spr_rods_generic = Texture2D
 
-#endregion
 
 
 var shop_item_id : int = 0
 
-func give_item_icon(SpriteRect, spritenumber)->void :
-	match spritenumber:
-		## BAITS
-		111:
-			SpriteRect.texture = spr_bait_generic
-		112:
-			SpriteRect.texture = spr_bait_rare
-		113:
-			SpriteRect.texture = spr_bait_unusual
-		114:
-			SpriteRect.texture = spr_bait_legendary
-		
-		## TICKETS 
-		211:
-			SpriteRect.texture = spr_ticket_generic
-		##Rods
-		311:
-			SpriteRect.texture = spr_rods_generic
-		_:
-			SpriteRect.texture = null
+
 
 func resize():
 	if sub_viewport != null:
@@ -100,7 +67,7 @@ func money_sfx():
 	SoundManager.play_ui_sound(sfx_money_change)
 
 func setup_shop() -> void:
-	for data in Playerinfo.shop_items:
+	for data in Gamedata.shop_items:
 		var temp = shop_item.instantiate()
 		temp.item_buy_pressed.connect(on_item_buy_pressed)
 		temp.item_hovered.connect(on_item_hovered)
@@ -117,25 +84,28 @@ func setup_shop() -> void:
 				print("Item was unable to find corresponding category")
 		#grid.add_child(temp)
 		temp.setup(data, shop_item_id)
-		give_item_icon(temp.item_icon, temp.get_icon_id(data))
+		Gamedata.give_item_icon(temp.item_icon, temp.get_icon_id(data))
 		shop_item_id += 1
 
 func on_item_buy_pressed(id : String) -> void:
-	print(id)
-	Playerinfo.decrease_money(Playerinfo.shop_items[id]["item_cost"])
+	#print(id)
+	Playerinfo.decrease_money(Gamedata.shop_items[id]["item_cost"])
 	update_money()
 	money_sfx()
-	Playerinfo.buy_upgrade(int(Playerinfo.shop_items[id]["item_id"]))
+	Playerinfo.buy_upgrade(int(Gamedata.shop_items[id]["item_id"]))
 	SoundManager.play_ui_sound(sfx_item_bought)
 
 func on_item_hovered(id : String):
 	SoundManager.play_ui_sound(sfx_item_hover)
-	#hovered_item_texture.texture = Playerinfo.shop_items[id]["icon_id"]
-	hovered_item_name.text = Playerinfo.shop_items[id]["item_name"]
-	hovered_item_desc.text = Playerinfo.shop_items[id]["item_description"]
-	hovered_item_price.text = str(Playerinfo.shop_items[id]["item_cost"])
+	Gamedata.give_item_icon(hovered_item_texture,int(Gamedata.shop_items[id]["icon_id"]))
+	#hovered_item_texture.texture = Gamedata.shop_items[id]["icon_id"]
+	hovered_item_name.text = Gamedata.shop_items[id]["item_name"]
+	hovered_item_desc.text = Gamedata.shop_items[id]["item_description"]
+	hovered_item_price.text = str(Gamedata.shop_items[id]["item_cost"])
+	
 
 func reset_item_overview():
+	hovered_item_texture.texture = Gamedata.spr_default
 	hovered_item_name.text = ""
 	hovered_item_desc.text = ""
 	hovered_item_price.text = ""
