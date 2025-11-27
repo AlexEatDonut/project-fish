@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=4 uid="uid://dihevx82mh14p"]
+[gd_scene load_steps=74 format=4 uid="uid://dihevx82mh14p"]
 
 [ext_resource type="Script" uid="uid://cxlc57q27wmc4" path="res://maps/shop_screen.gd" id="1_6n44y"]
 [ext_resource type="FontFile" uid="uid://5j16yawegu2w" path="res://fonts/Fish Strike.ttf" id="1_8afw2"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dhs6emecvokgv" path="res://sounds/placeholder/ui/ui_menu_hover_11.wav" id="5_krtpt"]
 [ext_resource type="AudioStream" uid="uid://bmbs3lvgvjmnh" path="res://sounds/placeholder/ui/ui_get_gold_01.wav" id="6_gdnaf"]
 [ext_resource type="AudioStream" uid="uid://b1kar3ssq4bj3" path="res://sounds/placeholder/ui/ui_shop_panel_page_01.wav" id="7_dnd2w"]
+[ext_resource type="Texture2D" uid="uid://7xjxffd31ch4" path="res://materials/ui/icons/wip_icon.png" id="8_gx0fy"]
 [ext_resource type="Texture2D" uid="uid://cvubl7u84p7m" path="res://materials/placeholder/ER_Thawfrost_Boluses.png" id="9_exfuh"]
 [ext_resource type="ArrayMesh" uid="uid://dxi1os47o6lg3" path="res://godotvmfcontent/geometry/shop_fishhouse_vmf_import.mesh" id="10_6hdri"]
 [ext_resource type="Script" uid="uid://h4idhujg1k" path="res://addons/godotvmf/src/vmf_node.gd" id="10_b7de1"]
@@ -21,7 +22,10 @@
 [ext_resource type="Texture2D" uid="uid://k3tjynoe6sn1" path="res://materials/placeholder/ER_Stimulating_Boluses.png" id="10_lrnhp"]
 [ext_resource type="Texture2D" uid="uid://1nvf7ht4ea5p" path="res://materials/placeholder/ER_Clarifying_Boluses.png" id="11_2oeb4"]
 [ext_resource type="Shape3D" uid="uid://tse576k5miaf" path="res://godotvmfcontent/geometry/shop_fishhouse_vmf_collision_surface_prop_default.res" id="11_b7de1"]
+[ext_resource type="Texture2D" uid="uid://177l6ypm83ji" path="res://materials/items/misc/ticket_generic.png" id="12_2oeb4"]
 [ext_resource type="PackedScene" uid="uid://cdbxndr06faie" path="res://godotvmfcontent/entities/func_detail.tscn" id="12_dx2t8"]
+[ext_resource type="Texture2D" uid="uid://djn0g2soaqrms" path="res://materials/items/misc/ticket_lake.png" id="13_dqyi0"]
+[ext_resource type="Texture2D" uid="uid://b477c6k52qm8e" path="res://materials/items/misc/ticket_port.png" id="14_gx0fy"]
 [ext_resource type="Material" uid="uid://byxersiup66oc" path="res://godotvmfcontent/materials/devkenney/kenney-light-texture08.vmt" id="14_o74xp"]
 [ext_resource type="Material" uid="uid://chy3w3lu8e8rg" path="res://godotvmfcontent/materials/devkenney/kenney-dark-texture09.vmt" id="15_krtpt"]
 [ext_resource type="PackedScene" uid="uid://sfoe4ws1pqsq" path="res://godotvmfcontent/entities/func_lod.tscn" id="16_gdnaf"]
@@ -490,11 +494,14 @@ sfx_item_bought = ExtResource("4_dx2t8")
 sfx_item_hover = ExtResource("5_krtpt")
 sfx_money_change = ExtResource("6_gdnaf")
 sfx_change_category = ExtResource("7_dnd2w")
+spr_default = ExtResource("8_gx0fy")
 spr_bait_generic = ExtResource("5_b7de1")
 spr_bait_rare = ExtResource("9_exfuh")
 spr_bait_unusual = ExtResource("10_lrnhp")
 spr_bait_legendary = ExtResource("11_2oeb4")
-spr_ticket_generic = ExtResource("2_jf3u5")
+spr_ticket_generic = ExtResource("12_2oeb4")
+spr_ticket_lakeside = ExtResource("13_dqyi0")
+spr_ticket_port = ExtResource("14_gx0fy")
 spr_rods_generic = ExtResource("10_gdnaf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -1036,7 +1043,7 @@ theme_override_constants/separation = 16
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 6
-texture = ExtResource("5_dqsio")
+texture = ExtResource("8_gx0fy")
 expand_mode = 5
 stretch_mode = 5
 
@@ -1048,7 +1055,7 @@ text = "Name of hovered item"
 [node name="HoveredItemDesc" type="Label" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/HoverPreview/MarginContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-text = "Try to hover as you want, this isn't implemented yet."
+text = "Try to hover items you want, a description will explain what it does."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -1062,6 +1069,7 @@ layout_mode = 2
 text = "300"
 
 [node name="Button" type="Button" parent="CanvasLayer/ShopScreen/bgPanel/MarginsPanel/VBoxContainer/HBoxContainer/HoverPreview/MarginContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 text = "BUY !"
 

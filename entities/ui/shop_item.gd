@@ -28,11 +28,11 @@ var id : int
 func setup(data: String, p_id : int) -> void:
 	#item_icon.texture = load(data.get("icon_path"))
 	#item_icon.texture = load(data.get("res://materials/ui/menu_buttons/bait-icon.svg"))
-	item_name_label.text = Playerinfo.shop_items[data]["item_name"]
-	item_price_label.text = str(Playerinfo.shop_items[data]["item_cost"])
-	item_cost = Playerinfo.shop_items[data]["item_cost"]
-	item_requirement = int(Playerinfo.shop_items[data]["requirements"])
-	item_id = int(Playerinfo.shop_items[data]["item_id"])
+	item_name_label.text = Gamedata.shop_items[data]["item_name"]
+	item_price_label.text = str(Gamedata.shop_items[data]["item_cost"])
+	item_cost = Gamedata.shop_items[data]["item_cost"]
+	item_requirement = int(Gamedata.shop_items[data]["requirements"])
+	item_id = int(Gamedata.shop_items[data]["item_id"])
 	id = p_id
 
 func _process(delta: float) -> void:
@@ -78,10 +78,10 @@ func hide_cost()->void:
 	blur_panel.visible = false
 
 func get_category(data: String):
-	return (Playerinfo.shop_items[data]["category"])
+	return (Gamedata.shop_items[data]["category"])
 
 func get_icon_id(data: String):
-	return int(Playerinfo.shop_items[data]["icon_id"])
+	return int(Gamedata.shop_items[data]["icon_id"])
 	
 func _on_shop_item_btn_pressed() -> void:
 	emit_signal("item_buy_pressed", str(item_id))
