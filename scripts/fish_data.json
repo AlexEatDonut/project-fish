@@ -57,7 +57,7 @@
   },
   "common_freshwater_5": {
 	"name": "Prach",
-	"description": "Medium freshwater fish. Playful and curious, it plays with its food before eating. Its curiousity have led to them to be fished in great quantities, which led to regulations about their capture (this season is a good one, don't worry).",
+	"description": "Medium freshwater fish. Playful and curious, it plays with its food before eating. Its curiousity often leads them to getting fished in great quantities, and regulations about their capture had to be put in place (this season is a good one, don't worry).",
 	"fish_type": "COMMON",
 	"fish_env": "Freshwater",
 	"sprite": 115,
@@ -99,7 +99,7 @@
   },
   "uncommon_freshwater_3": {
 	"name": "Chuppo",
-	"description": "A medium sized fish that loves fighting other species when young, making them likely to die before maturing. When matured, this bahaviour stops, and their scales start falling off before growing back These falling scales have been used in medications that help anger management ; and their meat is naturally fat, reducing the heart rate of anyone who eats it.",
+	"description": "A medium sized fish that loves fighting other species when young, making them likely to die before maturing. When matured, this bahaviour stops, and their scales start falling off before growing back. These falling scales have been used in medications that help anger management ; and their meat is naturally fat, reducing the heart rate of anyone who eats it.",
 	"fish_type": "UNCOMMON",
 	"fish_env": "Freshwater",
 	"sprite": 123,
@@ -113,7 +113,7 @@
   },
   "rare_freshwater_1": {
 	"name": "Kittyfish",
-	"description": "Very large freshwater fish. It has whiskers which has led to its name. They are howver not fans of petting nor scratches. They do however have strength as great as their appetite.",
+	"description": "Very large freshwater fish. It has whiskers which has led to its name. They are however not fans of petting nor scratches. They do however have strength as great as their appetite.",
 	"fish_type": "RARE",
 	"fish_env": "Freshwater",
 	"sprite": 131,
