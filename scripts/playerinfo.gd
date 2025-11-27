@@ -6,17 +6,6 @@ extends Node
 var can_repair_rod : bool = false
 var can_switch_rod : bool = true
 
-var rodsDataFile = "res://scripts/rods_data.json"
-var rods_json_as_text = FileAccess.get_file_as_string(rodsDataFile)
-var fishing_rods = JSON.parse_string(rods_json_as_text)
-
-var shopItemsDataFile = "res://scripts/items_data.json"
-var shopitems_json_as_text = FileAccess.get_file_as_string(shopItemsDataFile)
-var shop_items = JSON.parse_string(shopitems_json_as_text)
-
-var fishDataFile = "res://scripts/fish_data.json"
-var fishes_json_as_text = FileAccess.get_file_as_string(fishDataFile)
-var fish_dict = JSON.parse_string(fishes_json_as_text)
 
 var all_rods_duability = []
 
@@ -154,13 +143,13 @@ func switch_rod_eligibility():
 func get_rod_data():
 	match equipped_rod:
 		300:
-			equipped_rod_data = fishing_rods["300"]
+			equipped_rod_data = Gamedata.fishing_rods["300"]
 		301:
-			equipped_rod_data = fishing_rods["301"]
+			equipped_rod_data = Gamedata.fishing_rods["301"]
 		302:
-			equipped_rod_data = fishing_rods["302"]
+			equipped_rod_data = Gamedata.fishing_rods["302"]
 		303:
-			equipped_rod_data = fishing_rods["303"]
+			equipped_rod_data = Gamedata.fishing_rods["303"]
 	#print(equipped_rod_data["strength_desc"])
 
 func get_fish_lurk_timer():

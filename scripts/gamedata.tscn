@@ -1,0 +1,24 @@
+[gd_scene load_steps=11 format=3 uid="uid://cpucaygtgaxfn"]
+
+[ext_resource type="Script" uid="uid://dnq17gchevc0k" path="res://scripts/gamedata.gd" id="1_28ig7"]
+[ext_resource type="Texture2D" uid="uid://7xjxffd31ch4" path="res://materials/ui/icons/wip_icon.png" id="2_56say"]
+[ext_resource type="Texture2D" uid="uid://cfv11w0nbn68" path="res://materials/ui/menu_buttons/bait-icon.svg" id="3_6ofvk"]
+[ext_resource type="Texture2D" uid="uid://cvubl7u84p7m" path="res://materials/placeholder/ER_Thawfrost_Boluses.png" id="4_g6ou7"]
+[ext_resource type="Texture2D" uid="uid://k3tjynoe6sn1" path="res://materials/placeholder/ER_Stimulating_Boluses.png" id="5_ka07p"]
+[ext_resource type="Texture2D" uid="uid://1nvf7ht4ea5p" path="res://materials/placeholder/ER_Clarifying_Boluses.png" id="6_65ho6"]
+[ext_resource type="Texture2D" uid="uid://177l6ypm83ji" path="res://materials/items/misc/ticket_generic.png" id="7_3le1l"]
+[ext_resource type="Texture2D" uid="uid://djn0g2soaqrms" path="res://materials/items/misc/ticket_lake.png" id="8_iqoqi"]
+[ext_resource type="Texture2D" uid="uid://b477c6k52qm8e" path="res://materials/items/misc/ticket_port.png" id="9_5n0kp"]
+[ext_resource type="Texture2D" uid="uid://c8m1e7ph7co30" path="res://materials/placeholder/icons8-canne-à-pêche-64.png" id="10_u3b4k"]
+
+[node name="gamedata" type="Node"]
+script = ExtResource("1_28ig7")
+spr_default = ExtResource("2_56say")
+spr_bait_generic = ExtResource("3_6ofvk")
+spr_bait_rare = ExtResource("4_g6ou7")
+spr_bait_unusual = ExtResource("5_ka07p")
+spr_bait_legendary = ExtResource("6_65ho6")
+spr_ticket_generic = ExtResource("7_3le1l")
+spr_ticket_lakeside = ExtResource("8_iqoqi")
+spr_ticket_port = ExtResource("9_5n0kp")
+spr_rods_generic = ExtResource("10_u3b4k")

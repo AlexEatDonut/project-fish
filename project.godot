@@ -19,8 +19,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 Playerinfo="*res://scripts/playerinfo.tscn"
-SoundManager="*res://addons/sound_manager/sound_manager.gd"
+Gamedata="*res://scripts/gamedata.tscn"
 FishFinder="*res://scripts/fish_finder.tscn"
+SoundManager="*res://addons/sound_manager/sound_manager.gd"
 AppConfig="*res://addons/maaacks_menus_template/base/nodes/autoloads/app_config/app_config.tscn"
 SceneLoader="*res://addons/maaacks_menus_template/base/nodes/autoloads/scene_loader/scene_loader.tscn"
 ProjectMusicController="*res://addons/maaacks_menus_template/base/nodes/autoloads/music_controller/project_music_controller.tscn"
