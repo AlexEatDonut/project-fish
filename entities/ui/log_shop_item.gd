@@ -1,82 +1,75 @@
 extends PanelContainer
 
-signal item_buy_pressed(id)
-signal item_hovered(id)
+signal log_item_pressed(id:String)
+signal log_item_hovered(id:String)
 
 
-@onready var item_icon: TextureRect = $MarginContainer/VBoxContainer/MaxSizeContainer/PanelContainer2/MarginContainer/TextureRect
+@onready var item_icon: TextureRect = $MaxSizeContainer/PanelContainer/MarginContainer/TextureRect
 
-@onready var item_name_label: Label = $MarginContainer/VBoxContainer/MaxSizeContainer2/PanelContainer/MarginContainer/VBoxContainer/ItemNameLabel
+@onready var log_item_btn: Button = $LogItemBtn
 
-@onready var item_price_label: Label = $MarginContainer/BlurPanel/CenterContainer/ItemPriceLabel
-@onready var blur_panel: PanelContainer = $MarginContainer/BlurPanel
 @onready var greyed_out: Panel = $GreyedOut
 
-@onready var shop_item_btn: Button = $ShopItemBtn
+var item_type : String
+
+var item_name : String
+var item_desc : String
+
+var item_sprite : Texture2D
+
+var rod_strength_desc : String
+var rod_weakness_desc : String
+var rod_durability : int
+var rod_repaircost : int
+var rod_repair_mult : int
+var rod_luktime_mult : float
+var rod_catchwin_mult : float
 
 
-var item_cost : float = 0
 var item_id : int
 
-var is_locked : bool = false
+var is_rod : bool = false
 
 
 var id : int
 
 func setup(data: String, p_id : int) -> void:
-	#item_icon.texture = load(data.get("icon_path"))
-	#item_icon.texture = load(data.get("res://materials/ui/menu_buttons/bait-icon.svg"))
-	item_name_label.text = Playerinfo.shop_items[data]["item_name"]
-	item_price_label.text = str(Playerinfo.shop_items[data]["item_cost"])
-	item_cost = Playerinfo.shop_items[data]["item_cost"]
-	item_id = int(Playerinfo.shop_items[data]["item_id"])
+	item_type = Gamedata.shop_items[data]["category"]
+	item_id = int(Gamedata.shop_items[data]["item_id"])
+	if Gamedata.shop_items[data]["category"] == "rod":
+		setup_rod(data, p_id)
+		return
+	else:
+		#item_icon.texture = load(data.get("icon_path"))
+		#item_icon.texture = load(data.get("res://materials/ui/menu_buttons/bait-icon.svg"))
+		item_name = Gamedata.shop_items[data]["item_name"]
+		item_desc = Gamedata.shop_items[data]["item_description"]
+		id = p_id
+
+#func _process(delta: float) -> void:
+	#pass
+
+func setup_rod(data: String, p_id : int)-> void:
+	is_rod = true
+	
 	id = p_id
 
-func _process(delta: float) -> void:
-	is_item_buyable()
-
-func is_item_buyable():
-	match [check_item_cost(),check_item_not_owned(item_id)]:
-		[true,true,true]:
-			shop_item_btn.disabled = false
-			greyed_out.visible = false
-		_:
-			shop_item_btn.disabled = true
-			greyed_out.visible = true
-
-func check_item_cost():
-	match [item_cost > 0,item_cost <= Playerinfo.money]:
-		[true,true]:
-			return(true)
-		_:
-			return(false)
-
-func check_item_not_owned(itemid : int):
-	#if the player DOESN'T own the targetted object, it is not owned and therefore is true
-	if !Playerinfo.owned_upgrades.has(itemid):
-		return(true)
-	else:
-		return(false)
-
-func show_cost()->void:
-	blur_panel.visible = true
-
-func hide_cost()->void:
-	blur_panel.visible = false
 
 func get_category(data: String):
-	return (Playerinfo.shop_items[data]["category"])
+	return (Gamedata.shop_items[data]["category"])
 
 func get_icon_id(data: String):
-	return int(Playerinfo.shop_items[data]["icon_id"])
+	return int(Gamedata.shop_items[data]["icon_id"])
 	
-func _on_shop_item_btn_pressed() -> void:
-	emit_signal("item_buy_pressed", str(item_id))
+
+func _on_log_item_btn_pressed() -> void:
+	emit_signal("log_item_pressed", str(item_id))
 
 
-func _on_shop_item_btn_mouse_entered() -> void:
-	emit_signal("item_hovered", str(item_id))
-	show_cost()
+func _on_log_item_btn_mouse_entered() -> void:
+	greyed_out.visible = true
+	emit_signal("log_item_hovered", str(item_id))
 
-func _on_shop_item_btn_mouse_exited() -> void:
-	hide_cost()
+
+func _on_log_item_btn_mouse_exited() -> void:
+	greyed_out.visible = false

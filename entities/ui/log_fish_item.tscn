@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpi4diax6evxj"]
+[gd_scene load_steps=7 format=3 uid="uid://dbmb8xsvseose"]
 
-[ext_resource type="Script" uid="uid://cmid480a6dulo" path="res://entities/ui/log_shop_item.gd" id="1_lhmt6"]
-[ext_resource type="Script" uid="uid://bhu0c64ewxc07" path="res://addons/FreeControl/src/CustomClasses/SizeController/MaxSizeContainer.gd" id="3_5lbmf"]
-[ext_resource type="Texture2D" uid="uid://7xjxffd31ch4" path="res://materials/ui/icons/wip_icon.png" id="3_l7m3t"]
+[ext_resource type="Script" uid="uid://d17l7lqhjqyfr" path="res://entities/ui/log_fish_item.gd" id="1_tbwdk"]
+[ext_resource type="Script" uid="uid://bhu0c64ewxc07" path="res://addons/FreeControl/src/CustomClasses/SizeController/MaxSizeContainer.gd" id="2_rv4os"]
+[ext_resource type="Texture2D" uid="uid://7xjxffd31ch4" path="res://materials/ui/icons/wip_icon.png" id="3_tbwdk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l7m3t"]
 
@@ -19,19 +19,19 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.1897483, 0.1897483, 0.1897483, 1)
+border_color = Color(0.19076231, 0.19076234, 0.19076231, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="LogShopItem" type="PanelContainer"]
-offset_right = 124.8
-offset_bottom = 124.8
+[node name="LogFishItem" type="PanelContainer"]
+offset_right = 128.0
+offset_bottom = 128.0
 size_flags_horizontal = 6
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_l7m3t")
-script = ExtResource("1_lhmt6")
+script = ExtResource("1_tbwdk")
 
 [node name="GreyedOut" type="Panel" parent="."]
 visible = false
@@ -42,16 +42,16 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_l7m3t")
 
 [node name="MaxSizeContainer" type="Container" parent="."]
 z_index = 1
-custom_minimum_size = Vector2(124.8, 124.8)
+custom_minimum_size = Vector2(314, 128)
 layout_mode = 2
-script = ExtResource("3_5lbmf")
-max_size = Vector2(124.8, 124.8)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("2_rv4os")
+max_size = Vector2(314, 128)
 metadata/_custom_type_script = "uid://bhu0c64ewxc07"
 
 [node name="PanelContainer" type="PanelContainer" parent="MaxSizeContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_lhmt6")
 
@@ -65,16 +65,16 @@ theme_override_constants/margin_bottom = 5
 
 [node name="TextureRect" type="TextureRect" parent="MaxSizeContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("3_l7m3t")
-expand_mode = 4
+texture = ExtResource("3_tbwdk")
+expand_mode = 2
 stretch_mode = 5
 
-[node name="LogItemBtn" type="Button" parent="."]
+[node name="LogFishBtn" type="Button" parent="."]
 z_index = 5
 layout_mode = 2
 mouse_default_cursor_shape = 2
 flat = true
 
-[connection signal="mouse_entered" from="LogItemBtn" to="." method="_on_log_item_btn_mouse_entered"]
-[connection signal="mouse_exited" from="LogItemBtn" to="." method="_on_log_item_btn_mouse_exited"]
-[connection signal="pressed" from="LogItemBtn" to="." method="_on_log_item_btn_pressed"]
+[connection signal="mouse_entered" from="LogFishBtn" to="." method="_on_log_fish_btn_mouse_entered"]
+[connection signal="mouse_exited" from="LogFishBtn" to="." method="_on_log_fish_btn_mouse_exited"]
+[connection signal="pressed" from="LogFishBtn" to="." method="_on_log_fish_btn_pressed"]
