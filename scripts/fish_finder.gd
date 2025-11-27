@@ -3,37 +3,74 @@ extends Node
 
 #region list of all fish sprites
 ## FRESHWATER FISHES - COMMON
-@export var spr_fresh_1_1 = Texture2D
 #111
-@export var spr_fresh_1_2 = Texture2D
+@export var spr_fresh_1_1 = Texture2D
 #112
-@export var spr_fresh_1_3 = Texture2D
+@export var spr_fresh_1_2 = Texture2D
 #113
-@export var spr_fresh_1_4 = Texture2D
+@export var spr_fresh_1_3 = Texture2D
 #114
-@export var spr_fresh_1_5 = Texture2D
+@export var spr_fresh_1_4 = Texture2D
 #115
+@export var spr_fresh_1_5 = Texture2D
 ## FRESHWATER FISHES - UNCOMMON
-@export var spr_fresh_2_1 = Texture2D
 #121
-@export var spr_fresh_2_2 = Texture2D
+@export var spr_fresh_2_1 = Texture2D
 #122
-@export var spr_fresh_2_3 = Texture2D
+@export var spr_fresh_2_2 = Texture2D
 #123
+@export var spr_fresh_2_3 = Texture2D
 ## FRESHWATER FISHES - RARE
-@export var spr_fresh_3_1 = Texture2D
 #131
-@export var spr_fresh_3_2 = Texture2D
+@export var spr_fresh_3_1 = Texture2D
 #132
+@export var spr_fresh_3_2 = Texture2D
 ## FRESHWATER FISHES - UNUSUAL
-@export var spr_fresh_4_1 = Texture2D
 #141
-@export var spr_fresh_4_2 = Texture2D
+@export var spr_fresh_4_1 = Texture2D
 #142
+@export var spr_fresh_4_2 = Texture2D
 ## FRESHWATER FISHES - LEGENDARY
-@export var spr_fresh_5_1 = Texture2D
 #151
+@export var spr_fresh_5_1 = Texture2D
 #endregion
+
+func give_fish_sprite(SpriteRect, spritenumber)->void :
+	match spritenumber:
+		## FRESHWATER FISHES - COMMON
+		111:
+			SpriteRect.texture = spr_fresh_1_1
+		112:
+			SpriteRect.texture = spr_fresh_1_2
+		113:
+			SpriteRect.texture = spr_fresh_1_3
+		114:
+			SpriteRect.texture = spr_fresh_1_4
+		115:
+			SpriteRect.texture = spr_fresh_1_5
+		## FRESHWATER FISHES - UNCOMMON
+		121:
+			SpriteRect.texture = spr_fresh_2_1
+		122:
+			SpriteRect.texture = spr_fresh_2_2
+		123:
+			SpriteRect.texture = spr_fresh_2_3
+		## FRESHWATER FISHES - RARE
+		131:
+			SpriteRect.texture = spr_fresh_3_1
+		132:
+			SpriteRect.texture = spr_fresh_3_2
+		## FRESHWATER FISHES - UNUSUAL
+		141:
+			SpriteRect.texture = spr_fresh_4_1
+		142:
+			SpriteRect.texture = spr_fresh_4_2
+		## FRESHWATER FISHES - LEGENDARY
+		151:
+			SpriteRect.texture = spr_fresh_5_1
+		## FRESHWATER FISHES - LEGENDARY
+		_:
+			SpriteRect.texture = null
 
 
 var foundFishes = []
@@ -112,21 +149,21 @@ func get_fishes_by_sorting(biome : String, rng_rarity : bool = true, defined_rar
 	match [willSortByRarity, willSortByRNGRarity]:
 #		will sort by rng rarity
 		[true, true]:
-			for item in Playerinfo.fish_dict:
-				if Playerinfo.fish_dict[item]["fish_locations"].has(biome) and Playerinfo.fish_dict[item]["fish_type"] == rng_selected_rarity and Playerinfo.fish_dict[item]["bait_value"] <= current_bait_value:
-					foundFishes.append(Playerinfo.fish_dict[item])
+			for item in Gamedata.fish_dict:
+				if Gamedata.fish_dict[item]["fish_locations"].has(biome) and Gamedata.fish_dict[item]["fish_type"] == rng_selected_rarity and Gamedata.fish_dict[item]["bait_value"] <= current_bait_value:
+					foundFishes.append(Gamedata.fish_dict[item])
 			return foundFishes
 #		will sort by rarity, but a defined one
 		[true, false]:
-			for item in Playerinfo.fish_dict:
-				if Playerinfo.fish_dict[item]["fish_locations"].has(biome) and Playerinfo.fish_dict[item]["fish_type"] == defined_rarity and Playerinfo.fish_dict[item]["bait_value"] <= current_bait_value :
-					foundFishes.append(Playerinfo.fish_dict[item])
+			for item in Gamedata.fish_dict:
+				if Gamedata.fish_dict[item]["fish_locations"].has(biome) and Gamedata.fish_dict[item]["fish_type"] == defined_rarity and Gamedata.fish_dict[item]["bait_value"] <= current_bait_value :
+					foundFishes.append(Gamedata.fish_dict[item])
 			return foundFishes
 #		will not sort by rarity, doesn't matter if it is random or not
 		[false, true or false] :
-			for item in Playerinfo.fish_dict:
-				if Playerinfo.fish_dict[item]["fish_locations"].has(biome) :
-					foundFishes.append(Playerinfo.fish_dict[item])
+			for item in Gamedata.fish_dict:
+				if Gamedata.fish_dict[item]["fish_locations"].has(biome) :
+					foundFishes.append(Gamedata.fish_dict[item])
 			return foundFishes
 
 
@@ -164,6 +201,7 @@ func pick_random_array(array : Array) -> Variant:
 	randomItem["value"] = snappedf(randomItem["value"] * fishValueHeight_rng.randf_range(fishValueHeight_randomizer[0], fishValueHeight_randomizer[1]), 0.01)
 	randomItem["weight"] = snappedf(randomItem["weight"] * fishValueHeight_rng.randf_range(fishValueHeight_randomizer[0], fishValueHeight_randomizer[1]), 0.01)
 	return randomItem
+
 
 
 func rarities_weights_reset():
