@@ -37,7 +37,7 @@
 		"base_durability" : 70,
 		"baseline_repair_cost" : 12,
 		"durability_repair_multiplier" : 5,
-		"lurk_time_multiplier" : 1,
+		"lurk_time_multiplier" : 0.9,
 		"catch_window_multiplier" : 1,
 		"fish_weights_multiplier" : [1,1,1,1,1]
 	},
