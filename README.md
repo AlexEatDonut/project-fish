@@ -76,6 +76,8 @@ Addons can be catagorized this way :
 
 <a href="https://store.steampowered.com/app/1422450/Deadlock/">Various sounds from Deadlock (placeholder sounds)</a>
 
+<a href="https://www.youtube.com/@gakhed">4 songs by GAKHED. Songs are used without permission, so please please please check him out.</a>
+
 <hr>
 
 <sub><sup>Copyright Rémi "AlexEatDonut" Peautre - 2025  
