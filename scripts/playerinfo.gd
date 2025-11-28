@@ -163,7 +163,7 @@ func get_fish_catch_window():
 
 #endregion
 #region Money variable
-var money : float = 10000 :
+var money : float = 5 :
 	get: 
 		return money
 	set(value): 
@@ -206,7 +206,7 @@ func increase_money(moneyGiven, ratio : float = 1):
 
 func buy_upgrade(id : int):
 	owned_upgrades.append(id)
-	print(owned_upgrades)
+	#print(owned_upgrades)
 
 
 func check_bait_value():
