@@ -1,0 +1,25 @@
+[gd_resource type="AudioStreamInteractive" load_steps=5 format=3 uid="uid://dnpfjiqgd5r7t"]
+
+[ext_resource type="AudioStream" uid="uid://ei461wu3gy78" path="res://sounds/placeholder/music/GAKHED-MAY/1-WaitingForYouInSpring.wav" id="1_185y6"]
+[ext_resource type="AudioStream" uid="uid://bdrqrko1abtm8" path="res://sounds/placeholder/music/GAKHED-MAY/2-SpringDream.wav" id="2_e1bwe"]
+[ext_resource type="AudioStream" uid="uid://bg05qb6pp14tw" path="res://sounds/placeholder/music/GAKHED-MAY/3-DandelionsForever.wav" id="3_d0530"]
+[ext_resource type="AudioStream" uid="uid://cq36wvy4ynpp1" path="res://sounds/placeholder/music/GAKHED-MAY/4-GoodbyeMay.wav" id="4_keu23"]
+
+[resource]
+clip_count = 4
+clip_0/name = &"Waiting For You In Spring"
+clip_0/stream = ExtResource("1_185y6")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Spring Dream"
+clip_1/stream = ExtResource("2_e1bwe")
+clip_1/auto_advance = 1
+clip_1/next_clip = 2
+clip_2/name = &"Dandelions Forever"
+clip_2/stream = ExtResource("3_d0530")
+clip_2/auto_advance = 1
+clip_2/next_clip = 3
+clip_3/name = &"Goodbye May"
+clip_3/stream = ExtResource("4_keu23")
+clip_3/auto_advance = 1
+clip_3/next_clip = 0

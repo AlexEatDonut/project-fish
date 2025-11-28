@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://ieknbubt7ci7"]
+[gd_scene load_steps=65 format=3 uid="uid://ieknbubt7ci7"]
 
 [ext_resource type="Script" uid="uid://0gvwve1d3e8v" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="AudioStream" uid="uid://c2y0o0mdcwnu" path="res://sounds/fish/507093__paulprit__fish-splashing-release-2.wav" id="2_7thud"]
@@ -34,6 +34,7 @@
 [ext_resource type="FontFile" uid="uid://5j16yawegu2w" path="res://fonts/Fish Strike.ttf" id="31_bwdx1"]
 [ext_resource type="PackedScene" uid="uid://ca1y33bbhgrhw" path="res://entities/ui/travel_item.tscn" id="32_vewsg"]
 [ext_resource type="Script" uid="uid://bhu0c64ewxc07" path="res://addons/FreeControl/src/CustomClasses/SizeController/MaxSizeContainer.gd" id="33_2soq1"]
+[ext_resource type="AudioStream" uid="uid://dnpfjiqgd5r7t" path="res://sounds/music/radio_playlist1.tres" id="35_np63p"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sfv1e"]
 
@@ -1045,7 +1046,13 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[node name="RadioMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("35_np63p")
+volume_db = -15.0
+bus = &"Music"
+
 [connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer/btn_shop" to="." method="_on_btn_shop_pressed"]
+[connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer/btn_fishlist" to="." method="_on_btn_fishlist_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/GridContainer/MenuButtonTravel" to="." method="_on_menu_button_travel_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/FishingHud/ButtonsMarginContainer/Bait&RodCorner/BaitRodMenu/Margins/VBox/RepairRodBtn" to="." method="_on_repair_rod_btn_pressed"]

@@ -106,6 +106,8 @@ var rod_item_id : int = 0
 
 #endregion
 
+@onready var radio_music: AudioStreamPlayer = $RadioMusic
+
 @onready var state_machine: StateMachine = $StateMachine
 
 @onready var fishing_hud: Control = $CanvasLayer/FishingHud
@@ -154,9 +156,6 @@ var rods_data : Array = [
 	},
 ]
 
-var game_is_paused = false
-var desktop_btn_exit_pressed = false
-
 func resize():
 	if sub_viewport != null:
 		sub_viewport.size = DisplayServer.window_get_size()
@@ -172,15 +171,25 @@ func _ready() -> void:
 	resize()
 	hud_setup_travel()
 	hud_setup_rods()
+	radio_music.play()
 
 func _process(delta: float) -> void:
 	resize()
+	if get_tree().paused == true:
+		radio_music.stream_paused = true
+	else:
+		radio_music.stream_paused = false
+	
 	repair_cost.text = str(Playerinfo.RepairCost)
 	if Playerinfo.can_repair_rod == true:
 		repair_rod_btn.disabled = false
 	else:
 		repair_rod_btn.disabled = true
 
+
+func _load_scene(scene_path: String) -> void:
+	get_tree().paused = false
+	SceneLoader.load_scene(scene_path)
 
 
 #region HUD and UI element related Functions
@@ -390,10 +399,20 @@ func travel_menu_toggle() -> void:
 #endregion
 
 #region Menu buttons pressed
+
 func _on_btn_shop_pressed() -> void:
-	get_tree().change_scene_to_file("res://maps/shop_screen.tscn")
+	radio_music.stop()
+	await get_tree().create_timer(0.25).timeout
+	_load_scene("res://maps/shop_screen.tscn")
+
+func _on_btn_fishlist_pressed() -> void:
+	radio_music.stop()
+	await get_tree().create_timer(0.25).timeout
+	_load_scene("res://entities/ui/logbook.tscn")
 
 func _on_menu_button_pressed() -> void:
-	var init_pause_menu = pause_menu.instantiate()
-	fishing_hud.add_child(init_pause_menu)
+	radio_music.stream_paused = true
+	if get_tree().paused == false:
+		var init_pause_menu = pause_menu.instantiate()
+		fishing_hud.add_child(init_pause_menu)
 #endregion
