@@ -1,6 +1,7 @@
-[gd_scene load_steps=45 format=4 uid="uid://clj31wmoxmj7o"]
+[gd_scene load_steps=46 format=4 uid="uid://clj31wmoxmj7o"]
 
 [ext_resource type="Script" uid="uid://dgf2rxtlk5gd2" path="res://maps/fishingspot_lake.gd" id="1_6ut63"]
+[ext_resource type="AudioStream" uid="uid://b1k12asypqoh5" path="res://sounds/ambient/forest_water_ambiance.wav" id="2_rkkce"]
 [ext_resource type="Script" uid="uid://h4idhujg1k" path="res://addons/godotvmf/src/vmf_node.gd" id="2_xhid7"]
 [ext_resource type="PackedScene" uid="uid://ieknbubt7ci7" path="res://entities/player/player.tscn" id="3_axwmb"]
 [ext_resource type="ArrayMesh" uid="uid://b5airhpgh0r46" path="res://godotvmfcontent/geometry/fishingspot_lake_vmf_import.mesh" id="3_l2ujn"]
@@ -441,6 +442,7 @@ fog_light_color = Color(0.784314, 0.792157, 0.901961, 1)
 
 [node name="FishingspotLake" type="Node3D"]
 script = ExtResource("1_6ut63")
+ambience1 = ExtResource("2_rkkce")
 
 [node name="VMFNode" type="Node3D" parent="."]
 script = ExtResource("2_xhid7")

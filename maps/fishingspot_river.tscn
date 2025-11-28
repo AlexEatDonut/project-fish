@@ -1,6 +1,7 @@
-[gd_scene load_steps=43 format=4 uid="uid://q131ryf8j1ch"]
+[gd_scene load_steps=44 format=4 uid="uid://q131ryf8j1ch"]
 
 [ext_resource type="Script" uid="uid://dbn04omkn2h54" path="res://maps/fishingspot_river.gd" id="1_4jv76"]
+[ext_resource type="AudioStream" uid="uid://b1k12asypqoh5" path="res://sounds/ambient/forest_water_ambiance.wav" id="2_4jv76"]
 [ext_resource type="Script" uid="uid://h4idhujg1k" path="res://addons/godotvmf/src/vmf_node.gd" id="2_km472"]
 [ext_resource type="Material" uid="uid://byhuy0ddtpxkl" path="res://godotvmfcontent/materials/devkenney/kenney-dark-texture05.vmt" id="3_ytpor"]
 [ext_resource type="PackedScene" uid="uid://cwxttgf1xbejo" path="res://godotvmfcontent/entities/light_environment.tscn" id="4_4jv76"]
@@ -443,6 +444,7 @@ fog_light_color = Color(0.784314, 0.792157, 0.901961, 1)
 
 [node name="FishingspotRiver" type="Node3D"]
 script = ExtResource("1_4jv76")
+ambience1 = ExtResource("2_4jv76")
 
 [node name="VMFNode" type="Node3D" parent="."]
 script = ExtResource("2_km472")
