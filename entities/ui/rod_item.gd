@@ -32,7 +32,7 @@ func setup(data: Dictionary, p_id : int) -> void:
 	rod_name_label.text = data["rod_name"]
 	rod_id = int(data["rod_id"])
 	rod_item_id = int(data["item_id"])
-	print(rod_item_id)
+	#print(rod_item_id)
 	id = p_id
 	is_owned = check_item_owned(rod_item_id)
 	is_equipped = check_item_equipped(rod_item_id)

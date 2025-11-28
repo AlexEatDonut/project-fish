@@ -1,14 +1,13 @@
-[gd_scene load_steps=31 format=4 uid="uid://cg6yi61mfhuto"]
+[gd_scene load_steps=30 format=4 uid="uid://cg6yi61mfhuto"]
 
 [ext_resource type="Script" uid="uid://bshtc6j51ovsr" path="res://maps/devmap_1.gd" id="1_84rgm"]
-[ext_resource type="AudioStream" uid="uid://cquudf8cho27u" path="res://sounds/ambient/forest_water_ambiance.wav" id="2_kus0k"]
 [ext_resource type="ArrayMesh" uid="uid://dt588u44aolye" path="res://godotvmfcontent/geometry/fish-devmap1_vmf_import.mesh" id="3_kus0k"]
 [ext_resource type="Script" uid="uid://h4idhujg1k" path="res://addons/godotvmf/src/vmf_node.gd" id="3_yfx3q"]
 [ext_resource type="PackedScene" uid="uid://ieknbubt7ci7" path="res://entities/player/player.tscn" id="4_mt848"]
 [ext_resource type="Shape3D" uid="uid://de3o5h6cf1jwk" path="res://godotvmfcontent/geometry/fish-devmap1_vmf_collision_surface_prop_default.res" id="4_yfx3q"]
 [ext_resource type="PackedScene" uid="uid://cdbxndr06faie" path="res://godotvmfcontent/entities/func_detail.tscn" id="6_2c1bs"]
 [ext_resource type="Material" uid="uid://cci7qd6tfskmf" path="res://godotvmfcontent/materials/devkenney/kenney-orange-texture08.vmt" id="8_4w0w4"]
-[ext_resource type="PackedScene" uid="uid://cx3saydh4cxhk" path="res://godotvmfcontent/entities/func_brush.tscn" id="10_2c1bs"]
+[ext_resource type="PackedScene" uid="uid://bo4xlhwkwv05o" path="res://godotvmfcontent/entities/func_brush.tscn" id="10_2c1bs"]
 [ext_resource type="Material" uid="uid://chy3w3lu8e8rg" path="res://godotvmfcontent/materials/devkenney/kenney-dark-texture09.vmt" id="11_xjwlr"]
 [ext_resource type="Material" uid="uid://bte1kh3svl4gn" path="res://godotvmfcontent/materials/devkenney/kenney-light-texture09.vmt" id="12_4w0w4"]
 
@@ -301,7 +300,6 @@ fog_light_color = Color(0.784314, 0.792157, 0.901961, 1)
 
 [node name="devmap1" type="Node3D"]
 script = ExtResource("1_84rgm")
-ambience1 = ExtResource("2_kus0k")
 
 [node name="VMFNode" type="Node3D" parent="."]
 script = ExtResource("3_yfx3q")

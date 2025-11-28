@@ -9,4 +9,4 @@ func _ready() -> void:
 	SoundManager.play_ambient_sound(ambience1)
 
 func _exit_tree() -> void:
-	SoundManager.ambient_sounds.stop_all()
+	SoundManager.ambient_sounds.stop_all(0.25)
