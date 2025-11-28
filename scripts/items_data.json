@@ -21,7 +21,7 @@
 		"item_id": 103,
 		"icon_id": 113,
 		"item_name":"Legendary Bait",
-		"item_description":"An odorless bait that leaves you wandering if you got scammed. It looks weird, but you cannot decifer what is in there. Allows you to catch legendary fishes.",
+		"item_description":"An odorless bait that leaves you wandering if it actually is potent. It looks weird, but you cannot decifer what is in there. Allows you to catch legendary fishes.",
 		"item_cost": 2500,
 		"category":"bait",
 		"requirements" : 102
@@ -39,8 +39,8 @@
 		"item_id": 202,
 		"icon_id": 212,
 		"item_name":"Ticket : Port",
-		"item_description":"A reusable traveling ticket to the nearby Port. Allows access to the Port from the Travel menu. NONFUNCTIONAL. ONLY FOR TESTING PURPOSES",
-		"item_cost": 9999,
+		"item_description":"A reusable traveling ticket to the nearby Port, though it seems to not be open to the public yet, so that ticket is 100% a scam.",
+		"item_cost": 9999.99,
 		"category":"misc",
 		"requirements" : 0
 	},
