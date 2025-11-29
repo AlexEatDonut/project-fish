@@ -46,7 +46,7 @@
 	},
 	"300":{
 		"item_id": 300,
-		"icon_id": 310,
+		"icon_id": 311,
 		"item_name":"Wooden Rod",
 		"item_description":"Your default rod ! Not very good, but can still get work done.",
 		"item_cost": 0,
@@ -55,7 +55,7 @@
 	},
 	"301":{
 		"item_id": 301,
-		"icon_id": 310,
+		"icon_id": 312,
 		"item_name":"Fishin' Fun branded rod",
 		"item_description":"Your run of the mill store rod. Better than a stick of wood, that's for sure.",
 		"item_cost": 48,
@@ -64,7 +64,7 @@
 	},
 	"302":{
 		"item_id": 302,
-		"icon_id": 310,
+		"icon_id": 313,
 		"item_name":"'Pro' fisher branded rod",
 		"item_description":"A pricier rod equipped with a bait enhancer.",
 		"item_cost": 64,
@@ -73,7 +73,7 @@
 	},
 	"303":{
 		"item_id": 303,
-		"icon_id": 310,
+		"icon_id": 314,
 		"item_name":"Enticing rod",
 		"item_description":"A rod that makes fish want to stay in its bait.",
 		"item_cost": 128,
