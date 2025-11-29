@@ -1,7 +1,6 @@
 # project-fish
 
 Third Godot project.
-This project is private. You aren't supposed to see this.
 
 ## Goal of the project
 
@@ -12,9 +11,7 @@ A cozy and simple fishing game with no deeper mechanics thant that. The goal is 
 
 ## Addons
 
-Addons can be catagorized this way : 
-	- Editor Addons : only affect how the creator implements content. Is completely unseen by the user.
-	- Content Addons : either creates content, is content, or does the programming work for you.
+Addons can be catagorized this way : - Editor Addons : only affect how the creator implements content. Is completely unseen by the user. - Content Addons : either creates content, is content, or does the programming work for you.
 
 ### Editor addons
 
@@ -60,7 +57,7 @@ Addons can be catagorized this way :
 
 <a href="https://freesound.org/people/plasterbrain/sounds/419493/">Bell Chime Alert</a> by <a href="https://freesound.org/people/plasterbrain/">plasterbrain</a> | License: <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons 0</a>
 
-<a href="https://freesound.org/people/UNIVXRSE_Music_/sounds/803856/">Nebula</a> by <a href="https://freesound.org/people/UNIVXRSE_Music_/">UNIVXRSE_Music_</a> | License: <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons 0</a>
+<a href="https://freesound.org/people/UNIVXRSE_Music_/sounds/803856/">Nebula</a> by <a href="https://freesound.org/people/UNIVXRSE_Music_/">UNIVXRSE*Music*</a> | License: <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons 0</a>
 
 <a href="https://store.steampowered.com/app/1422450/Deadlock/">Various sounds from Deadlock (placeholder sounds)</a>
 
