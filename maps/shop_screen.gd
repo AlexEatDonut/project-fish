@@ -105,7 +105,7 @@ func on_item_hovered(id : String):
 	
 
 func reset_item_overview():
-	hovered_item_texture.texture = Gamedata.spr_default
+	hovered_item_texture.texture = null
 	hovered_item_name.text = ""
 	hovered_item_desc.text = ""
 	hovered_item_price.text = ""
