@@ -32,7 +32,14 @@ var fish_dict = JSON.parse_string(fishes_json_as_text)
 
 #310
 @export var spr_rods_generic = Texture2D
-
+#311
+@export var spr_rods_common1 = Texture2D
+#312
+@export var spr_rods_common2 = Texture2D
+#313
+@export var spr_rods_common3 = Texture2D
+#314
+@export var spr_rods_common4 = Texture2D
 #endregion
 
 func give_item_icon(SpriteRect, spritenumber)->void :
@@ -57,5 +64,13 @@ func give_item_icon(SpriteRect, spritenumber)->void :
 		##Rods
 		310:
 			SpriteRect.texture = spr_rods_generic
+		311:
+			SpriteRect.texture = spr_rods_common1
+		312:
+			SpriteRect.texture = spr_rods_common2
+		313:
+			SpriteRect.texture = spr_rods_common3
+		314:
+			SpriteRect.texture = spr_rods_common4
 		_:
 			SpriteRect.texture = null
