@@ -1,22 +1,57 @@
 # Attribution
 ## Collaborators
 
-### Developper
-AlexEatDonut
+### Creator, developper
+[Rémi "AlexEatDonut" Peautre](remipeautre.fr)
 ### Artwork
-[Wip_Tent](https://x.com/A_Normal_Tent/status/1711176122942279693)  
+#### Fishing rods, baits, fishes
+[Tent](https://x.com/A_Normal_Tent/status/1711176122942279693)  
+#### Sprites, tickets
+[Rémi "AlexEatDonut" Peautre](remipeautre.fr)
 
-## Sourced
-### Asset Type
-#### Use Case
-Author: [Name]()  
-Source: [Domain : webpage.html]()  
-License: [License]()
 
-#### Godot Engine Logo
-Author: Andrea Calabró  
-Source: [godotengine.org : press](https://godotengine.org/press/)  
-License: [CC BY 4.0 International](https://github.com/godotengine/godot/blob/master/LOGO_LICENSE.txt) 
+## Sourced assets
+### Models
+#### Fishing Rod model
+Author: [Quaternius](https://poly.pizza/u/Quaternius)  
+Source: [poly.pizza](https://poly.pizza/m/0YAR0Lg58p)  
+License: [Creative Commons 0](https://creativecommons.org/publicdomain/zero/1.0/) 
+
+
+### Sounds
+#### Fish Splashing Release 2
+Author: [paulprit](https://freesound.org/people/paulprit/)  
+Source: [freesound.org](https://freesound.org/people/paulprit/sounds/507093/)  
+License: [Creative Commons 0](http://creativecommons.org/publicdomain/zero/1.0/) 
+
+#### Larger stream with crows in forest
+Author: [Cinetony](https://freesound.org/people/Cinetony/)  
+Source: [freesound.org](https://freesound.org/people/Cinetony/sounds/559542/)  
+License: [Creative Commons 0](http://creativecommons.org/publicdomain/zero/1.0/) 
+
+#### Bell Chime Alert
+Author: [plasterbrain](https://freesound.org/people/plasterbrain/)  
+Source: [freesound.org](https://freesound.org/people/plasterbrain/sounds/419493/)  
+License: [Creative Commons 0](http://creativecommons.org/publicdomain/zero/1.0/) 
+
+#### Various UI and HUD sound effects from Deadlock
+Author: [Valve software](https://www.valvesoftware.com/en/)  
+Source: [Deadlock (video game)](https://store.steampowered.com/app/1422450/Deadlock/)  
+This content is used without a license, and expects the copyright holder to consider its use as part of fair use in an unmonetized piece of work.
+The creator of this software can and will amicably remove any copyrighted works if contacted.
+
+### Music
+#### Nebula (Shop music)
+Author: [UNIVXRSE_Music_](https://freesound.org/people/UNIVXRSE_Music_/)  
+Source: [freesound.org](https://freesound.org/people/UNIVXRSE_Music_/sounds/803856/)  
+License: [Creative Commons 0](http://creativecommons.org/publicdomain/zero/1.0/) 
+
+#### Waiting for you in spring ; Spring Dream ; Dandelions Forever ; Goodbye May (fishing songs)
+Author: [GAKHED](gakhedmusic.neocities.org)  
+Source: [Youtube page : youtube.com/@gakhed](https://www.youtube.com/@gakhed)  
+This content is used without a license, and expects the copyright holder to consider its use as part of fair use in an unmonetized piece of work.
+The creator of this software can and will amicably remove any copyrighted works if contacted.
+
 
 ## Tools
 #### Godot
@@ -50,10 +85,11 @@ Author: [Linus Torvalds](https://github.com/torvalds)
 Source: [git-scm.com](https://git-scm.com/downloads)  
 License: [GNU General Public License version 2](https://opensource.org/licenses/GPL-2.0)
 
-## Placeholder content
+## About copyrighted content
 
-Content comes from copyrighted works without permission. 
+Content comes from copyrighted works, and is used without permission or a license. 
 However, this project is unmonetized and therefore falls into the bounds of fair use.
 Copyrighted content is actively being tracked to be deleted at a future date.
+The creator of this software can and will amicably remove any copyrighted works if contacted.
 
 Read the [github readme](https://github.com/AlexEatDonut/project-fish/blob/main/README.md) for the extended list of credits
