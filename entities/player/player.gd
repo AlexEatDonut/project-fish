@@ -133,25 +133,25 @@ var rods_data : Array = [
 	{
 		"rod_id":1,
 		"item_id": 300,
-		"icon_id": 211,
+		"icon_id": 310,
 		"rod_name":"Wooden Rod",
 	},
 	{
 		"rod_id":2,
 		"item_id": 301,
-		"icon_id": 211,
+		"icon_id": 311,
 		"rod_name":"Fishin' Fun branded rod",
 	},
 	{
 		"rod_id":3,
 		"item_id": 302,
-		"icon_id": 211,
+		"icon_id": 312,
 		"rod_name":"Pro' fisher branded rod",
 	},
 	{
 		"rod_id":4,
 		"item_id": 303,
-		"icon_id": 211,
+		"icon_id": 313,
 		"rod_name":"Enticing rod",
 	},
 ]
@@ -316,6 +316,7 @@ func hud_setup_rods() -> void:
 		grid_rods.add_child(temp)
 		temp.setup(data, rod_item_id)
 		#give_item_icon(temp.item_icon, temp.get_icon_id(data) )
+		#Gamedata.give_item_icon(temp.item_icon, temp.get_icon_id(data))
 		rod_item_id += 1
 
 
