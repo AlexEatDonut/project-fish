@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ie8sf2kwkrqp" path="res://entities/ui/rod_item.gd" id="1_xaxs3"]
 [ext_resource type="Shader" uid="uid://bfgd1jjcitu2o" path="res://shaders/darkened_blur.gdshader" id="2_635i4"]
 [ext_resource type="Script" uid="uid://bhu0c64ewxc07" path="res://addons/FreeControl/src/CustomClasses/SizeController/MaxSizeContainer.gd" id="2_h0gr1"]
-[ext_resource type="Texture2D" uid="uid://c8m1e7ph7co30" path="res://materials/placeholder/icons8-canne-à-pêche-64.png" id="3_xaxs3"]
+[ext_resource type="Texture2D" uid="uid://d1l8gabp8sbd6" path="res://materials/items/rods/rod_generic.png" id="4_h0gr1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uuto5"]
 
@@ -101,7 +101,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_n5r8b")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MaxSizeContainer/PanelContainer2"]
 layout_mode = 2
-texture = ExtResource("3_xaxs3")
+texture = ExtResource("4_h0gr1")
 expand_mode = 2
 stretch_mode = 5
 

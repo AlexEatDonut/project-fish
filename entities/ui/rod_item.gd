@@ -4,7 +4,7 @@ signal rod_item_pressed(id)
 signal item_hovered(id)
 
 
-@onready var rod_icon: TextureRect = $MarginContainer/VBoxContainer/MaxSizeContainer/PanelContainer2/TextureRect
+@onready var item_icon: TextureRect = $MarginContainer/VBoxContainer/MaxSizeContainer/PanelContainer2/TextureRect
 
 @onready var rod_name_label: Label = $MarginContainer/VBoxContainer/MaxSizeContainer2/PanelContainer/MarginContainer/VBoxContainer/RodNameLabel
 
@@ -75,6 +75,14 @@ func check_item_owned(rodid : int):
 		return(true)
 	else:
 		return(false)
+
+func get_icon_id(data: Dictionary):
+	#var target_icon = data["icon_id"]
+	#for item in Gamedata.fishing_rods:
+		#if items["icon_id"] == target_icon:
+			#return
+	#return int(Gamedata.fishing_rods[items]["icon_id"])
+	return int(data["icon_id"])
 
 func check_item_equipped(rodid : int):
 	if Playerinfo.equipped_rod == rodid:
