@@ -43,7 +43,7 @@
   },
   "common_freshwater_4": {
 	"name": "Barss",
-	"description": "Heavy freshwater fish commonly found around popular fishing spots. This species is very competitive in nature, and will fight with its own kin, which led to them being easily lured by bait.",
+	"description": "Heavy freshwater fish commonly found around popular fishing spots. This species is very competitive in nature, and will fight with its own kin, which leads to them being easily lured by bait.",
 	"fish_type": "COMMON",
 	"fish_env": "Freshwater",
 	"sprite": 114,
