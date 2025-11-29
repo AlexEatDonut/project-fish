@@ -114,6 +114,9 @@ func _ready() -> void:
 	_hide_new_game_if_unset()
 	resize()
 
+func _process(delta: float) -> void:
+	resize()
+
 func _on_new_game_button_pressed() -> void:
 	new_game()
 
