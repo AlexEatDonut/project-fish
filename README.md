@@ -11,7 +11,10 @@ A cozy and simple fishing game with no deeper mechanics thant that. The goal is 
 
 ## Addons
 
-Addons can be catagorized this way : - Editor Addons : only affect how the creator implements content. Is completely unseen by the user. - Content Addons : either creates content, is content, or does the programming work for you.
+Addons can be catagorized this way : 
+
+- Editor Addons : only affect how the creator implements content. Is completely unseen by the user.
+- Content Addons : either creates content, is content, or does the programming work for you.
 
 ### Editor addons
 
