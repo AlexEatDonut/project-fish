@@ -81,7 +81,7 @@ func setup_logbook() -> void:
 		#temp.log_fish_hovered.connect(on_fish_hovered)
 		grid_fishes.add_child(temp)
 		temp.setup(data, log_fish_item_id)
-		FishFinder.give_fish_sprite(temp.item_icon, temp.get_icon_id(data))
+		Gamedata.give_fish_sprite(temp.item_icon, temp.get_icon_id(data))
 		log_fish_item_id += 1
 
 

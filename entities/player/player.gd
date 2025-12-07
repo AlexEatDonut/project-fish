@@ -249,62 +249,17 @@ func update_fish_caught_celebration_hud(newname : String, newweight: String,newv
 			caughtfish_rarity.add_theme_color_override("font_color",Color.WHITE)
 			print("No correct rarity given in the queued fish.")
 	
-	switch_ui_fish_sprite(caughtfish_sprite, newsprite)
+	Gamedata.give_fish_sprite(caughtfish_sprite, newsprite)
 
 func debug_change_data(newname : String, newweight: String,newvalue: String, newrarity : String, newsprite = 1):
 	queuedfish_name.text = newname
 	queuedfish_weight.text = newweight
 	queuedfish_value.text = newvalue
 	queuedfish_rarity.text = newrarity
-	switch_ui_fish_sprite(queuedfish_sprite, newsprite)
-
-
-func switch_ui_fish_sprite(SpriteRect, spritenumber)->void :
-	match spritenumber:
-		1.0:
-			SpriteRect.texture = FishFinder.devsprite1
-		2.0:
-			SpriteRect.texture = FishFinder.devsprite2
-		3.0:
-			SpriteRect.texture = FishFinder.devsprite3
-		4.0:
-			SpriteRect.texture = FishFinder.devsprite4
-		## FRESHWATER FISHES - COMMON
-		111.0:
-			SpriteRect.texture = FishFinder.spr_fresh_1_1
-		112.0:
-			SpriteRect.texture = FishFinder.spr_fresh_1_2
-		113.0:
-			SpriteRect.texture = FishFinder.spr_fresh_1_3
-		114.0:
-			SpriteRect.texture = FishFinder.spr_fresh_1_4
-		115.0:
-			SpriteRect.texture = FishFinder.spr_fresh_1_5
-		## FRESHWATER FISHES - UNCOMMON
-		121.0:
-			SpriteRect.texture = FishFinder.spr_fresh_2_1
-		122.0:
-			SpriteRect.texture = FishFinder.spr_fresh_2_2
-		123.0:
-			SpriteRect.texture = FishFinder.spr_fresh_2_3
-		## FRESHWATER FISHES - RARE
-		131.0:
-			SpriteRect.texture = FishFinder.spr_fresh_3_1
-		132.0:
-			SpriteRect.texture = FishFinder.spr_fresh_3_2
-		## FRESHWATER FISHES - UNUSUAL
-		141.0:
-			SpriteRect.texture = FishFinder.spr_fresh_4_1
-		142.0:
-			SpriteRect.texture = FishFinder.spr_fresh_4_2
-		## FRESHWATER FISHES - LEGENDARY
-		151.0:
-			SpriteRect.texture = FishFinder.spr_fresh_5_1
+	Gamedata.give_fish_sprite(queuedfish_sprite, newsprite)
 
 func _on_stop_fishing_pressed() -> void:
 	pass # Replace with function body.
-
-
 
 #region Rod and bait menues
 
@@ -384,7 +339,8 @@ func hud_setup_travel() -> void:
 func on_travel_item_pressed(id : int) -> void:
 	if locations_data[id]["location_name"] != Playerinfo.playerLocation:
 		await get_tree().create_timer(0.25).timeout
-		get_tree().change_scene_to_file(locations_data[id]["map_file"])
+		_load_scene(locations_data[id]["map_file"])
+
 	#print(locations_data[id]["location_id"])
 
 

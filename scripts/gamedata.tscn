@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cpucaygtgaxfn"]
+[gd_scene load_steps=27 format=3 uid="uid://cpucaygtgaxfn"]
 
 [ext_resource type="Script" uid="uid://dnq17gchevc0k" path="res://scripts/gamedata.gd" id="1_28ig7"]
 [ext_resource type="Texture2D" uid="uid://7xjxffd31ch4" path="res://materials/ui/icons/wip_icon.png" id="2_56say"]
@@ -13,6 +13,19 @@
 [ext_resource type="Texture2D" uid="uid://bc8p8gx7l7glm" path="res://materials/items/rods/rod_blue.png" id="11_u3b4k"]
 [ext_resource type="Texture2D" uid="uid://cs3xp620d3in1" path="res://materials/items/rods/rod_purple.png" id="12_7pf6x"]
 [ext_resource type="Texture2D" uid="uid://dhx1m06pe8i6s" path="res://materials/items/rods/rod_yellow.png" id="13_y3vrv"]
+[ext_resource type="Texture2D" uid="uid://d2kw7k0pks8ss" path="res://materials/fishes/freshwater/common_freshwater_1-shinefish.png" id="14_ahws0"]
+[ext_resource type="Texture2D" uid="uid://ctl2jxw1f81a5" path="res://materials/fishes/freshwater/common_freshwater_2-sanamon.png" id="15_aykhx"]
+[ext_resource type="Texture2D" uid="uid://dfo5m2wr8gjln" path="res://materials/fishes/freshwater/common_freshwater_3-gilly.png" id="16_7fblt"]
+[ext_resource type="Texture2D" uid="uid://caxaa0q8vg5l8" path="res://materials/fishes/freshwater/common_freshwater_4-barss.png" id="17_2mrds"]
+[ext_resource type="Texture2D" uid="uid://dvn2q7w6uyu1m" path="res://materials/fishes/freshwater/common_freshwater_5-prach.png" id="18_y00fb"]
+[ext_resource type="Texture2D" uid="uid://bnhqiggivcrg1" path="res://materials/fishes/freshwater/uncommon_freshwater_1-golden_shinefish.png" id="19_3cdup"]
+[ext_resource type="Texture2D" uid="uid://dy3ktwcgxjjhs" path="res://materials/fishes/freshwater/uncommon_freshwater_2-big-eyed-garen.png" id="20_fqa8r"]
+[ext_resource type="Texture2D" uid="uid://dyl0flp3ivgk6" path="res://materials/fishes/freshwater/uncommon_freshwater_3-chuppo.png" id="21_2ny1k"]
+[ext_resource type="Texture2D" uid="uid://bkxo6womsgron" path="res://materials/fishes/freshwater/rare_freshwater_1-kittyfish.png" id="22_ioh7c"]
+[ext_resource type="Texture2D" uid="uid://qb6runfqang5" path="res://materials/fishes/freshwater/rare_freshwater_2-sage-babel.png" id="23_2n8x4"]
+[ext_resource type="Texture2D" uid="uid://uqb4c32tv54m" path="res://materials/fishes/freshwater/unusual_freshwater_1-chromafish.png" id="24_31xib"]
+[ext_resource type="Texture2D" uid="uid://dm8npjvtww8su" path="res://materials/fishes/freshwater/unusual_freshwater_2-muckychup.png" id="25_3jph5"]
+[ext_resource type="Texture2D" uid="uid://dkmv7rcqfd62i" path="res://materials/fishes/freshwater/legendary_freshwater_1-the_great-descendant.png" id="26_smtaa"]
 
 [node name="gamedata" type="Node"]
 script = ExtResource("1_28ig7")
@@ -29,3 +42,16 @@ spr_rods_common1 = ExtResource("10_5n0kp")
 spr_rods_common2 = ExtResource("11_u3b4k")
 spr_rods_common3 = ExtResource("12_7pf6x")
 spr_rods_common4 = ExtResource("13_y3vrv")
+spr_fresh_1_1 = ExtResource("14_ahws0")
+spr_fresh_1_2 = ExtResource("15_aykhx")
+spr_fresh_1_3 = ExtResource("16_7fblt")
+spr_fresh_1_4 = ExtResource("17_2mrds")
+spr_fresh_1_5 = ExtResource("18_y00fb")
+spr_fresh_2_1 = ExtResource("19_3cdup")
+spr_fresh_2_2 = ExtResource("20_fqa8r")
+spr_fresh_2_3 = ExtResource("21_2ny1k")
+spr_fresh_3_1 = ExtResource("22_ioh7c")
+spr_fresh_3_2 = ExtResource("23_2n8x4")
+spr_fresh_4_1 = ExtResource("24_31xib")
+spr_fresh_4_2 = ExtResource("25_3jph5")
+spr_fresh_5_1 = ExtResource("26_smtaa")

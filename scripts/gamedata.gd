@@ -74,3 +74,76 @@ func give_item_icon(SpriteRect, spritenumber)->void :
 			SpriteRect.texture = spr_rods_common4
 		_:
 			SpriteRect.texture = null
+
+
+#region list of all fish sprites
+## FRESHWATER FISHES - COMMON
+#111
+@export var spr_fresh_1_1 = Texture2D
+#112
+@export var spr_fresh_1_2 = Texture2D
+#113
+@export var spr_fresh_1_3 = Texture2D
+#114
+@export var spr_fresh_1_4 = Texture2D
+#115
+@export var spr_fresh_1_5 = Texture2D
+## FRESHWATER FISHES - UNCOMMON
+#121
+@export var spr_fresh_2_1 = Texture2D
+#122
+@export var spr_fresh_2_2 = Texture2D
+#123
+@export var spr_fresh_2_3 = Texture2D
+## FRESHWATER FISHES - RARE
+#131
+@export var spr_fresh_3_1 = Texture2D
+#132
+@export var spr_fresh_3_2 = Texture2D
+## FRESHWATER FISHES - UNUSUAL
+#141
+@export var spr_fresh_4_1 = Texture2D
+#142
+@export var spr_fresh_4_2 = Texture2D
+## FRESHWATER FISHES - LEGENDARY
+#151
+@export var spr_fresh_5_1 = Texture2D
+#endregion
+
+func give_fish_sprite(SpriteRect, spritenumber : float)->void :
+	var spritenumberInt = int(spritenumber)
+	match spritenumberInt:
+		## FRESHWATER FISHES - COMMON
+		111:
+			SpriteRect.texture = spr_fresh_1_1
+		112:
+			SpriteRect.texture = spr_fresh_1_2
+		113:
+			SpriteRect.texture = spr_fresh_1_3
+		114:
+			SpriteRect.texture = spr_fresh_1_4
+		115:
+			SpriteRect.texture = spr_fresh_1_5
+		## FRESHWATER FISHES - UNCOMMON
+		121:
+			SpriteRect.texture = spr_fresh_2_1
+		122:
+			SpriteRect.texture = spr_fresh_2_2
+		123:
+			SpriteRect.texture = spr_fresh_2_3
+		## FRESHWATER FISHES - RARE
+		131:
+			SpriteRect.texture = spr_fresh_3_1
+		132:
+			SpriteRect.texture = spr_fresh_3_2
+		## FRESHWATER FISHES - UNUSUAL
+		141:
+			SpriteRect.texture = spr_fresh_4_1
+		142:
+			SpriteRect.texture = spr_fresh_4_2
+		## FRESHWATER FISHES - LEGENDARY
+		151:
+			SpriteRect.texture = spr_fresh_5_1
+		## FRESHWATER FISHES - LEGENDARY
+		_:
+			SpriteRect.texture = null
