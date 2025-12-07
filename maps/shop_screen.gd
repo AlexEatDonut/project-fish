@@ -94,6 +94,10 @@ func on_item_buy_pressed(id : String) -> void:
 	money_sfx()
 	Playerinfo.buy_upgrade(int(Gamedata.shop_items[id]["item_id"]))
 	SoundManager.play_ui_sound(sfx_item_bought)
+	if Gamedata.shop_items[id]["category"] == "bait":
+		Playerinfo.check_bait_value()
+		FishFinder.update_fishweights()
+
 
 func on_item_hovered(id : String):
 	SoundManager.play_ui_sound(sfx_item_hover)
