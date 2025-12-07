@@ -12,7 +12,7 @@ var all_rods_duability = []
 @export var DEFAULT_ROD_REPAIR_COST : float = 10
 var RepairCost = DEFAULT_ROD_REPAIR_COST
 
-@export var max_money = 999999: 
+@export var max_money = 999999999.99: 
 	set = set_max_money
 
 @export var max_rod_durability = 100:
@@ -34,7 +34,7 @@ var debug_mode : bool = false
 var equipped_rod : int = 300
 var equipped_rod_data : Dictionary
 
-var rod_bait_value = 0
+var rod_bait_value : int = 0
 var bait_upgrade_stage = 0
 
 var fish_inventory  
