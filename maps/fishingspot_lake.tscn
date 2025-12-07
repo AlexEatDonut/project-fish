@@ -442,7 +442,7 @@ fog_light_color = Color(0.784314, 0.792157, 0.901961, 1)
 
 [node name="FishingspotLake" type="Node3D"]
 script = ExtResource("1_6ut63")
-ambience1 = ExtResource("2_rkkce")
+ambience2 = ExtResource("2_rkkce")
 
 [node name="VMFNode" type="Node3D" parent="."]
 script = ExtResource("2_xhid7")
