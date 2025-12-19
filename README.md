@@ -7,6 +7,29 @@ Third Godot project.
 This project's goal is to "make a small game", as every armchair gamemaking tutorial puts it.
 A cozy and simple fishing game with no deeper mechanics thant that. The goal is to make a game that is a good phone distraction while waiting for the bus or something like that. Open the game, fish a few fishes, sell them and buy upgrades for next time.
 
+## Screenshots
+
+### Main Menu
+
+<img src="./readme-assets/img/proto3.2-screenshots/mainmenu.png" alt="Main Menu of the game." height="180px"/>
+
+### Main Screen
+
+<img src="./readme-assets/img/proto3.2-screenshots/fishing.png" alt="Main screen of the game." height="180px"/>
+
+### Fish caught !
+
+<img src="./readme-assets/img/proto3.2-screenshots/fishcaught.png" alt="The popup that shows when successfully caught a fish." height="180px"/>
+
+### Logbook
+
+<img src="./readme-assets/img/proto3.2-screenshots/logbook.png" alt="The logbook of the game, showing all sorts of information." height="180px"/>
+
+### Shop
+
+<img src="./readme-assets/img/proto3.2-screenshots/shop.png" alt="The shop screen of the game." height="180px"/>
+
+
 # Third party Credits
 
 ## Addons
