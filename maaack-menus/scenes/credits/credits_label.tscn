@@ -14,22 +14,57 @@ size_flags_vertical = 5
 bbcode_enabled = true
 text = "[font_size=48]Collaborators[/font_size]
 
-[font_size=32]Role[/font_size]
-Person 1  
-Person 2  
-[url=]Person w/ Link[/url]  
+[font_size=32]Creator, developper[/font_size]
+[url=remipeautre.fr]Rémi \"AlexEatDonut\" Peautre[/url]
+[font_size=32]Artwork[/font_size]
+[font_size=24]Fishing rods, baits, fishes[/font_size]
+[url=https://x.com/A_Normal_Tent/status/1711176122942279693]Tent[/url]  
+[font_size=24]Sprites, tickets[/font_size]
+[url=remipeautre.fr]Rémi \"AlexEatDonut\" Peautre[/url]
 
-[font_size=48]Sourced[/font_size]
-[font_size=32]Asset Type[/font_size]
-[font_size=24]Use Case[/font_size]
-Author: [url=]Name[/url]  
-Source: [url=]Domain : webpage.html[/url]  
-License: [url=]License[/url]
 
-[font_size=24]Godot Engine Logo[/font_size]
-Author: Andrea Calabró  
-Source: [url=https://godotengine.org/press/]godotengine.org : press[/url]  
-License: [url=https://github.com/godotengine/godot/blob/master/LOGO_LICENSE.txt]CC BY 4.0 International[/url] 
+[font_size=48]Sourced assets[/font_size]
+[font_size=32]Models[/font_size]
+[font_size=24]Fishing Rod model[/font_size]
+Author: [url=https://poly.pizza/u/Quaternius]Quaternius[/url]  
+Source: [url=https://poly.pizza/m/0YAR0Lg58p]poly.pizza[/url]  
+License: [url=https://creativecommons.org/publicdomain/zero/1.0/]Creative Commons 0[/url] 
+
+
+[font_size=32]Sounds[/font_size]
+[font_size=24]Fish Splashing Release 2[/font_size]
+Author: [url=https://freesound.org/people/paulprit/]paulprit[/url]  
+Source: [url=https://freesound.org/people/paulprit/sounds/507093/]freesound.org[/url]  
+License: [url=http://creativecommons.org/publicdomain/zero/1.0/]Creative Commons 0[/url] 
+
+[font_size=24]Larger stream with crows in forest[/font_size]
+Author: [url=https://freesound.org/people/Cinetony/]Cinetony[/url]  
+Source: [url=https://freesound.org/people/Cinetony/sounds/559542/]freesound.org[/url]  
+License: [url=http://creativecommons.org/publicdomain/zero/1.0/]Creative Commons 0[/url] 
+
+[font_size=24]Bell Chime Alert[/font_size]
+Author: [url=https://freesound.org/people/plasterbrain/]plasterbrain[/url]  
+Source: [url=https://freesound.org/people/plasterbrain/sounds/419493/]freesound.org[/url]  
+License: [url=http://creativecommons.org/publicdomain/zero/1.0/]Creative Commons 0[/url] 
+
+[font_size=24]Various UI and HUD sound effects from Deadlock[/font_size]
+Author: [url=https://www.valvesoftware.com/en/]Valve software[/url]  
+Source: [url=https://store.steampowered.com/app/1422450/Deadlock/]Deadlock (video game)[/url]  
+This content is used without a license, and expects the copyright holder to consider its use as part of fair use in an unmonetized piece of work.
+The creator of this software can and will amicably remove any copyrighted works if contacted.
+
+[font_size=32]Music[/font_size]
+[font_size=24]Nebula (Shop music)[/font_size]
+Author: [url=https://freesound.org/people/UNIVXRSE_Music_/]UNIVXRSE_Music_[/url]  
+Source: [url=https://freesound.org/people/UNIVXRSE_Music_/sounds/803856/]freesound.org[/url]  
+License: [url=http://creativecommons.org/publicdomain/zero/1.0/]Creative Commons 0[/url] 
+
+[font_size=24]Waiting for you in spring ; Spring Dream ; Dandelions Forever ; Goodbye May (fishing songs)[/font_size]
+Author: [url=gakhedmusic.neocities.org]GAKHED[/url]  
+Source: [url=https://www.youtube.com/@gakhed]Youtube page : youtube.com/@gakhed[/url]  
+This content is used without a license, and expects the copyright holder to consider its use as part of fair use in an unmonetized piece of work.
+The creator of this software can and will amicably remove any copyrighted works if contacted.
+
 
 [font_size=48]Tools[/font_size]
 [font_size=24]Godot[/font_size]
@@ -37,6 +72,19 @@ License: [url=https://github.com/godotengine/godot/blob/master/LOGO_LICENSE.txt]
 Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and contributors[/url]  
 Source: [url=https://godotengine.org/]godotengine.org[/url]  
 License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url] 
+
+[font_size=32]GodotVMF[/font_size]
+[img=80]res:///maaack-menus/assets/godotvmf_logo/logo_icon.png[/img]  
+Author: [url=https://github.com/H2xDev/GodotVMF/graphs/contributors]Radik and contributors[/url]
+Source: [url=https://github.com/H2xDev/GodotVMF]github: GodotVMF[/url]
+License: [url=https://github.com/H2xDev/GodotVMF/blob/master/LICENSE]MIT License[/url]
+
+[font_size=32]Sound Manager[/font_size]
+[img=80]res:///maaack-menus/assets/sound_manager_logo/logo.png[/img]  
+Author: [url=https://github.com/nathanhoad/godot_sound_manager/graphs/contributors]Nathan Hoad and contributors[/url]
+Source: [url=https://github.com/nathanhoad/godot_sound_manager]github: Sound Manager[/url]
+License: [url=https://github.com/nathanhoad/godot_sound_manager/blob/main/LICENSE]MIT License[/url]
+
 
 [font_size=24]Godot Menus Template[/font_size]
 [img=80]res:///maaack-menus/assets/plugin_logo/logo.png[/img]  
@@ -49,6 +97,15 @@ License: [url=LICENSE.txt]MIT License[/url]
 Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
 Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
 License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url]
+
+[font_size=48]About copyrighted content[/font_size]
+
+Content comes from copyrighted works, and is used without permission or a license. 
+However, this project is unmonetized and therefore falls into the bounds of fair use.
+Copyrighted content is actively being tracked to be deleted at a future date.
+The creator of this software can and will amicably remove any copyrighted works if contacted.
+
+Read the [url=https://github.com/AlexEatDonut/project-fish/blob/main/README.md]github readme[/url] for the extended list of credits
 "
 fit_content = true
 scroll_active = false
