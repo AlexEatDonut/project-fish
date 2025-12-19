@@ -11,30 +11,29 @@ A cozy and simple fishing game with no deeper mechanics thant that. The goal is 
 
 ### Main Menu
 
-<img src="./readme-assets/img/proto3.2-screenshots/mainmenu.png" alt="Main Menu of the game." height="180px"/>
+<img src="./readme-assets/img/proto3.2-screenshots/mainmenu.png" alt="Main Menu of the game." height="480px"/>
 
 ### Main Screen
 
-<img src="./readme-assets/img/proto3.2-screenshots/fishing.png" alt="Main screen of the game." height="180px"/>
+<img src="./readme-assets/img/proto3.2-screenshots/fishing.png" alt="Main screen of the game." height="480px"/>
 
 ### Fish caught !
 
-<img src="./readme-assets/img/proto3.2-screenshots/fishcaught.png" alt="The popup that shows when successfully caught a fish." height="180px"/>
+<img src="./readme-assets/img/proto3.2-screenshots/fishcaught.png" alt="The popup that shows when successfully caught a fish." height="480px"/>
 
 ### Logbook
 
-<img src="./readme-assets/img/proto3.2-screenshots/logbook.png" alt="The logbook of the game, showing all sorts of information." height="180px"/>
+<img src="./readme-assets/img/proto3.2-screenshots/logbook.png" alt="The logbook of the game, showing all sorts of information." height="480px"/>
 
 ### Shop
 
-<img src="./readme-assets/img/proto3.2-screenshots/shop.png" alt="The shop screen of the game." height="180px"/>
-
+<img src="./readme-assets/img/proto3.2-screenshots/shop.png" alt="The shop screen of the game." height="480px"/>
 
 # Third party Credits
 
 ## Addons
 
-Addons can be catagorized this way : 
+Addons can be catagorized this way :
 
 - Editor Addons : only affect how the creator implements content. Is completely unseen by the user.
 - Content Addons : either creates content, is content, or does the programming work for you.
