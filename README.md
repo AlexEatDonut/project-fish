@@ -4,7 +4,7 @@ Third Godot project.
 
 ## Goal of the project
 
-This project's goal is to "make a small game", as every armchair gamemaking tutorial puts it.
+This project's goal is to "make a small game", as every youtube gamemaking tutorial puts it.
 A cozy and simple fishing game with no deeper mechanics thant that. The goal is to make a game that is a good phone distraction while waiting for the bus or something like that. Open the game, fish a few fishes, sell them and buy upgrades for next time.
 
 ## Screenshots
