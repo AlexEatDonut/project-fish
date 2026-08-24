@@ -1,6 +1,6 @@
 # project-fish
 
-Third Godot project.
+Third Godot project. As of the 24th of August 2026, it has been archived. All of my code is open source. I do not claim ownership of copyrighted content included in this prototype build.
 
 ## Goal of the project
 
